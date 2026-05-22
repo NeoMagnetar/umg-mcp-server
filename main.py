@@ -19,6 +19,7 @@ import json
 import os
 import re
 import time
+import uvicorn
 from mcp.server.fastmcp import FastMCP
 
 # ── LOAD BLOCK LIBRARY ───────────────────────────────────────────────────────
@@ -1051,4 +1052,4 @@ def get_block_types() -> dict:
 # ── RUN ───────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+    uvicorn.run(mcp.streamable_http_app(), host="0.0.0.0", port=port)
