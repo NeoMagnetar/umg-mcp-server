@@ -1,0 +1,267 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-merge-spec",
+  "title": "UMG Merge Specification Schema",
+  "description": "Schema for merge operations. Same-type merges are auto-approved. Cross-type merges require a declared composite MOLT type and pass validation. A coherence_claim is required but not sufficient — validation must resolve independently.",
+  "version": "0.2.0",
+
+  "definitions": {
+
+    "MergeRequest": {
+      "type": "object",
+      "required": ["merge_id", "merge_kind", "source_block_ids", "merged_molt_type", "coherence_claim"],
+      "description": "Input to the merge evaluator. Specifies what to merge and the requested composite type.",
+      "properties": {
+
+        "merge_id": {
+          "type": "string",
+          "description": "Unique identifier for this merge. Convention: MRG-{DESCRIPTOR}."
+        },
+
+        "merge_kind": {
+          "type": "string",
+          "enum": ["same_type", "cross_type", "multi_type"],
+          "description": "same_type: all source blocks share one MOLT type. cross_type: exactly two different MOLT types. multi_type: three or more MOLT types."
+        },
+
+        "source_block_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 2,
+          "description": "IDs of blocks being merged. All must resolve in the block registry or active session."
+        },
+
+        "source_molt_types": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "MOLT types of source blocks in matching order. Populated by resolver — do not set manually."
+        },
+
+        "merged_molt_type": {
+          "type": "string",
+          "description": "Requested output MOLT type. For same_type merges, may remain the original type. For cross_type or multi_type, must be a declared composite type in the registry."
+        },
+
+        "coherence_claim": {
+          "type": "string",
+          "description": "Required. A human-readable claim stating why this merge is coherent. Evidence only — not self-authorizing. Example: 'The directive governs the instruction; the instruction executes within the directive boundary.'"
+        },
+
+        "merge_policy": {
+          "type": "string",
+          "enum": ["append", "dedupe_append", "compose_fields", "prefer_higher_vertical", "prefer_higher_weight", "suppress_lower", "manual_review"],
+          "description": "How source block content is combined in the merged result.",
+          "default": "prefer_higher_vertical"
+        },
+
+        "requested_dominant_block_id": {
+          "type": ["string", "null"],
+          "description": "Optional. Requester's preference for which block governs in the merged result. Resolver may override based on vertical hierarchy."
+        }
+      }
+    },
+
+    "MergeResult": {
+      "type": "object",
+      "required": ["merge_id", "merge_kind", "coherence_status", "validation_path", "reason"],
+      "description": "Output of the merge evaluator. Appended to RuntimeSpec.merge_results and route_trace.",
+      "properties": {
+
+        "merge_id": { "type": "string" },
+
+        "merge_kind": {
+          "type": "string",
+          "enum": ["same_type", "cross_type", "multi_type"]
+        },
+
+        "source_block_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+
+        "source_molt_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+
+        "merged_molt_type": {
+          "type": "string",
+          "description": "Resolved composite MOLT type. For rejected merges, records the requested type that was rejected."
+        },
+
+        "coherence_status": {
+          "type": "string",
+          "enum": ["coherent", "partial", "conflict", "rejected"],
+          "description": "coherent: merge is valid and internally consistent. partial: merge is accepted but one or more members are suppressed. conflict: merge is flagged for manual review. rejected: merge is invalid and must not enter RuntimeSpec."
+        },
+
+        "validation_path": {
+          "type": "string",
+          "enum": ["declared_composite_match", "rule_validated", "sovereign_pending", "rejected"],
+          "description": "How the merge was validated. declared_composite_match: type found in registry and input types match. rule_validated: known safe pattern. sovereign_pending: plausible but needs MAG review. rejected: failed validation."
+        },
+
+        "coherence_claim": {
+          "type": ["string", "null"],
+          "description": "The coherence claim from the merge request. Preserved in result for audit trail."
+        },
+
+        "dominant_block_id": {
+          "type": ["string", "null"],
+          "description": "Block ID that holds authority in the merged result. Determined by vertical hierarchy unless overridden."
+        },
+
+        "suppressed_block_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Block IDs suppressed in favor of the dominant block. Preserved in trace."
+        },
+
+        "merge_policy_applied": {
+          "type": "string",
+          "description": "The merge policy actually used."
+        },
+
+        "composed_fields": {
+          "type": "object",
+          "description": "Composed field values when merge_policy is compose_fields. Key = field name, value = composed value.",
+          "additionalProperties": true
+        },
+
+        "conflicts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Conflict descriptions. Must not be empty if coherence_status is conflict."
+        },
+
+        "reason": {
+          "type": "string",
+          "description": "Human-readable explanation of the merge result. Required for all outcomes including rejection."
+        },
+
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step": { "type": "string" },
+              "input": {},
+              "output": {},
+              "note": { "type": "string" }
+            }
+          },
+          "description": "Internal merge evaluation trace. Each step in the merge evaluation process."
+        }
+      }
+    },
+
+    "KnownSafePatterns": {
+      "type": "array",
+      "description": "Pre-approved rule_validated merge patterns. The resolver auto-approves merges matching these without registry lookup.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pattern_id": { "type": "string" },
+          "source_molt_types": { "type": "array", "items": { "type": "string" } },
+          "produces_composite_type": { "type": "string" },
+          "dominant_type": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "description": "Top-level merge specification for use in sleeve JSON or merge preview requests.",
+  "properties": {
+    "merge_request": { "$ref": "#/definitions/MergeRequest" },
+    "merge_result": { "$ref": "#/definitions/MergeResult" }
+  },
+
+  "mergeAcceptanceRules": {
+    "rule_1": "All source block IDs must resolve in the block registry or active session.",
+    "rule_2": "All source MOLT types must be known base types or declared extension types.",
+    "rule_3": "If source MOLT types differ, merged_molt_type must be a declared composite type in the registry.",
+    "rule_4": "Every merge must include a coherence_claim. The claim is evidence, not authority.",
+    "rule_5": "Conflict must not be silently ignored. coherence_status must be set and logged.",
+    "rule_6": "Dominance must be traceable. dominant_block_id must identify the governing block.",
+    "rule_7": "Suppression must preserve the suppressed block in trace output.",
+    "rule_8": "The merged output must declare its runtime role via merged_molt_type.",
+    "rule_9": "Rejected merges must return reason and must not enter RuntimeSpec active_blocks.",
+    "rule_10": "sovereign_pending merges are held — not active, not rejected — until MAG review."
+  },
+
+  "rejectionReasons": {
+    "missing_declared_composite_molt_type": "Cross-type merge requested without a declared composite type in registry.",
+    "incoherent_combination": "Source blocks have fundamentally conflicting directives with no valid resolution.",
+    "unknown_source_block_id": "One or more source block IDs do not resolve.",
+    "unknown_source_molt_type": "One or more source MOLT types are not in base or extension set.",
+    "missing_coherence_claim": "No coherence_claim provided for cross-type merge.",
+    "coherence_claim_insufficient": "Coherence claim provided but validation did not confirm coherence.",
+    "merge_circular": "Merge would create circular authority reference."
+  },
+
+  "knownSafePatterns": [
+    {
+      "pattern_id": "DIR_plus_INST",
+      "source_molt_types": ["Directive", "Instruction"],
+      "produces_composite_type": "GovernedInstruction",
+      "dominant_type": "Directive",
+      "description": "Directive governs Instruction. Auto-approved. No registry lookup required."
+    },
+    {
+      "pattern_id": "DIR_plus_PRIM",
+      "source_molt_types": ["Directive", "Primary"],
+      "produces_composite_type": "GovernedOutcome",
+      "dominant_type": "Directive",
+      "description": "Directive shapes Primary outcome. Auto-approved."
+    },
+    {
+      "pattern_id": "DIR_plus_INST_plus_SUBJ",
+      "source_molt_types": ["Directive", "Instruction", "Subject"],
+      "produces_composite_type": "ContextualGovernedInstruction",
+      "dominant_type": "Directive",
+      "description": "Governed instruction applied to a subject domain. Auto-approved."
+    }
+  ],
+
+  "examples": [
+    {
+      "merge_request": {
+        "merge_id": "MRG-GOV-AUDIT-001",
+        "merge_kind": "cross_type",
+        "source_block_ids": ["DIR-046", "INST-076"],
+        "merged_molt_type": "GovernedInstruction",
+        "coherence_claim": "DIR-046 Honor Governance sets the authority boundary. INST-076 Check Governance Rules executes a specific check within that boundary. The instruction is a concrete action form of the directive.",
+        "merge_policy": "prefer_higher_vertical",
+        "requested_dominant_block_id": "DIR-046"
+      }
+    },
+    {
+      "merge_result": {
+        "merge_id": "MRG-GOV-AUDIT-001",
+        "merge_kind": "cross_type",
+        "source_block_ids": ["DIR-046", "INST-076"],
+        "source_molt_types": ["Directive", "Instruction"],
+        "merged_molt_type": "GovernedInstruction",
+        "coherence_status": "coherent",
+        "validation_path": "rule_validated",
+        "coherence_claim": "DIR-046 Honor Governance sets the authority boundary. INST-076 Check Governance Rules executes a specific check within that boundary.",
+        "dominant_block_id": "DIR-046",
+        "suppressed_block_ids": [],
+        "merge_policy_applied": "prefer_higher_vertical",
+        "composed_fields": {},
+        "conflicts": [],
+        "reason": "Cross-type merge auto-approved. Pattern DIR+INST matches known safe pattern producing GovernedInstruction. Directive governs. Instruction executes.",
+        "trace": [
+          { "step": "resolve_source_blocks", "output": "both resolved", "note": "DIR-046, INST-076 found in registry" },
+          { "step": "identify_merge_kind", "output": "cross_type", "note": "two different MOLT types" },
+          { "step": "check_declared_composite", "output": "GovernedInstruction found", "note": "declared_composite_match confirmed" },
+          { "step": "check_known_safe_patterns", "output": "pattern DIR_plus_INST matched", "note": "rule_validated — no sovereign review needed" },
+          { "step": "assign_dominance", "output": "DIR-046 dominant", "note": "Directive ranks above Instruction in vertical hierarchy" },
+          { "step": "evaluate_coherence_claim", "output": "claim consistent with resolved pattern", "note": "claim accepted as corroborating evidence" }
+        ]
+      }
+    }
+  ]
+}

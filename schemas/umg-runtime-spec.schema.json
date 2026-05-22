@@ -1,0 +1,405 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-runtime-spec",
+  "title": "UMG RuntimeSpec",
+  "description": "Single source of truth for all UMG runtime state. MOLT Map and IR Graph are projections of this object.",
+  "version": "0.2.0",
+  "type": "object",
+  "required": ["runtime_id", "sleeve_id", "source_mode", "active_context", "route_trace"],
+  "properties": {
+
+    "runtime_id": {
+      "type": "string",
+      "description": "Unique identifier for this runtime resolution. Format: RT-{timestamp}-{random}."
+    },
+
+    "sleeve_id": {
+      "type": "string",
+      "description": "ID or name of the sleeve being resolved."
+    },
+
+    "source_mode": {
+      "type": "string",
+      "enum": ["library", "session", "candidate", "private"],
+      "description": "Origin of the sleeve. library = canonical registry. session = compiled this session. candidate = under review. private = owner-only."
+    },
+
+    "session_id": {
+      "type": ["string", "null"],
+      "description": "Session identifier for stateful operation. Null when stateless."
+    },
+
+    "turn_index": {
+      "type": ["integer", "null"],
+      "description": "Turn count within session. Enables sequence gate logic when stateful_features_enabled is true."
+    },
+
+    "previous_runtime_id": {
+      "type": ["string", "null"],
+      "description": "runtime_id of the previous turn's RuntimeSpec. Enables continuity and after-gate evaluation."
+    },
+
+    "stateful_features_enabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, enables sequence gates, cooldown gates, and continuity frames. False in v0.2."
+    },
+
+    "active_context": {
+      "type": "object",
+      "description": "Input context for this runtime resolution.",
+      "required": ["signals"],
+      "properties": {
+        "signals": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Binary presence/absence context signals. Present = matched. Absent = unmatched."
+        },
+        "overrides": {
+          "type": "object",
+          "description": "Optional session-level overrides. Key = block_id or stack_id. Value = forced state.",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["active", "suppressed", "off"]
+          }
+        },
+        "goal": {
+          "type": ["string", "null"],
+          "description": "Optional natural language description of the desired response goal. Used by CapabilityFrame composer."
+        }
+      }
+    },
+
+    "gate_evaluations": {
+      "type": "array",
+      "description": "Results of gate evaluation pass for all NeoStacks.",
+      "items": { "$ref": "#/definitions/GateEvaluationResult" }
+    },
+
+    "bundle_expansions": {
+      "type": "array",
+      "description": "Results of bundle expansion pass.",
+      "items": { "$ref": "#/definitions/BundleExpansionResult" }
+    },
+
+    "merge_results": {
+      "type": "array",
+      "description": "Results of merge evaluation pass.",
+      "items": { "$ref": "#/definitions/MergeResult" }
+    },
+
+    "vertical_resolution": {
+      "type": "object",
+      "description": "Result of vertical hierarchy dominance pass.",
+      "properties": {
+        "dominant_directive": { "type": ["string", "null"] },
+        "dominant_instruction": { "type": ["string", "null"] },
+        "dominant_subject": { "type": ["string", "null"] },
+        "dominant_primary": { "type": ["string", "null"] },
+        "dominant_philosophy": { "type": ["string", "null"] },
+        "dominant_blueprint": { "type": ["string", "null"] },
+        "dominant_persona": { "type": ["string", "null"] },
+        "conflicts_resolved": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ConflictResolution" }
+        }
+      }
+    },
+
+    "horizontal_lanes": {
+      "type": "array",
+      "description": "Horizontal capability lanes activated for this resolution.",
+      "items": { "$ref": "#/definitions/HorizontalLane" }
+    },
+
+    "active_neostacks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of NeoStacks in active state."
+    },
+
+    "suppressed_neostacks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SuppressedItem" },
+      "description": "NeoStacks in suppressed state with suppression reason."
+    },
+
+    "active_neoblocks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of NeoBlocks in active state."
+    },
+
+    "suppressed_neoblocks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SuppressedItem" },
+      "description": "NeoBlocks in suppressed state with suppression reason."
+    },
+
+    "active_blocks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ActiveBlock" },
+      "description": "All active MOLT blocks in authority-rank order."
+    },
+
+    "suppressed_blocks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/SuppressedItem" },
+      "description": "Suppressed MOLT blocks with reason."
+    },
+
+    "off_blocks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Block IDs explicitly set to Off state."
+    },
+
+    "conflicts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ConflictRecord" },
+      "description": "All conflicts detected during resolution. Must not be silently ignored."
+    },
+
+    "warnings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/Warning" },
+      "description": "Non-fatal warnings including semantic overlap candidates."
+    },
+
+    "execution_order": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ordered list of block IDs as they would execute in response generation."
+    },
+
+    "capability_frame": {
+      "$ref": "#/definitions/CapabilityFrameRef",
+      "description": "Active modular mind for this response. Projection from RuntimeSpec."
+    },
+
+    "output_blueprint_resolution": {
+      "$ref": "#/definitions/OutputBlueprintResolutionRef",
+      "description": "Resolved output format from OutputBlueprintResolver pass."
+    },
+
+    "molt_map": {
+      "type": "object",
+      "description": "Compact MOLT Map projection. Populated by projectMoltMap() pass."
+    },
+
+    "ir_graph": {
+      "type": "object",
+      "description": "IR Graph projection. Populated by projectIrGraph() pass."
+    },
+
+    "route_trace": {
+      "type": "array",
+      "description": "Primary debugging spine. Every resolver pass appends entries here.",
+      "items": { "$ref": "#/definitions/TraceEntry" }
+    }
+  },
+
+  "definitions": {
+
+    "GateEvaluationResult": {
+      "type": "object",
+      "required": ["gate_id", "target_stack_id", "matched", "result"],
+      "properties": {
+        "gate_id": { "type": "string" },
+        "target_stack_id": { "type": "string" },
+        "operator": { "type": "string", "enum": ["any", "all", "not", "threshold", "priority", "fallback"] },
+        "matched": { "type": "boolean" },
+        "score": { "type": ["number", "null"], "description": "Computed score for threshold gates." },
+        "threshold": { "type": ["number", "null"], "description": "Required threshold for threshold gates." },
+        "matched_conditions": { "type": "array", "items": { "type": "string" } },
+        "failed_conditions": { "type": "array", "items": { "type": "string" } },
+        "result": { "type": "string", "enum": ["activated", "suppressed", "fallback_activated"] },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "BundleExpansionResult": {
+      "type": "object",
+      "required": ["bundle_id", "expanded"],
+      "properties": {
+        "bundle_id": { "type": "string" },
+        "expanded": { "type": "boolean" },
+        "expansion_mode": { "type": "string", "enum": ["inline", "referenced", "inherited"] },
+        "members_added": { "type": "array", "items": { "type": "string" } },
+        "members_deduped": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Block IDs skipped due to ID-only deduplication."
+        },
+        "members_suppressed": { "type": "array", "items": { "type": "string" } },
+        "warnings": { "type": "array", "items": { "$ref": "#/definitions/Warning" } },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "MergeResult": {
+      "type": "object",
+      "required": ["merge_id", "merge_kind", "coherence_status", "validation_path"],
+      "properties": {
+        "merge_id": { "type": "string" },
+        "merge_kind": { "type": "string", "enum": ["same_type", "cross_type", "multi_type"] },
+        "source_block_ids": { "type": "array", "items": { "type": "string" } },
+        "source_molt_types": { "type": "array", "items": { "type": "string" } },
+        "merged_molt_type": { "type": "string" },
+        "coherence_status": { "type": "string", "enum": ["coherent", "partial", "conflict", "rejected"] },
+        "validation_path": {
+          "type": "string",
+          "enum": ["declared_composite_match", "rule_validated", "sovereign_pending", "rejected"]
+        },
+        "coherence_claim": { "type": ["string", "null"] },
+        "dominant_block_id": { "type": ["string", "null"] },
+        "suppressed_block_ids": { "type": "array", "items": { "type": "string" } },
+        "conflicts": { "type": "array", "items": { "type": "string" } },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "ConflictResolution": {
+      "type": "object",
+      "properties": {
+        "block_a_id": { "type": "string" },
+        "block_b_id": { "type": "string" },
+        "winner_id": { "type": "string" },
+        "resolution_rule": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "ConflictRecord": {
+      "type": "object",
+      "required": ["conflict_id", "involved_ids", "conflict_type", "resolution_status"],
+      "properties": {
+        "conflict_id": { "type": "string" },
+        "involved_ids": { "type": "array", "items": { "type": "string" } },
+        "conflict_type": {
+          "type": "string",
+          "enum": ["trigger_collision", "authority_conflict", "merge_conflict", "bundle_conflict", "output_conflict"]
+        },
+        "resolution_status": { "type": "string", "enum": ["resolved", "suppressed_lower", "pending", "manual_review_required"] },
+        "winner_id": { "type": ["string", "null"] },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "HorizontalLane": {
+      "type": "object",
+      "required": ["lane_id", "state"],
+      "properties": {
+        "lane_id": {
+          "type": "string",
+          "enum": ["analysis", "planning", "creative", "audit", "tooling", "memory", "output"]
+        },
+        "state": { "type": "string", "enum": ["active", "inactive", "suppressed"] },
+        "activated_by": { "type": "array", "items": { "type": "string" } },
+        "blocks": { "type": "array", "items": { "type": "string" } },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "ActiveBlock": {
+      "type": "object",
+      "required": ["block_id", "molt_type", "authority_rank", "neoblock_id", "neostack_id"],
+      "properties": {
+        "block_id": { "type": "string" },
+        "block_name": { "type": "string" },
+        "molt_type": { "type": "string" },
+        "authority_rank": { "type": "integer" },
+        "neoblock_id": { "type": "string" },
+        "neostack_id": { "type": "string" },
+        "source": { "type": "string", "enum": ["library", "bundle", "merge", "session", "candidate"] }
+      }
+    },
+
+    "SuppressedItem": {
+      "type": "object",
+      "required": ["id", "suppression_reason"],
+      "properties": {
+        "id": { "type": "string" },
+        "suppression_reason": {
+          "type": "string",
+          "enum": [
+            "off_block",
+            "trigger_mismatch",
+            "higher_vertical_authority",
+            "higher_stack_priority",
+            "merge_conflict",
+            "bundle_override",
+            "context_irrelevant",
+            "manual_review_required",
+            "gate_score_below_threshold",
+            "session_state_missing"
+          ]
+        },
+        "suppressed_by_id": { "type": ["string", "null"] },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "Warning": {
+      "type": "object",
+      "required": ["warning_type", "reason"],
+      "properties": {
+        "warning_type": {
+          "type": "string",
+          "enum": [
+            "possible_semantic_overlap",
+            "undeclared_composite_type",
+            "sovereign_review_recommended",
+            "route_purity_unverified",
+            "bundle_not_found",
+            "merge_coherence_weak",
+            "session_state_stale"
+          ]
+        },
+        "block_ids": { "type": "array", "items": { "type": "string" } },
+        "reason": { "type": "string" }
+      }
+    },
+
+    "TraceEntry": {
+      "type": "object",
+      "required": ["pass", "step_index", "result", "reason"],
+      "properties": {
+        "pass": {
+          "type": "string",
+          "enum": [
+            "gate_evaluation",
+            "vertical_resolution",
+            "bundle_expansion",
+            "merge_evaluation",
+            "lane_activation",
+            "output_blueprint_resolution",
+            "capability_frame_generation",
+            "molt_map_projection",
+            "ir_graph_projection"
+          ]
+        },
+        "step_index": { "type": "integer" },
+        "target_id": { "type": ["string", "null"] },
+        "result": { "type": "string" },
+        "reason": { "type": "string" },
+        "inputs": {
+          "type": "object",
+          "description": "Pass-specific input snapshot at time of trace entry.",
+          "additionalProperties": true
+        }
+      }
+    },
+
+    "CapabilityFrameRef": {
+      "type": "object",
+      "description": "Inline or referenced CapabilityFrame. See umg-capability-frame.schema.json for full schema."
+    },
+
+    "OutputBlueprintResolutionRef": {
+      "type": "object",
+      "description": "Inline or referenced OutputBlueprintResolution. See umg-output-blueprint-resolution.schema.json for full schema."
+    }
+  }
+}

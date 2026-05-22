@@ -1,0 +1,177 @@
+{
+  "_meta": {
+    "version": "0.2.0",
+    "sovereign": "NeoMAG",
+    "description": "Declared composite MOLT types and output composites for UMG Runtime Resolver v0.2. Base MOLT types are built into the runtime and not listed here.",
+    "base_molt_types": ["Trigger", "Directive", "Instruction", "Subject", "Primary", "Philosophy", "Blueprint", "Persona", "Merge", "Off"],
+    "governed_by": "ADR-0001-runtime-resolver-v0.2",
+    "modification_policy": "New composite_molt_types require rule_validated match or sovereign_pending review. New output_composites require at least two active lanes with a blueprint_conflict condition."
+  },
+
+  "composite_molt_types": [
+    {
+      "type_id": "GovernedInstruction",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction"],
+      "authority_behavior": "directive_governs_instruction",
+      "runtime_role": "Executes an instruction under an explicit governing directive. The directive sets the authority boundary; the instruction executes within it. The most common cross-type composite.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive",
+      "notes": "Auto-approved. Matches known safe pattern DIR_plus_INST."
+    },
+    {
+      "type_id": "GovernedOutcome",
+      "kind": "composite",
+      "composed_from": ["Directive", "Primary"],
+      "authority_behavior": "directive_shapes_primary_outcome",
+      "runtime_role": "A primary outcome value governed by a directive. The directive constrains which outcomes are valid. Use when an outcome must be explicitly bounded.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive",
+      "notes": "Auto-approved."
+    },
+    {
+      "type_id": "ContextualGovernedInstruction",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction", "Subject"],
+      "authority_behavior": "directive_governs_instruction_on_subject",
+      "runtime_role": "An instruction governed by a directive, applied to a specific subject domain. More constrained than GovernedInstruction — the subject scopes the execution target.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive",
+      "notes": "Auto-approved. Matches pattern DIR_plus_INST_plus_SUBJ."
+    },
+    {
+      "type_id": "SovereignAnalysisFrame",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction", "Subject"],
+      "authority_behavior": "directive_bounds_all_with_analytical_instruction",
+      "runtime_role": "A governed analytical frame for bounded research, audit, and architecture review tasks. The directive defines acceptable scope; the instruction performs analysis; the subject is the analysis target.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "declared_composite_match",
+      "dominant_component": "Directive",
+      "notes": "Registry match required. Distinct from ContextualGovernedInstruction — requires explicitly analytical instruction block."
+    },
+    {
+      "type_id": "PhilosophyDirective",
+      "kind": "composite",
+      "composed_from": ["Philosophy", "Directive"],
+      "authority_behavior": "philosophy_informs_directive",
+      "runtime_role": "A directive whose behavioral scope is shaped by a philosophical worldview. The directive governs action; the philosophy constrains the ethical lens applied. Use with caution — philosophical and directional binding can produce incoherence.",
+      "merge_allowed": false,
+      "requires_coherence_claim": true,
+      "validation_path": "sovereign_pending",
+      "dominant_component": "Directive",
+      "notes": "ALWAYS requires sovereign review. Philosophy + Directive composites risk incoherent binding. The dominant_component is Directive but the philosophy may contradict it — this must be explicitly reviewed."
+    },
+    {
+      "type_id": "TaskExecutionFrame",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction", "Primary"],
+      "authority_behavior": "directive_governs_instruction_toward_primary_outcome",
+      "runtime_role": "A complete task execution composite: a governing directive, an execution method, and a target outcome. Represents a self-contained cognitive task unit.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "declared_composite_match",
+      "dominant_component": "Directive"
+    },
+    {
+      "type_id": "CognitivePolicy",
+      "kind": "composite",
+      "composed_from": ["Directive", "Philosophy", "Primary"],
+      "authority_behavior": "directive_expresses_philosophy_toward_primary",
+      "runtime_role": "A long-running cognitive policy: a directive that expresses a philosophical worldview in service of a primary value. Suitable for session-level governance rather than per-response instruction.",
+      "merge_allowed": false,
+      "requires_coherence_claim": true,
+      "validation_path": "sovereign_pending",
+      "dominant_component": "Directive",
+      "notes": "Sovereign review required. Three-way composite with significant risk of tension between philosophy and primary."
+    },
+    {
+      "type_id": "ToolGovernedAction",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction"],
+      "authority_behavior": "directive_authorizes_tool_instruction",
+      "runtime_role": "A tool-use instruction explicitly authorized by a governing directive. Distinct from GovernedInstruction — this composite signals that tool invocation is within the directive boundary.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive",
+      "notes": "Auto-approved when instruction is a tooling-type INST block."
+    }
+  ],
+
+  "output_composites": [
+    {
+      "type_id": "StructuredIdeationMap",
+      "kind": "output_composite",
+      "composed_from_lanes": ["analysis", "creative"],
+      "resolution_policy": "analysis_structure_with_creative_content",
+      "blueprint_behavior": "Structured sections defined by analytical decomposition. Within each section, content is generative and exploratory rather than definitive. Headers are analytical; body is creative.",
+      "valid_when": {
+        "lanes_active": ["analysis", "creative"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": [],
+      "notes": "Use when the goal is to ideate within a structured framework."
+    },
+    {
+      "type_id": "ArchitectureReview",
+      "kind": "output_composite",
+      "composed_from_lanes": ["analysis", "audit", "planning"],
+      "resolution_policy": "audit_driven_with_planning_sections",
+      "blueprint_behavior": "Current state analysis section. Audit findings and gap identification section. Risk and issue summary. Planning and remediation roadmap. Acceptance criteria or definition of done.",
+      "valid_when": {
+        "lanes_active": ["analysis", "audit", "planning"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": [],
+      "notes": "Standard output composite for architecture and system design reviews."
+    },
+    {
+      "type_id": "GovernedReleaseReport",
+      "kind": "output_composite",
+      "composed_from_lanes": ["audit", "tooling", "output"],
+      "resolution_policy": "governance_framed_technical_output",
+      "blueprint_behavior": "Governance summary with sovereign review status first. Technical audit findings. Tool execution trace. Output artifacts listed with provenance. All sections traceable to governing directives.",
+      "valid_when": {
+        "lanes_active": ["audit", "output"],
+        "blueprint_conflict": true,
+        "minimum_lane_weight": 0.6
+      },
+      "suppresses_lanes": [],
+      "notes": "Use for public release preparation and sovereign sign-off artifacts."
+    },
+    {
+      "type_id": "AnalyticalNarrative",
+      "kind": "output_composite",
+      "composed_from_lanes": ["analysis", "output"],
+      "resolution_policy": "sequential_lanes_with_unified_conclusion",
+      "blueprint_behavior": "Analytical breakdown in structured form, concluded with a synthesized narrative summary. The conclusion reads as prose; the body is structured.",
+      "valid_when": {
+        "lanes_active": ["analysis", "output"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": [],
+      "notes": "Good default when analysis lane and output lane conflict without creative involvement."
+    },
+    {
+      "type_id": "SleeveDesignPackage",
+      "kind": "output_composite",
+      "composed_from_lanes": ["creative", "planning", "output"],
+      "resolution_policy": "creative_within_structured_sections",
+      "blueprint_behavior": "Sleeve design intent section (creative). Block selection rationale (analytical). NeoStack structure (planning). JSON output artifact. Audit notes.",
+      "valid_when": {
+        "lanes_active": ["creative", "planning", "output"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": [],
+      "notes": "Use when composing new sleeve designs. Combines ideation with structure and concrete output."
+    }
+  ]
+}

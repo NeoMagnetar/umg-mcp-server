@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-output-blueprint-resolution",
+  "title": "UMG Output Blueprint Resolution Schema",
+  "description": "Schema for the OutputBlueprintResolver subsystem. Handles Blueprint-level conflicts when multiple horizontal lanes produce competing output format preferences. Produces a resolved output blueprint — either a single winning lane's Blueprint or a declared OutputComposite. Part of the resolveOutputBlueprint() pass.",
+  "version": "0.2.0",
+
+  "type": "object",
+  "required": ["resolution_id", "active_lanes", "blueprint_conflict_detected", "resolved_output"],
+  "properties": {
+
+    "resolution_id": {
+      "type": "string",
+      "description": "Unique identifier for this resolution. Convention: OBR-{runtime_id}."
+    },
+
+    "active_lanes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Horizontal lane IDs that were active at time of resolution."
+    },
+
+    "competing_blueprints": {
+      "type": "array",
+      "description": "Blueprint preferences submitted by each active lane.",
+      "items": {
+        "type": "object",
+        "required": ["lane_id", "blueprint_block_id", "blueprint_name", "lane_weight"],
+        "properties": {
+          "lane_id": { "type": "string" },
+          "blueprint_block_id": { "type": "string" },
+          "blueprint_name": { "type": "string" },
+          "lane_weight": {
+            "type": "number",
+            "description": "The lane's weight at time of blueprint submission. Higher weight = stronger preference."
+          },
+          "conflict_with": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Lane IDs whose Blueprint preferences conflict with this one."
+          }
+        }
+      }
+    },
+
+    "blueprint_conflict_detected": {
+      "type": "boolean",
+      "description": "True if two or more active lanes produced conflicting Blueprint preferences."
+    },
+
+    "conflict_type": {
+      "type": ["string", "null"],
+      "enum": ["structure_vs_content", "format_vs_narrative", "depth_vs_brevity", "technical_vs_creative", "sequential_vs_parallel", null],
+      "description": "Classification of the Blueprint conflict type. Null if no conflict."
+    },
+
+    "resolved_output": {
+      "type": "object",
+      "required": ["output_type", "is_composite", "resolution_method"],
+      "description": "The resolved output format for this response.",
+      "properties": {
+
+        "output_type": {
+          "type": "string",
+          "description": "Blueprint block name (e.g. Markdown) or OutputComposite type_id (e.g. StructuredIdeationMap)."
+        },
+
+        "is_composite": {
+          "type": "boolean",
+          "description": "True if resolved to a declared OutputComposite type."
+        },
+
+        "composite_type_id": {
+          "type": ["string", "null"],
+          "description": "The OutputComposite type_id from the declared registry. Null if not composite."
+        },
+
+        "resolution_method": {
+          "type": "string",
+          "enum": [
+            "no_conflict_single_lane",
+            "highest_weight_wins",
+            "vertical_hierarchy_wins",
+            "declared_composite_match",
+            "combine_compatible_modes",
+            "suppress_lower_priority",
+            "manual_review_required"
+          ],
+          "description": "How the resolver reached this output type."
+        },
+
+        "blueprint_behavior": {
+          "type": "string",
+          "description": "Concrete description of the output format this response should follow."
+        },
+
+        "winning_lane": {
+          "type": ["string", "null"],
+          "description": "The lane whose Blueprint preference governs. Null if composite resolution."
+        },
+
+        "contributing_lanes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All lanes whose preferences contributed to a composite resolution."
+        }
+      }
+    },
+
+    "suppressed_blueprints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lane_id": { "type": "string" },
+          "blueprint_block_id": { "type": "string" },
+          "suppression_reason": { "type": "string" }
+        }
+      },
+      "description": "Blueprint preferences that were suppressed in favor of the resolved output."
+    },
+
+    "conflict_trace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": { "type": "string" },
+          "lanes_compared": { "type": "array", "items": { "type": "string" } },
+          "conflict_found": { "type": "boolean" },
+          "resolution_attempted": { "type": "string" },
+          "outcome": { "type": "string" }
+        }
+      },
+      "description": "Step-by-step trace of the conflict detection and resolution process."
+    },
+
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "warning_type": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    }
+  },
+
+  "resolutionPriority": {
+    "description": "Order of resolution methods attempted by the OutputBlueprintResolver.",
+    "steps": [
+      { "step": 1, "method": "no_conflict_single_lane", "condition": "Only one lane is active or only one lane has a Blueprint preference." },
+      { "step": 2, "method": "combine_compatible_modes", "condition": "Active lanes have Blueprint preferences that can combine without contradiction (e.g. Markdown + structured sections)." },
+      { "step": 3, "method": "declared_composite_match", "condition": "Active lanes match the valid_when conditions of a declared OutputComposite in the registry." },
+      { "step": 4, "method": "vertical_hierarchy_wins", "condition": "No composite available. The lane carrying the highest-authority MOLT block wins." },
+      { "step": 5, "method": "highest_weight_wins", "condition": "No hierarchy distinction. The lane with the highest weight at resolution time wins." },
+      { "step": 6, "method": "suppress_lower_priority", "condition": "Tie-break: suppress the lower-priority lane's Blueprint preference." },
+      { "step": 7, "method": "manual_review_required", "condition": "Irresolvable conflict. Escalate to sovereign." }
+    ]
+  },
+
+  "examples": [
+    {
+      "resolution_id": "OBR-RT-001",
+      "active_lanes": ["analysis", "creative"],
+      "competing_blueprints": [
+        {
+          "lane_id": "analysis",
+          "blueprint_block_id": "BP-058",
+          "blueprint_name": "Case Study",
+          "lane_weight": 0.85,
+          "conflict_with": ["creative"]
+        },
+        {
+          "lane_id": "creative",
+          "blueprint_block_id": "BP-034",
+          "blueprint_name": "Free Verse",
+          "lane_weight": 0.70,
+          "conflict_with": ["analysis"]
+        }
+      ],
+      "blueprint_conflict_detected": true,
+      "conflict_type": "technical_vs_creative",
+      "resolved_output": {
+        "output_type": "StructuredIdeationMap",
+        "is_composite": true,
+        "composite_type_id": "StructuredIdeationMap",
+        "resolution_method": "declared_composite_match",
+        "blueprint_behavior": "Structured sections defined by analytical decomposition, with open generative content within each section.",
+        "winning_lane": null,
+        "contributing_lanes": ["analysis", "creative"]
+      },
+      "suppressed_blueprints": [],
+      "conflict_trace": [
+        { "step": "detect_conflict", "lanes_compared": ["analysis", "creative"], "conflict_found": true, "resolution_attempted": "combine_compatible_modes", "outcome": "incompatible — structural vs free-form" },
+        { "step": "check_output_composites", "lanes_compared": ["analysis", "creative"], "conflict_found": true, "resolution_attempted": "declared_composite_match", "outcome": "StructuredIdeationMap found — valid_when conditions met" }
+      ],
+      "warnings": []
+    },
+    {
+      "resolution_id": "OBR-RT-002",
+      "active_lanes": ["tooling"],
+      "competing_blueprints": [
+        { "lane_id": "tooling", "blueprint_block_id": "BP-089", "blueprint_name": "Markdown", "lane_weight": 0.9, "conflict_with": [] }
+      ],
+      "blueprint_conflict_detected": false,
+      "conflict_type": null,
+      "resolved_output": {
+        "output_type": "Markdown",
+        "is_composite": false,
+        "composite_type_id": null,
+        "resolution_method": "no_conflict_single_lane",
+        "blueprint_behavior": "Standard Markdown output. Code blocks, headers, and lists where appropriate.",
+        "winning_lane": "tooling",
+        "contributing_lanes": ["tooling"]
+      },
+      "suppressed_blueprints": [],
+      "conflict_trace": [],
+      "warnings": []
+    }
+  ]
+}
