@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-declared-molt-types",
+  "title": "UMG Declared MOLT Types Registry Schema",
+  "description": "Schema for registry/declared_molt_types.json. Contains two sections: composite_molt_types (products of cross-type MOLT block merges) and output_composites (products of OutputBlueprintResolver). Base MOLT types are stable and not declared here.",
+  "version": "0.2.0",
+
+  "type": "object",
+  "required": ["composite_molt_types", "output_composites"],
+  "properties": {
+
+    "composite_molt_types": {
+      "type": "array",
+      "description": "Declared composite MOLT types. Products of cross-type block merges. Participate in vertical hierarchy. Do not add to base MOLT taxonomy.",
+      "items": { "$ref": "#/definitions/CompositeMoltType" }
+    },
+
+    "output_composites": {
+      "type": "array",
+      "description": "Declared output composite types. Products of OutputBlueprintResolver. Blueprint/format resolution products only. Not MOLT types.",
+      "items": { "$ref": "#/definitions/OutputComposite" }
+    }
+  },
+
+  "definitions": {
+
+    "CompositeMoltType": {
+      "type": "object",
+      "required": ["type_id", "kind", "composed_from", "authority_behavior", "runtime_role", "merge_allowed", "requires_coherence_claim"],
+      "description": "A declared composite MOLT type produced by merging two or more blocks of different base MOLT types.",
+      "properties": {
+
+        "type_id": {
+          "type": "string",
+          "description": "Unique identifier. PascalCase. Should describe the coherent function created by the merge. Examples: GovernedInstruction, SovereignAnalysisFrame, PhilosophyDirective."
+        },
+
+        "kind": {
+          "type": "string",
+          "enum": ["composite"],
+          "description": "Always 'composite' for declared composite MOLT types."
+        },
+
+        "composed_from": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Trigger", "Directive", "Instruction", "Subject", "Primary", "Philosophy", "Blueprint", "Persona", "Merge", "Off"]
+          },
+          "minItems": 2,
+          "description": "Base MOLT types that compose this type. Order matters — first listed = dominant unless authority_behavior specifies otherwise."
+        },
+
+        "authority_behavior": {
+          "type": "string",
+          "description": "How vertical authority resolves within this composite. Examples: directive_governs_instruction, philosophy_informs_directive, subject_constrains_instruction.",
+          "examples": [
+            "directive_governs_instruction",
+            "philosophy_informs_directive",
+            "directive_bounds_subject",
+            "primary_constrains_blueprint",
+            "instruction_executes_subject"
+          ]
+        },
+
+        "runtime_role": {
+          "type": "string",
+          "description": "Human-readable description of what this composite does at runtime."
+        },
+
+        "merge_allowed": {
+          "type": "boolean",
+          "description": "Whether this composite type can itself be a source in a further merge."
+        },
+
+        "requires_coherence_claim": {
+          "type": "boolean",
+          "description": "Whether a merge producing this type must include a coherence_claim."
+        },
+
+        "validation_path": {
+          "type": "string",
+          "enum": ["rule_validated", "declared_composite_match", "sovereign_pending"],
+          "description": "Default validation path for merges that produce this type. rule_validated = auto-approved. declared_composite_match = registry match is sufficient. sovereign_pending = always requires review.",
+          "default": "declared_composite_match"
+        },
+
+        "dominant_component": {
+          "type": "string",
+          "description": "Which composed_from type holds authority in conflict. If omitted, first in composed_from wins."
+        },
+
+        "notes": {
+          "type": "string",
+          "description": "Design notes or constraints."
+        }
+      }
+    },
+
+    "OutputComposite": {
+      "type": "object",
+      "required": ["type_id", "kind", "composed_from_lanes", "resolution_policy", "blueprint_behavior", "valid_when"],
+      "description": "A declared output composite type produced by OutputBlueprintResolver when multiple lanes produce conflicting Blueprint preferences.",
+      "properties": {
+
+        "type_id": {
+          "type": "string",
+          "description": "Unique identifier. PascalCase. Examples: StructuredIdeationMap, AnalyticalNarrative, GovernedReleaseReport."
+        },
+
+        "kind": {
+          "type": "string",
+          "enum": ["output_composite"],
+          "description": "Always 'output_composite'. Not a MOLT type."
+        },
+
+        "composed_from_lanes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["analysis", "planning", "creative", "audit", "tooling", "memory", "output"]
+          },
+          "minItems": 2,
+          "description": "The horizontal lanes whose Blueprint outputs were in conflict and resolved into this composite."
+        },
+
+        "resolution_policy": {
+          "type": "string",
+          "description": "How the resolver combines the competing Blueprint preferences. Examples: analysis_structure_with_creative_content, audit_driven_with_planning_sections, governance_framed_technical_output.",
+          "examples": [
+            "analysis_structure_with_creative_content",
+            "audit_driven_with_planning_sections",
+            "governance_framed_technical_output",
+            "creative_within_structured_sections",
+            "sequential_lanes_with_unified_conclusion"
+          ]
+        },
+
+        "blueprint_behavior": {
+          "type": "string",
+          "description": "Concrete description of the output format produced by this composite. Used by the Blueprint layer to shape actual response structure."
+        },
+
+        "valid_when": {
+          "type": "object",
+          "required": ["lanes_active", "blueprint_conflict"],
+          "description": "Activation conditions for this output composite.",
+          "properties": {
+            "lanes_active": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Lanes that must be active for this composite to be a valid resolution."
+            },
+            "blueprint_conflict": {
+              "type": "boolean",
+              "description": "Whether a Blueprint-level conflict must be present to activate this composite."
+            },
+            "minimum_lane_weight": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Minimum weight for each active lane to qualify. Optional."
+            }
+          }
+        },
+
+        "suppresses_lanes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Lane IDs whose standalone Blueprint output is suppressed in favor of this composite."
+        },
+
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  },
+
+  "baseMoltTypes": {
+    "description": "Stable base MOLT type set. Do not modify. These are not declared here — they are built into the runtime.",
+    "types": ["Trigger", "Directive", "Instruction", "Subject", "Primary", "Philosophy", "Blueprint", "Persona", "Merge", "Off"],
+    "authorityRanks": {
+      "Trigger": 0,
+      "Directive": 1,
+      "Instruction": 2,
+      "Subject": 3,
+      "Primary": 4,
+      "Philosophy": 5,
+      "Blueprint": 6,
+      "Persona": 7,
+      "Merge": null,
+      "Off": -1
+    }
+  },
+
+  "seededCompositeMoltTypes": [
+    {
+      "type_id": "GovernedInstruction",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction"],
+      "authority_behavior": "directive_governs_instruction",
+      "runtime_role": "Executes an instruction under an explicit governing directive. The directive sets the boundary; the instruction executes within it.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive"
+    },
+    {
+      "type_id": "SovereignAnalysisFrame",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction", "Subject"],
+      "authority_behavior": "directive_bounds_subject_and_instruction",
+      "runtime_role": "A governed analytical frame combining a scoping directive, an analytical instruction, and a defined subject domain. Used for bounded research and audit tasks.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "declared_composite_match",
+      "dominant_component": "Directive"
+    },
+    {
+      "type_id": "PhilosophyDirective",
+      "kind": "composite",
+      "composed_from": ["Philosophy", "Directive"],
+      "authority_behavior": "philosophy_informs_directive",
+      "runtime_role": "A directive whose behavioral scope is shaped by a philosophical worldview. The directive governs action; the philosophy constrains the ethical lens.",
+      "merge_allowed": false,
+      "requires_coherence_claim": true,
+      "validation_path": "sovereign_pending",
+      "dominant_component": "Directive",
+      "notes": "Philosophy + Directive composites require sovereign review — the risk of incoherent philosophy-directive binding is higher than other composites."
+    },
+    {
+      "type_id": "ContextualGovernedInstruction",
+      "kind": "composite",
+      "composed_from": ["Directive", "Instruction", "Subject"],
+      "authority_behavior": "directive_governs_instruction_on_subject",
+      "runtime_role": "An instruction governed by a directive, applied to a specific subject domain. More specific than GovernedInstruction — the subject constrains scope.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive"
+    },
+    {
+      "type_id": "GovernedOutcome",
+      "kind": "composite",
+      "composed_from": ["Directive", "Primary"],
+      "authority_behavior": "directive_shapes_primary_outcome",
+      "runtime_role": "A primary outcome value governed by a directive. The directive constrains which outcomes are acceptable.",
+      "merge_allowed": true,
+      "requires_coherence_claim": true,
+      "validation_path": "rule_validated",
+      "dominant_component": "Directive"
+    }
+  ],
+
+  "seededOutputComposites": [
+    {
+      "type_id": "StructuredIdeationMap",
+      "kind": "output_composite",
+      "composed_from_lanes": ["analysis", "creative"],
+      "resolution_policy": "analysis_structure_with_creative_content",
+      "blueprint_behavior": "Structured sections defined by analytical decomposition, with open generative content within each section. Headers are analytical; body is exploratory.",
+      "valid_when": {
+        "lanes_active": ["analysis", "creative"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": []
+    },
+    {
+      "type_id": "GovernedReleaseReport",
+      "kind": "output_composite",
+      "composed_from_lanes": ["governance", "audit", "output"],
+      "resolution_policy": "governance_framed_technical_output",
+      "blueprint_behavior": "Formal structured report. Governance summary first. Audit findings second. Output artifacts third. All sections traceable to governing directives.",
+      "valid_when": {
+        "lanes_active": ["audit", "output"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": []
+    },
+    {
+      "type_id": "ArchitectureReview",
+      "kind": "output_composite",
+      "composed_from_lanes": ["analysis", "audit", "planning"],
+      "resolution_policy": "audit_driven_with_planning_sections",
+      "blueprint_behavior": "Analytical decomposition of current state. Audit findings on gaps and risks. Planning sections for remediation. Roadmap appended.",
+      "valid_when": {
+        "lanes_active": ["analysis", "audit", "planning"],
+        "blueprint_conflict": true
+      },
+      "suppresses_lanes": []
+    }
+  ]
+}

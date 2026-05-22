@@ -1,0 +1,290 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-bundle",
+  "title": "UMG Bundle Schema",
+  "description": "Reusable cognitive units that expand into NeoBlocks or NeoStacks. Eliminates repeated governance blocks. v0.2 supports inline expansion and ID-only deduplication. referenced and inherited expansion modes are reserved for Phase 3.",
+  "version": "0.2.0",
+
+  "definitions": {
+
+    "BundleMember": {
+      "type": "object",
+      "required": ["block_id"],
+      "description": "A member block within a bundle.",
+      "properties": {
+        "block_id": {
+          "type": "string",
+          "description": "ID of the block from the canonical registry or session-defined blocks."
+        },
+        "block_name": {
+          "type": "string",
+          "description": "Human-readable name. Populated by resolver from registry."
+        },
+        "molt_type": {
+          "type": "string",
+          "description": "MOLT type of this block. Populated by resolver from registry."
+        },
+        "authority_rank": {
+          "type": "integer",
+          "description": "MOLT authority rank. Populated by resolver."
+        },
+        "override_name": {
+          "type": ["string", "null"],
+          "description": "Optional local name override for this bundle instance. Does not change block_id."
+        },
+        "required": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true, bundle expansion fails if this block cannot be resolved. If false, block is skipped with a warning."
+        }
+      }
+    },
+
+    "Bundle": {
+      "type": "object",
+      "required": ["bundle_id", "bundle_type", "name", "members", "expansion_mode"],
+      "description": "A named reusable collection of MOLT blocks.",
+      "properties": {
+
+        "bundle_id": {
+          "type": "string",
+          "description": "Unique identifier. Convention: BUNDLE_{DESCRIPTOR} in SCREAMING_SNAKE_CASE."
+        },
+
+        "bundle_type": {
+          "type": "string",
+          "enum": ["same_type", "chain", "capability", "governance", "route"],
+          "description": "same_type: all members share one MOLT type. chain: vertical chain across MOLT types. capability: functional module with multiple block types. governance: reusable governance core. route: gate + stack + block routing packet."
+        },
+
+        "name": {
+          "type": "string",
+          "description": "Human-readable bundle name. Examples: Sovereign Governance Core, Transparent Reasoning Module."
+        },
+
+        "description": {
+          "type": "string",
+          "description": "What this bundle provides when expanded."
+        },
+
+        "members": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/BundleMember" },
+          "minItems": 1,
+          "description": "Ordered list of blocks in this bundle. Order matters for chain bundles — authority rank order is enforced on expansion."
+        },
+
+        "molt_scope": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "MOLT types present in this bundle. Populated by resolver from member blocks."
+        },
+
+        "expansion_mode": {
+          "type": "string",
+          "enum": ["inline", "referenced", "inherited"],
+          "description": "inline: member blocks are copied into the target NeoBlock on expansion (v0.2 supported). referenced: bundle is referred to by ID without copying (Phase 3). inherited: parent sleeves define bundles that child sleeves inherit (Phase 3).",
+          "default": "inline"
+        },
+
+        "merge_policy": {
+          "type": "string",
+          "enum": ["append", "dedupe_append", "compose_fields", "prefer_higher_vertical"],
+          "description": "How to handle member blocks that overlap with existing blocks at expansion target.",
+          "default": "dedupe_append"
+        },
+
+        "override_policy": {
+          "type": "string",
+          "enum": ["locked", "local_override", "extend_only"],
+          "description": "locked: no local modification allowed. local_override: members can be overridden by the receiving NeoBlock. extend_only: additional blocks can be added but bundle members cannot be removed.",
+          "default": "local_override"
+        },
+
+        "dedup_strategy": {
+          "type": "string",
+          "enum": ["id_only"],
+          "default": "id_only",
+          "description": "How duplicate detection works on expansion. v0.2: id_only — a block_id already present at the expansion target is skipped. Semantic deduplication is not implemented in v0.2."
+        },
+
+        "rank": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "Bundle priority when multiple bundles expand into the same NeoBlock. Higher rank = applied first."
+        },
+
+        "version": {
+          "type": "string",
+          "description": "Bundle version. SemVer format recommended."
+        },
+
+        "source": {
+          "type": "string",
+          "enum": ["library", "session", "candidate", "private"],
+          "description": "Origin of this bundle."
+        },
+
+        "requires_sovereign_review": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, bundle must not enter active runtime without MAG review."
+        },
+
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional classification tags. Examples: governance, transparency, escalation."
+        }
+      }
+    },
+
+    "BundleExpansionResult": {
+      "type": "object",
+      "required": ["bundle_id", "expanded", "reason"],
+      "description": "Output of bundle expansion for a single bundle. Appended to RuntimeSpec.bundle_expansions and route_trace.",
+      "properties": {
+
+        "bundle_id": { "type": "string" },
+
+        "expanded": {
+          "type": "boolean",
+          "description": "Whether the bundle successfully expanded."
+        },
+
+        "expansion_mode": {
+          "type": "string",
+          "enum": ["inline", "referenced", "inherited"]
+        },
+
+        "target_neoblock_id": {
+          "type": "string",
+          "description": "ID of the NeoBlock that received the expansion."
+        },
+
+        "members_attempted": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "All block IDs that were attempted for expansion."
+        },
+
+        "members_added": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Block IDs successfully added to the target NeoBlock."
+        },
+
+        "members_deduped": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Block IDs skipped because the same ID was already present at the expansion target. ID-only dedup. No semantic evaluation."
+        },
+
+        "members_suppressed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "block_id": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          },
+          "description": "Block IDs not added due to merge_policy or override_policy rules."
+        },
+
+        "members_failed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "block_id": { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          },
+          "description": "Block IDs that could not be resolved. Expansion fails if any required member fails."
+        },
+
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "warning_type": { "type": "string" },
+              "block_ids": { "type": "array", "items": { "type": "string" } },
+              "reason": { "type": "string" }
+            }
+          },
+          "description": "Non-fatal warnings including possible_semantic_overlap."
+        },
+
+        "provenance": {
+          "type": "object",
+          "description": "Records that these blocks originated from a bundle, not direct NeoBlock authoring.",
+          "properties": {
+            "bundle_id": { "type": "string" },
+            "bundle_version": { "type": "string" },
+            "expanded_at_pass": { "type": "string" }
+          }
+        },
+
+        "reason": {
+          "type": "string",
+          "description": "Human-readable summary of expansion result."
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "description": "Bundle definition object for use in sleeve JSON or bundle registry.",
+  "$ref": "#/definitions/Bundle",
+
+  "seededBundles": [
+    {
+      "bundle_id": "BUNDLE_GOVERNANCE_CORE",
+      "bundle_type": "governance",
+      "name": "Sovereign Governance Core",
+      "description": "Standard governance foundation block set. Provides Honor Governance + Be Transparent + Escalate When Needed + Protect Governance. Replaces repeated inline governance blocks across stacks.",
+      "members": [
+        { "block_id": "DIR-046", "block_name": "Honor Governance", "molt_type": "Directive", "authority_rank": 1, "required": true },
+        { "block_id": "DIR-081", "block_name": "Be Transparent", "molt_type": "Directive", "authority_rank": 1, "required": true },
+        { "block_id": "DIR-049", "block_name": "Escalate When Needed", "molt_type": "Directive", "authority_rank": 1, "required": true },
+        { "block_id": "DIR-099", "block_name": "Protect Governance", "molt_type": "Directive", "authority_rank": 1, "required": true },
+        { "block_id": "INST-099", "block_name": "Verify Tool Anchor", "molt_type": "Instruction", "authority_rank": 2, "required": true }
+      ],
+      "molt_scope": ["Directive", "Instruction"],
+      "expansion_mode": "inline",
+      "merge_policy": "dedupe_append",
+      "override_policy": "locked",
+      "dedup_strategy": "id_only",
+      "rank": 100,
+      "version": "0.1.0",
+      "source": "library",
+      "requires_sovereign_review": false,
+      "tags": ["governance", "transparency", "escalation", "tool-anchor"]
+    },
+    {
+      "bundle_id": "BUNDLE_TRANSPARENT_REASONING",
+      "bundle_type": "chain",
+      "name": "Transparent Reasoning Chain",
+      "description": "Full transparent reasoning chain: directive + instruction + primary + persona. Provides the behavioral foundation for honest, explicit analytical output.",
+      "members": [
+        { "block_id": "DIR-081", "block_name": "Be Transparent", "molt_type": "Directive", "authority_rank": 1, "required": true },
+        { "block_id": "INST-087", "block_name": "State Assumptions Explicitly", "molt_type": "Instruction", "authority_rank": 2, "required": true },
+        { "block_id": "PRIM-070", "block_name": "Honesty", "molt_type": "Primary", "authority_rank": 4, "required": true },
+        { "block_id": "PRIM-099", "block_name": "Explicit Reasoning", "molt_type": "Primary", "authority_rank": 4, "required": true }
+      ],
+      "molt_scope": ["Directive", "Instruction", "Primary"],
+      "expansion_mode": "inline",
+      "merge_policy": "dedupe_append",
+      "override_policy": "local_override",
+      "dedup_strategy": "id_only",
+      "rank": 80,
+      "version": "0.1.0",
+      "source": "library",
+      "requires_sovereign_review": false,
+      "tags": ["transparency", "honesty", "reasoning"]
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "umg-gate-expr",
+  "title": "UMG Gate Expression Schema",
+  "description": "Compound trigger gate expressions for NeoStack activation. Supports any, all, not, threshold, priority, and fallback operators. Gate priority controls activation order. Vertical hierarchy controls content dominance.",
+  "version": "0.2.0",
+
+  "definitions": {
+
+    "GateCondition": {
+      "type": "object",
+      "required": ["signal"],
+      "description": "A single condition within a gate expression.",
+      "properties": {
+        "signal": {
+          "type": "string",
+          "description": "Context signal name. Binary: present or absent in active_context.signals."
+        },
+        "gate_weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1.0,
+          "description": "Weight contribution to threshold score when this signal is matched. Only meaningful for threshold operator gates. Non-threshold gates ignore this value."
+        }
+      }
+    },
+
+    "GateExpression": {
+      "type": "object",
+      "required": ["gate_id", "operator"],
+      "description": "A compound gate expression attached to a NeoStack.",
+      "properties": {
+
+        "gate_id": {
+          "type": "string",
+          "description": "Unique identifier for this gate. Convention: GATE_{DESCRIPTOR} in SCREAMING_SNAKE_CASE."
+        },
+
+        "operator": {
+          "type": "string",
+          "enum": ["any", "all", "not", "threshold", "priority", "fallback"],
+          "description": "Gate evaluation operator. See operator definitions below."
+        },
+
+        "conditions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/GateCondition" },
+          "description": "Conditions evaluated by this gate. Required for: any, all, not, threshold. Omit for: priority, fallback."
+        },
+
+        "threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Required score for threshold operator. Score = sum of gate_weight values for matched conditions. Gate fires when score >= threshold."
+        },
+
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 50,
+          "description": "Activation priority. Higher value = activates first when multiple gates fire. Does NOT override vertical hierarchy for content conflicts."
+        },
+
+        "fallback": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, this gate fires only when no other gate in the sleeve has activated a NeoStack. Provides default cognitive mode."
+        },
+
+        "negated_conditions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Signal names that must be ABSENT for this gate to fire. Used by not operator and as optional constraint on other operators."
+        },
+
+        "target_stack_id": {
+          "type": "string",
+          "description": "ID of the NeoStack this gate controls. Set by the resolver from sleeve structure."
+        },
+
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of this gate's intent."
+        }
+      },
+
+      "allOf": [
+        {
+          "if": { "properties": { "operator": { "const": "threshold" } } },
+          "then": {
+            "required": ["threshold", "conditions"],
+            "description": "Threshold gates require threshold value and at least one condition with gate_weight."
+          }
+        },
+        {
+          "if": { "properties": { "operator": { "const": "not" } } },
+          "then": {
+            "required": ["negated_conditions"],
+            "description": "Not gates require at least one negated_condition."
+          }
+        }
+      ]
+    },
+
+    "GateEvaluationResult": {
+      "type": "object",
+      "required": ["gate_id", "target_stack_id", "matched", "result", "reason"],
+      "description": "Output of evaluateGates() pass for a single gate. Appended to route_trace and gate_evaluations in RuntimeSpec.",
+      "properties": {
+        "gate_id": { "type": "string" },
+        "target_stack_id": { "type": "string" },
+        "operator": { "type": "string" },
+        "matched": { "type": "boolean" },
+        "score": {
+          "type": ["number", "null"],
+          "description": "Computed weighted score. Populated for threshold gates only."
+        },
+        "threshold": {
+          "type": ["number", "null"],
+          "description": "Required threshold. Populated for threshold gates only."
+        },
+        "matched_conditions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Signal names that were present and contributed to gate match."
+        },
+        "failed_conditions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Signal names that were required but absent."
+        },
+        "result": {
+          "type": "string",
+          "enum": ["activated", "suppressed", "fallback_activated"],
+          "description": "Activation outcome for the target NeoStack."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Human-readable explanation. Examples: 'All conditions matched.', 'Threshold score 0.75 met required 0.75.', 'No gate matched — fallback activated.'"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+  "description": "Gate expression object for use in NeoStack definition. Embed directly in sleeve JSON.",
+  "$ref": "#/definitions/GateExpression",
+
+  "examples": [
+    {
+      "gate_id": "GATE_ANY_TECHNICAL",
+      "operator": "any",
+      "conditions": [
+        { "signal": "technical_request" },
+        { "signal": "debugging_request" },
+        { "signal": "code_generation_request" }
+      ],
+      "priority": 70,
+      "description": "Activates if any technical signal is present."
+    },
+    {
+      "gate_id": "GATE_TECHNICAL_GOVERNANCE_REVIEW",
+      "operator": "threshold",
+      "threshold": 0.75,
+      "conditions": [
+        { "signal": "technical_request", "gate_weight": 0.4 },
+        { "signal": "governance_review", "gate_weight": 0.35 },
+        { "signal": "architecture_design", "gate_weight": 0.25 }
+      ],
+      "priority": 80,
+      "description": "Fires when technical + governance signals together score >= 0.75."
+    },
+    {
+      "gate_id": "GATE_NOT_CREATIVE",
+      "operator": "not",
+      "negated_conditions": ["creative_request", "brainstorm_request"],
+      "conditions": [
+        { "signal": "technical_request" }
+      ],
+      "priority": 60,
+      "description": "Activates on technical request only when no creative signal is present."
+    },
+    {
+      "gate_id": "GATE_ALL_RELEASE",
+      "operator": "all",
+      "conditions": [
+        { "signal": "governance_review" },
+        { "signal": "audit_request" },
+        { "signal": "output_required" }
+      ],
+      "priority": 90,
+      "description": "Activates only when all release-preparation signals are present."
+    },
+    {
+      "gate_id": "GATE_DEFAULT_GOVERNANCE",
+      "operator": "fallback",
+      "fallback": true,
+      "priority": 10,
+      "description": "Always-on governance when no other gate fires. Default cognitive mode."
+    }
+  ],
+
+  "operatorDefinitions": {
+    "any": "Fires if at least one condition signal is present in active_context.signals.",
+    "all": "Fires only if every condition signal is present in active_context.signals.",
+    "not": "Fires only if all negated_conditions are absent. May also require conditions to be present.",
+    "threshold": "Fires when the weighted sum of matched condition gate_weights >= threshold. Score = sum of gate_weight for each matched signal.",
+    "priority": "Activates in explicit priority order. Does not evaluate conditions — acts as a ranking modifier on gates that do.",
+    "fallback": "Fires when no other gate in the sleeve has resulted in an activated NeoStack. Provides default behavior."
+  },
+
+  "scoringModel": {
+    "description": "Threshold gate scoring rules (ADR-0001 D-05)",
+    "signalPresence": "binary — a signal is either in active_context.signals or it is not",
+    "weightOwnership": "gate owns the weight — same signal can have different gate_weight in different gates",
+    "scoreFormula": "score = sum of gate_weight for all matched conditions",
+    "fireCondition": "gate fires when score >= threshold",
+    "maxScore": "sum of all gate_weight values. Should equal 1.0 for well-formed threshold gates.",
+    "partialActivation": "not supported in v0.2 — gate either fires or is suppressed"
+  }
+}
