@@ -19,7 +19,6 @@ import json
 import os
 import re
 import time
-import uvicorn
 from mcp.server.fastmcp import FastMCP
 
 # ── LOAD BLOCK LIBRARY ───────────────────────────────────────────────────────
@@ -596,6 +595,8 @@ def _build_runtime_spec(sleeve: dict, active_context: list) -> dict:
 # ── MCP SERVER ────────────────────────────────────────────────────────────────
 mcp = FastMCP(
     "UMG Block Library",
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", 8080)),
     json_response=True,
     instructions=(
         "You are connected to the UMG (Universal Modular Generation) runtime. "
@@ -1051,5 +1052,4 @@ def get_block_types() -> dict:
 
 # ── RUN ───────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    uvicorn.run(mcp.streamable_http_app(), host="0.0.0.0", port=port)
+    mcp.run(transport="streamable-http")
