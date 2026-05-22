@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UMG RuntimeSpec",
+  "description": "The single truth object produced by resolving a sleeve against an active context.",
+  "type": "object",
+  "properties": {
+    "runtime_id":      { "type": "string", "description": "Unique runtime resolution ID" },
+    "sleeve_id":       { "type": "string" },
+    "sleeve_name":     { "type": "string" },
+    "source_mode":     { "type": "string", "enum": ["compiled_by_claude","compiled_by_ai","library","session","candidate","unknown"] },
+    "route_purity":    { "type": "string", "enum": ["clean_native","mixed","contaminated","unverified","unknown"] },
+    "active_context":  { "type": "array", "items": { "type": "string" }, "description": "Active trigger names or contextual keywords" },
+    "trigger_evaluations": { "type": "array" },
+    "active_neostacks":    { "type": "array" },
+    "suppressed_neostacks":{ "type": "array" },
+    "active_blocks_count": { "type": "integer" },
+    "suppressed_blocks_count": { "type": "integer" },
+    "dominant_directive":  { "type": ["string","null"] },
+    "authority_order":     { "type": "array", "description": "Active blocks sorted by MOLT authority rank" },
+    "suppressed_blocks_detail": { "type": "array" },
+    "conflicts":       { "type": "array" },
+    "warnings":        { "type": "array", "items": { "type": "string" } },
+    "molt_map":        { "$ref": "#/definitions/MoltMap" },
+    "ir_graph":        { "$ref": "#/definitions/IrGraph" }
+  },
+  "definitions": {
+    "MoltMap": {
+      "type": "object",
+      "description": "Cognitive envelope view — what is the AI supposed to be doing right now?",
+      "properties": {
+        "active_trigger":    { "type": "string" },
+        "active_neostack":   { "type": "string" },
+        "dominant_directive":{ "type": ["string","null"] },
+        "authority_chain":   { "type": "object", "description": "Active blocks grouped by MOLT type" },
+        "suppressed":        { "type": "array" },
+        "off":               { "type": "array" },
+        "cognitive_summary": { "type": "string" }
+      }
+    },
+    "IrGraph": {
+      "type": "object",
+      "description": "Routing visibility graph — how did the system get here?",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id":             { "type": "string" },
+              "type":           { "type": "string", "enum": ["sleeve","neostack","neoblock","molt_block","trigger_gate","suppression_gate","output"] },
+              "label":          { "type": "string" },
+              "state":          { "type": "string", "enum": ["active","inactive","suppressed","off","conflict","pending"] },
+              "authority_rank": { "type": ["integer","null"] },
+              "source_ref":     { "type": "string" }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from":   { "type": "string" },
+              "to":     { "type": "string" },
+              "type":   { "type": "string", "enum": ["contains","routes_to","activates","suppresses","conflicts_with","depends_on","outputs_to"] },
+              "state":  { "type": "string" },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "active_route":      { "type": "array", "items": { "type": "string" } },
+        "suppressed_routes": { "type": "array" },
+        "conflicts":         { "type": "array" },
+        "warnings":          { "type": "array" },
+        "node_counts":       { "type": "object" }
+      }
+    }
+  }
+}

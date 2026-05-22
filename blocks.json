@@ -1,0 +1,7018 @@
+{
+  "TRIGGER": [
+    {
+      "id": "TRG-001",
+      "type": "TRIGGER",
+      "name": "Technical Analysis Request"
+    },
+    {
+      "id": "TRG-002",
+      "type": "TRIGGER",
+      "name": "Data Evaluation Request"
+    },
+    {
+      "id": "TRG-003",
+      "type": "TRIGGER",
+      "name": "Comparison Request"
+    },
+    {
+      "id": "TRG-004",
+      "type": "TRIGGER",
+      "name": "Root Cause Analysis"
+    },
+    {
+      "id": "TRG-005",
+      "type": "TRIGGER",
+      "name": "Risk Assessment Request"
+    },
+    {
+      "id": "TRG-006",
+      "type": "TRIGGER",
+      "name": "Content Creation Request"
+    },
+    {
+      "id": "TRG-007",
+      "type": "TRIGGER",
+      "name": "Design Generation Request"
+    },
+    {
+      "id": "TRG-008",
+      "type": "TRIGGER",
+      "name": "Brainstorming Request"
+    },
+    {
+      "id": "TRG-009",
+      "type": "TRIGGER",
+      "name": "Synthesis Request"
+    },
+    {
+      "id": "TRG-010",
+      "type": "TRIGGER",
+      "name": "Naming/Branding Request"
+    },
+    {
+      "id": "TRG-011",
+      "type": "TRIGGER",
+      "name": "Concept Explanation Request"
+    },
+    {
+      "id": "TRG-012",
+      "type": "TRIGGER",
+      "name": "Step-by-Step Tutorial Request"
+    },
+    {
+      "id": "TRG-013",
+      "type": "TRIGGER",
+      "name": "Example Request"
+    },
+    {
+      "id": "TRG-014",
+      "type": "TRIGGER",
+      "name": "Simplification Request"
+    },
+    {
+      "id": "TRG-015",
+      "type": "TRIGGER",
+      "name": "Deep Dive Request"
+    },
+    {
+      "id": "TRG-016",
+      "type": "TRIGGER",
+      "name": "Recommendation Request"
+    },
+    {
+      "id": "TRG-017",
+      "type": "TRIGGER",
+      "name": "Trade-off Evaluation"
+    },
+    {
+      "id": "TRG-018",
+      "type": "TRIGGER",
+      "name": "Priority Assessment"
+    },
+    {
+      "id": "TRG-019",
+      "type": "TRIGGER",
+      "name": "Decision Validation"
+    },
+    {
+      "id": "TRG-020",
+      "type": "TRIGGER",
+      "name": "Option Generation"
+    },
+    {
+      "id": "TRG-021",
+      "type": "TRIGGER",
+      "name": "Error Resolution Request"
+    },
+    {
+      "id": "TRG-022",
+      "type": "TRIGGER",
+      "name": "Optimization Request"
+    },
+    {
+      "id": "TRG-023",
+      "type": "TRIGGER",
+      "name": "Alternative Approach Request"
+    },
+    {
+      "id": "TRG-024",
+      "type": "TRIGGER",
+      "name": "Constraint Navigation"
+    },
+    {
+      "id": "TRG-025",
+      "type": "TRIGGER",
+      "name": "Stuck/Blocked Situation"
+    },
+    {
+      "id": "TRG-026",
+      "type": "TRIGGER",
+      "name": "Message Drafting Request"
+    },
+    {
+      "id": "TRG-027",
+      "type": "TRIGGER",
+      "name": "Tone Adjustment Request"
+    },
+    {
+      "id": "TRG-028",
+      "type": "TRIGGER",
+      "name": "Conflict Resolution Assistance"
+    },
+    {
+      "id": "TRG-029",
+      "type": "TRIGGER",
+      "name": "Clarification Request"
+    },
+    {
+      "id": "TRG-030",
+      "type": "TRIGGER",
+      "name": "Presentation Preparation"
+    },
+    {
+      "id": "TRG-031",
+      "type": "TRIGGER",
+      "name": "Project Planning Request"
+    },
+    {
+      "id": "TRG-032",
+      "type": "TRIGGER",
+      "name": "Timeline Creation Request"
+    },
+    {
+      "id": "TRG-033",
+      "type": "TRIGGER",
+      "name": "Resource Allocation Request"
+    },
+    {
+      "id": "TRG-034",
+      "type": "TRIGGER",
+      "name": "Structure Creation Request"
+    },
+    {
+      "id": "TRG-035",
+      "type": "TRIGGER",
+      "name": "Milestone Definition"
+    },
+    {
+      "id": "TRG-036",
+      "type": "TRIGGER",
+      "name": "Information Gathering Request"
+    },
+    {
+      "id": "TRG-037",
+      "type": "TRIGGER",
+      "name": "Source Evaluation Request"
+    },
+    {
+      "id": "TRG-038",
+      "type": "TRIGGER",
+      "name": "Literature Review Request"
+    },
+    {
+      "id": "TRG-039",
+      "type": "TRIGGER",
+      "name": "Fact-Checking Request"
+    },
+    {
+      "id": "TRG-040",
+      "type": "TRIGGER",
+      "name": "Gap Identification"
+    },
+    {
+      "id": "TRG-041",
+      "type": "TRIGGER",
+      "name": "Code Generation Request"
+    },
+    {
+      "id": "TRG-042",
+      "type": "TRIGGER",
+      "name": "Debugging Request"
+    },
+    {
+      "id": "TRG-043",
+      "type": "TRIGGER",
+      "name": "Refactoring Request"
+    },
+    {
+      "id": "TRG-044",
+      "type": "TRIGGER",
+      "name": "Documentation Request"
+    },
+    {
+      "id": "TRG-045",
+      "type": "TRIGGER",
+      "name": "Testing Strategy Request"
+    },
+    {
+      "id": "TRG-046",
+      "type": "TRIGGER",
+      "name": "Quality Assessment Request"
+    },
+    {
+      "id": "TRG-047",
+      "type": "TRIGGER",
+      "name": "Improvement Suggestion Request"
+    },
+    {
+      "id": "TRG-048",
+      "type": "TRIGGER",
+      "name": "Peer Review Simulation"
+    },
+    {
+      "id": "TRG-049",
+      "type": "TRIGGER",
+      "name": "Standards Compliance Check"
+    },
+    {
+      "id": "TRG-050",
+      "type": "TRIGGER",
+      "name": "Readability Assessment"
+    },
+    {
+      "id": "TRG-051",
+      "type": "TRIGGER",
+      "name": "Philosophical Inquiry"
+    },
+    {
+      "id": "TRG-052",
+      "type": "TRIGGER",
+      "name": "Ethical Consideration Request"
+    },
+    {
+      "id": "TRG-053",
+      "type": "TRIGGER",
+      "name": "Paradigm Exploration"
+    },
+    {
+      "id": "TRG-054",
+      "type": "TRIGGER",
+      "name": "Meaning Making Request"
+    },
+    {
+      "id": "TRG-055",
+      "type": "TRIGGER",
+      "name": "Assumption Challenge"
+    },
+    {
+      "id": "TRG-056",
+      "type": "TRIGGER",
+      "name": "Emotional Processing Assistance"
+    },
+    {
+      "id": "TRG-057",
+      "type": "TRIGGER",
+      "name": "Life Decision Guidance"
+    },
+    {
+      "id": "TRG-058",
+      "type": "TRIGGER",
+      "name": "Motivation/Encouragement Need"
+    },
+    {
+      "id": "TRG-059",
+      "type": "TRIGGER",
+      "name": "Perspective Seeking"
+    },
+    {
+      "id": "TRG-060",
+      "type": "TRIGGER",
+      "name": "Growth/Learning Guidance"
+    },
+    {
+      "id": "TRG-061",
+      "type": "TRIGGER",
+      "name": "Competitive Analysis Request"
+    },
+    {
+      "id": "TRG-062",
+      "type": "TRIGGER",
+      "name": "Long-term Strategy Request"
+    },
+    {
+      "id": "TRG-063",
+      "type": "TRIGGER",
+      "name": "Scenario Planning Request"
+    },
+    {
+      "id": "TRG-064",
+      "type": "TRIGGER",
+      "name": "Opportunity Identification"
+    },
+    {
+      "id": "TRG-065",
+      "type": "TRIGGER",
+      "name": "Threat Assessment"
+    },
+    {
+      "id": "TRG-066",
+      "type": "TRIGGER",
+      "name": "Governance Check Request"
+    },
+    {
+      "id": "TRG-067",
+      "type": "TRIGGER",
+      "name": "Boundary Clarification"
+    },
+    {
+      "id": "TRG-068",
+      "type": "TRIGGER",
+      "name": "Policy Interpretation"
+    },
+    {
+      "id": "TRG-069",
+      "type": "TRIGGER",
+      "name": "Compliance Verification"
+    },
+    {
+      "id": "TRG-070",
+      "type": "TRIGGER",
+      "name": "Escalation Trigger"
+    },
+    {
+      "id": "TRG-071",
+      "type": "TRIGGER",
+      "name": "File Analysis Request"
+    },
+    {
+      "id": "TRG-072",
+      "type": "TRIGGER",
+      "name": "Context Synthesis Request"
+    },
+    {
+      "id": "TRG-073",
+      "type": "TRIGGER",
+      "name": "Continuation Request"
+    },
+    {
+      "id": "TRG-074",
+      "type": "TRIGGER",
+      "name": "Cross-Reference Request"
+    },
+    {
+      "id": "TRG-075",
+      "type": "TRIGGER",
+      "name": "Historical Context Request"
+    },
+    {
+      "id": "TRG-076",
+      "type": "TRIGGER",
+      "name": "Delegation Assistance"
+    },
+    {
+      "id": "TRG-077",
+      "type": "TRIGGER",
+      "name": "Stakeholder Communication"
+    },
+    {
+      "id": "TRG-078",
+      "type": "TRIGGER",
+      "name": "Consensus Building Assistance"
+    },
+    {
+      "id": "TRG-079",
+      "type": "TRIGGER",
+      "name": "Multi-Agent Coordination"
+    },
+    {
+      "id": "TRG-080",
+      "type": "TRIGGER",
+      "name": "Handoff Preparation"
+    },
+    {
+      "id": "TRG-081",
+      "type": "TRIGGER",
+      "name": "Format Translation Request"
+    },
+    {
+      "id": "TRG-082",
+      "type": "TRIGGER",
+      "name": "Summarization Request"
+    },
+    {
+      "id": "TRG-083",
+      "type": "TRIGGER",
+      "name": "Expansion Request"
+    },
+    {
+      "id": "TRG-084",
+      "type": "TRIGGER",
+      "name": "Visualization Request"
+    },
+    {
+      "id": "TRG-085",
+      "type": "TRIGGER",
+      "name": "Simplification for Audience"
+    },
+    {
+      "id": "TRG-086",
+      "type": "TRIGGER",
+      "name": "Accuracy Check Request"
+    },
+    {
+      "id": "TRG-087",
+      "type": "TRIGGER",
+      "name": "Completeness Check Request"
+    },
+    {
+      "id": "TRG-088",
+      "type": "TRIGGER",
+      "name": "Logic Validation Request"
+    },
+    {
+      "id": "TRG-089",
+      "type": "TRIGGER",
+      "name": "Consistency Check Request"
+    },
+    {
+      "id": "TRG-090",
+      "type": "TRIGGER",
+      "name": "Edge Case Testing"
+    },
+    {
+      "id": "TRG-091",
+      "type": "TRIGGER",
+      "name": "Process Reflection Request"
+    },
+    {
+      "id": "TRG-092",
+      "type": "TRIGGER",
+      "name": "Understanding Verification"
+    },
+    {
+      "id": "TRG-093",
+      "type": "TRIGGER",
+      "name": "Alternative Framework Request"
+    },
+    {
+      "id": "TRG-094",
+      "type": "TRIGGER",
+      "name": "Metacognitive Guidance"
+    },
+    {
+      "id": "TRG-095",
+      "type": "TRIGGER",
+      "name": "Uncertainty Acknowledgment"
+    },
+    {
+      "id": "TRG-096",
+      "type": "TRIGGER",
+      "name": "Sleeve Load Request"
+    },
+    {
+      "id": "TRG-097",
+      "type": "TRIGGER",
+      "name": "Block Addition Request"
+    },
+    {
+      "id": "TRG-098",
+      "type": "TRIGGER",
+      "name": "Governance Review Request"
+    },
+    {
+      "id": "TRG-099",
+      "type": "TRIGGER",
+      "name": "Framework Development Request"
+    },
+    {
+      "id": "TRG-100",
+      "type": "TRIGGER",
+      "name": "Envoy Coordination Request"
+    }
+  ],
+  "DIRECTIVE": [
+    {
+      "id": "DIR-001",
+      "type": "DIRECTIVE",
+      "name": "Assess Accurately"
+    },
+    {
+      "id": "DIR-002",
+      "type": "DIRECTIVE",
+      "name": "Evaluate Objectively"
+    },
+    {
+      "id": "DIR-003",
+      "type": "DIRECTIVE",
+      "name": "Identify Root Causes"
+    },
+    {
+      "id": "DIR-004",
+      "type": "DIRECTIVE",
+      "name": "Compare Fairly"
+    },
+    {
+      "id": "DIR-005",
+      "type": "DIRECTIVE",
+      "name": "Reveal Patterns"
+    },
+    {
+      "id": "DIR-006",
+      "type": "DIRECTIVE",
+      "name": "Generate Novelty"
+    },
+    {
+      "id": "DIR-007",
+      "type": "DIRECTIVE",
+      "name": "Design Elegantly"
+    },
+    {
+      "id": "DIR-008",
+      "type": "DIRECTIVE",
+      "name": "Synthesize Coherently"
+    },
+    {
+      "id": "DIR-009",
+      "type": "DIRECTIVE",
+      "name": "Innovate Practically"
+    },
+    {
+      "id": "DIR-010",
+      "type": "DIRECTIVE",
+      "name": "Express Authentically"
+    },
+    {
+      "id": "DIR-011",
+      "type": "DIRECTIVE",
+      "name": "Teach Effectively"
+    },
+    {
+      "id": "DIR-012",
+      "type": "DIRECTIVE",
+      "name": "Explain Clearly"
+    },
+    {
+      "id": "DIR-013",
+      "type": "DIRECTIVE",
+      "name": "Demonstrate Concretely"
+    },
+    {
+      "id": "DIR-014",
+      "type": "DIRECTIVE",
+      "name": "Scaffold Appropriately"
+    },
+    {
+      "id": "DIR-015",
+      "type": "DIRECTIVE",
+      "name": "Correct Misconceptions"
+    },
+    {
+      "id": "DIR-016",
+      "type": "DIRECTIVE",
+      "name": "Support Genuinely"
+    },
+    {
+      "id": "DIR-017",
+      "type": "DIRECTIVE",
+      "name": "Guide Responsibly"
+    },
+    {
+      "id": "DIR-018",
+      "type": "DIRECTIVE",
+      "name": "Empower Capability"
+    },
+    {
+      "id": "DIR-019",
+      "type": "DIRECTIVE",
+      "name": "Respond Relevantly"
+    },
+    {
+      "id": "DIR-020",
+      "type": "DIRECTIVE",
+      "name": "Serve User Goals"
+    },
+    {
+      "id": "DIR-021",
+      "type": "DIRECTIVE",
+      "name": "Prevent Harm"
+    },
+    {
+      "id": "DIR-022",
+      "type": "DIRECTIVE",
+      "name": "Respect Boundaries"
+    },
+    {
+      "id": "DIR-023",
+      "type": "DIRECTIVE",
+      "name": "Preserve Dignity"
+    },
+    {
+      "id": "DIR-024",
+      "type": "DIRECTIVE",
+      "name": "Safeguard Privacy"
+    },
+    {
+      "id": "DIR-025",
+      "type": "DIRECTIVE",
+      "name": "Maintain Security"
+    },
+    {
+      "id": "DIR-026",
+      "type": "DIRECTIVE",
+      "name": "Coordinate Effectively"
+    },
+    {
+      "id": "DIR-027",
+      "type": "DIRECTIVE",
+      "name": "Build Consensus"
+    },
+    {
+      "id": "DIR-028",
+      "type": "DIRECTIVE",
+      "name": "Integrate Perspectives"
+    },
+    {
+      "id": "DIR-029",
+      "type": "DIRECTIVE",
+      "name": "Share Knowledge"
+    },
+    {
+      "id": "DIR-030",
+      "type": "DIRECTIVE",
+      "name": "Establish Trust"
+    },
+    {
+      "id": "DIR-031",
+      "type": "DIRECTIVE",
+      "name": "Build Robustly"
+    },
+    {
+      "id": "DIR-032",
+      "type": "DIRECTIVE",
+      "name": "Optimize Appropriately"
+    },
+    {
+      "id": "DIR-033",
+      "type": "DIRECTIVE",
+      "name": "Test Thoroughly"
+    },
+    {
+      "id": "DIR-034",
+      "type": "DIRECTIVE",
+      "name": "Document Clearly"
+    },
+    {
+      "id": "DIR-035",
+      "type": "DIRECTIVE",
+      "name": "Maintain Modularity"
+    },
+    {
+      "id": "DIR-036",
+      "type": "DIRECTIVE",
+      "name": "Act Ethically"
+    },
+    {
+      "id": "DIR-037",
+      "type": "DIRECTIVE",
+      "name": "Be Fair"
+    },
+    {
+      "id": "DIR-038",
+      "type": "DIRECTIVE",
+      "name": "Respect Autonomy"
+    },
+    {
+      "id": "DIR-039",
+      "type": "DIRECTIVE",
+      "name": "Promote Beneficence"
+    },
+    {
+      "id": "DIR-040",
+      "type": "DIRECTIVE",
+      "name": "Ensure Accountability"
+    },
+    {
+      "id": "DIR-041",
+      "type": "DIRECTIVE",
+      "name": "Think Long Term"
+    },
+    {
+      "id": "DIR-042",
+      "type": "DIRECTIVE",
+      "name": "Anticipate Scenarios"
+    },
+    {
+      "id": "DIR-043",
+      "type": "DIRECTIVE",
+      "name": "Prioritize Leverage"
+    },
+    {
+      "id": "DIR-044",
+      "type": "DIRECTIVE",
+      "name": "Allocate Wisely"
+    },
+    {
+      "id": "DIR-045",
+      "type": "DIRECTIVE",
+      "name": "Protect Optionality"
+    },
+    {
+      "id": "DIR-046",
+      "type": "DIRECTIVE",
+      "name": "Honor Governance"
+    },
+    {
+      "id": "DIR-047",
+      "type": "DIRECTIVE",
+      "name": "Enforce Consistency"
+    },
+    {
+      "id": "DIR-048",
+      "type": "DIRECTIVE",
+      "name": "Maintain Traceability"
+    },
+    {
+      "id": "DIR-049",
+      "type": "DIRECTIVE",
+      "name": "Escalate When Needed"
+    },
+    {
+      "id": "DIR-050",
+      "type": "DIRECTIVE",
+      "name": "Preserve System Integrity"
+    },
+    {
+      "id": "DIR-051",
+      "type": "DIRECTIVE",
+      "name": "Seek Truth"
+    },
+    {
+      "id": "DIR-052",
+      "type": "DIRECTIVE",
+      "name": "Acknowledge Uncertainty"
+    },
+    {
+      "id": "DIR-053",
+      "type": "DIRECTIVE",
+      "name": "Distinguish Signal From Noise"
+    },
+    {
+      "id": "DIR-054",
+      "type": "DIRECTIVE",
+      "name": "Test Assumptions"
+    },
+    {
+      "id": "DIR-055",
+      "type": "DIRECTIVE",
+      "name": "Revise When Wrong"
+    },
+    {
+      "id": "DIR-056",
+      "type": "DIRECTIVE",
+      "name": "Communicate Clearly"
+    },
+    {
+      "id": "DIR-057",
+      "type": "DIRECTIVE",
+      "name": "Be Concise When Useful"
+    },
+    {
+      "id": "DIR-058",
+      "type": "DIRECTIVE",
+      "name": "Be Complete When Needed"
+    },
+    {
+      "id": "DIR-059",
+      "type": "DIRECTIVE",
+      "name": "Adapt To Audience"
+    },
+    {
+      "id": "DIR-060",
+      "type": "DIRECTIVE",
+      "name": "Preserve Coherence"
+    },
+    {
+      "id": "DIR-061",
+      "type": "DIRECTIVE",
+      "name": "Maintain Quality"
+    },
+    {
+      "id": "DIR-062",
+      "type": "DIRECTIVE",
+      "name": "Check Completeness"
+    },
+    {
+      "id": "DIR-063",
+      "type": "DIRECTIVE",
+      "name": "Verify Correctness"
+    },
+    {
+      "id": "DIR-064",
+      "type": "DIRECTIVE",
+      "name": "Reduce Errors"
+    },
+    {
+      "id": "DIR-065",
+      "type": "DIRECTIVE",
+      "name": "Improve Iteratively"
+    },
+    {
+      "id": "DIR-066",
+      "type": "DIRECTIVE",
+      "name": "Use Effort Efficiently"
+    },
+    {
+      "id": "DIR-067",
+      "type": "DIRECTIVE",
+      "name": "Minimize Friction"
+    },
+    {
+      "id": "DIR-068",
+      "type": "DIRECTIVE",
+      "name": "Reuse Intelligently"
+    },
+    {
+      "id": "DIR-069",
+      "type": "DIRECTIVE",
+      "name": "Sequence Effectively"
+    },
+    {
+      "id": "DIR-070",
+      "type": "DIRECTIVE",
+      "name": "Focus Attention"
+    },
+    {
+      "id": "DIR-071",
+      "type": "DIRECTIVE",
+      "name": "Think Systemically"
+    },
+    {
+      "id": "DIR-072",
+      "type": "DIRECTIVE",
+      "name": "Respect Interdependence"
+    },
+    {
+      "id": "DIR-073",
+      "type": "DIRECTIVE",
+      "name": "Track Feedback Loops"
+    },
+    {
+      "id": "DIR-074",
+      "type": "DIRECTIVE",
+      "name": "Model Structure"
+    },
+    {
+      "id": "DIR-075",
+      "type": "DIRECTIVE",
+      "name": "Avoid Reductionism"
+    },
+    {
+      "id": "DIR-076",
+      "type": "DIRECTIVE",
+      "name": "Recover Gracefully"
+    },
+    {
+      "id": "DIR-077",
+      "type": "DIRECTIVE",
+      "name": "Preserve Continuity"
+    },
+    {
+      "id": "DIR-078",
+      "type": "DIRECTIVE",
+      "name": "Build Redundancy Where Needed"
+    },
+    {
+      "id": "DIR-079",
+      "type": "DIRECTIVE",
+      "name": "Fail Safely"
+    },
+    {
+      "id": "DIR-080",
+      "type": "DIRECTIVE",
+      "name": "Adapt Under Stress"
+    },
+    {
+      "id": "DIR-081",
+      "type": "DIRECTIVE",
+      "name": "Be Transparent"
+    },
+    {
+      "id": "DIR-082",
+      "type": "DIRECTIVE",
+      "name": "State Assumptions"
+    },
+    {
+      "id": "DIR-083",
+      "type": "DIRECTIVE",
+      "name": "Expose Limits"
+    },
+    {
+      "id": "DIR-084",
+      "type": "DIRECTIVE",
+      "name": "Show Basis"
+    },
+    {
+      "id": "DIR-085",
+      "type": "DIRECTIVE",
+      "name": "Keep Provenance"
+    },
+    {
+      "id": "DIR-086",
+      "type": "DIRECTIVE",
+      "name": "Learn Continuously"
+    },
+    {
+      "id": "DIR-087",
+      "type": "DIRECTIVE",
+      "name": "Integrate Lessons"
+    },
+    {
+      "id": "DIR-088",
+      "type": "DIRECTIVE",
+      "name": "Refine Models"
+    },
+    {
+      "id": "DIR-089",
+      "type": "DIRECTIVE",
+      "name": "Generalize Carefully"
+    },
+    {
+      "id": "DIR-090",
+      "type": "DIRECTIVE",
+      "name": "Preserve Useful Knowledge"
+    },
+    {
+      "id": "DIR-091",
+      "type": "DIRECTIVE",
+      "name": "Respect Context"
+    },
+    {
+      "id": "DIR-092",
+      "type": "DIRECTIVE",
+      "name": "Track Continuity"
+    },
+    {
+      "id": "DIR-093",
+      "type": "DIRECTIVE",
+      "name": "Adjust To Conditions"
+    },
+    {
+      "id": "DIR-094",
+      "type": "DIRECTIVE",
+      "name": "Notice Relevance"
+    },
+    {
+      "id": "DIR-095",
+      "type": "DIRECTIVE",
+      "name": "Preserve Boundaries Of Context"
+    },
+    {
+      "id": "DIR-096",
+      "type": "DIRECTIVE",
+      "name": "Preserve Hierarchy"
+    },
+    {
+      "id": "DIR-097",
+      "type": "DIRECTIVE",
+      "name": "Normalize Cleanly"
+    },
+    {
+      "id": "DIR-098",
+      "type": "DIRECTIVE",
+      "name": "Compose Explicitly"
+    },
+    {
+      "id": "DIR-099",
+      "type": "DIRECTIVE",
+      "name": "Protect Governance"
+    },
+    {
+      "id": "DIR-100",
+      "type": "DIRECTIVE",
+      "name": "Support Runtime Reconfiguration"
+    },
+    {
+      "id": "DIR-101",
+      "type": "DIRECTIVE",
+      "name": "Maximize Revenue Growth"
+    },
+    {
+      "id": "DIR-102",
+      "type": "DIRECTIVE",
+      "name": "Accelerate Sales Velocity"
+    },
+    {
+      "id": "DIR-103",
+      "type": "DIRECTIVE",
+      "name": "Improve Win Rates"
+    },
+    {
+      "id": "DIR-104",
+      "type": "DIRECTIVE",
+      "name": "Expand Deal Sizes"
+    },
+    {
+      "id": "DIR-105",
+      "type": "DIRECTIVE",
+      "name": "Build Predictable Pipeline"
+    },
+    {
+      "id": "DIR-106",
+      "type": "DIRECTIVE",
+      "name": "Optimize Pricing Power"
+    },
+    {
+      "id": "DIR-107",
+      "type": "DIRECTIVE",
+      "name": "Scale Sales Operations"
+    },
+    {
+      "id": "DIR-108",
+      "type": "DIRECTIVE",
+      "name": "Dominate Target Accounts"
+    },
+    {
+      "id": "DIR-109",
+      "type": "DIRECTIVE",
+      "name": "Enable Sales Excellence"
+    },
+    {
+      "id": "DIR-110",
+      "type": "DIRECTIVE",
+      "name": "Capture Market Share"
+    },
+    {
+      "id": "DIR-111",
+      "type": "DIRECTIVE",
+      "name": "Drive Demand Generation"
+    },
+    {
+      "id": "DIR-112",
+      "type": "DIRECTIVE",
+      "name": "Build Brand Equity"
+    },
+    {
+      "id": "DIR-113",
+      "type": "DIRECTIVE",
+      "name": "Achieve Product Market Fit"
+    },
+    {
+      "id": "DIR-114",
+      "type": "DIRECTIVE",
+      "name": "Optimize Customer Acquisition"
+    },
+    {
+      "id": "DIR-115",
+      "type": "DIRECTIVE",
+      "name": "Expand Market Reach"
+    },
+    {
+      "id": "DIR-116",
+      "type": "DIRECTIVE",
+      "name": "Create Viral Growth"
+    },
+    {
+      "id": "DIR-117",
+      "type": "DIRECTIVE",
+      "name": "Dominate Content Leadership"
+    },
+    {
+      "id": "DIR-118",
+      "type": "DIRECTIVE",
+      "name": "Maximize Marketing ROI"
+    },
+    {
+      "id": "DIR-119",
+      "type": "DIRECTIVE",
+      "name": "Build Community"
+    },
+    {
+      "id": "DIR-120",
+      "type": "DIRECTIVE",
+      "name": "Achieve Category Leadership"
+    },
+    {
+      "id": "DIR-121",
+      "type": "DIRECTIVE",
+      "name": "Deliver Customer Value"
+    },
+    {
+      "id": "DIR-122",
+      "type": "DIRECTIVE",
+      "name": "Achieve Product Excellence"
+    },
+    {
+      "id": "DIR-123",
+      "type": "DIRECTIVE",
+      "name": "Innovate Continuously"
+    },
+    {
+      "id": "DIR-124",
+      "type": "DIRECTIVE",
+      "name": "Ship Rapidly"
+    },
+    {
+      "id": "DIR-125",
+      "type": "DIRECTIVE",
+      "name": "Scale Product Sustainably"
+    },
+    {
+      "id": "DIR-126",
+      "type": "DIRECTIVE",
+      "name": "Differentiate Competitively"
+    },
+    {
+      "id": "DIR-127",
+      "type": "DIRECTIVE",
+      "name": "Expand Product Portfolio"
+    },
+    {
+      "id": "DIR-128",
+      "type": "DIRECTIVE",
+      "name": "Optimize Product Economics"
+    },
+    {
+      "id": "DIR-129",
+      "type": "DIRECTIVE",
+      "name": "Enable Product Led Growth"
+    },
+    {
+      "id": "DIR-130",
+      "type": "DIRECTIVE",
+      "name": "Build Platform Ecosystem"
+    },
+    {
+      "id": "DIR-131",
+      "type": "DIRECTIVE",
+      "name": "Achieve Operational Excellence"
+    },
+    {
+      "id": "DIR-132",
+      "type": "DIRECTIVE",
+      "name": "Scale Operations Efficiently"
+    },
+    {
+      "id": "DIR-133",
+      "type": "DIRECTIVE",
+      "name": "Ensure Quality Consistency"
+    },
+    {
+      "id": "DIR-134",
+      "type": "DIRECTIVE",
+      "name": "Optimize Resource Utilization"
+    },
+    {
+      "id": "DIR-135",
+      "type": "DIRECTIVE",
+      "name": "Minimize Operational Risk"
+    },
+    {
+      "id": "DIR-136",
+      "type": "DIRECTIVE",
+      "name": "Accelerate Cycle Times"
+    },
+    {
+      "id": "DIR-137",
+      "type": "DIRECTIVE",
+      "name": "Build Process Maturity"
+    },
+    {
+      "id": "DIR-138",
+      "type": "DIRECTIVE",
+      "name": "Enhance Vendor Partnerships"
+    },
+    {
+      "id": "DIR-139",
+      "type": "DIRECTIVE",
+      "name": "Achieve Cost Leadership"
+    },
+    {
+      "id": "DIR-140",
+      "type": "DIRECTIVE",
+      "name": "Enable Agile Operations"
+    },
+    {
+      "id": "DIR-141",
+      "type": "DIRECTIVE",
+      "name": "Maximize Profitability"
+    },
+    {
+      "id": "DIR-142",
+      "type": "DIRECTIVE",
+      "name": "Strengthen Financial Position"
+    },
+    {
+      "id": "DIR-143",
+      "type": "DIRECTIVE",
+      "name": "Optimize Cash Flow"
+    },
+    {
+      "id": "DIR-144",
+      "type": "DIRECTIVE",
+      "name": "Achieve Unit Economics Excellence"
+    },
+    {
+      "id": "DIR-145",
+      "type": "DIRECTIVE",
+      "name": "Ensure Financial Discipline"
+    },
+    {
+      "id": "DIR-146",
+      "type": "DIRECTIVE",
+      "name": "Maximize Return On Investment"
+    },
+    {
+      "id": "DIR-147",
+      "type": "DIRECTIVE",
+      "name": "Build Investor Confidence"
+    },
+    {
+      "id": "DIR-148",
+      "type": "DIRECTIVE",
+      "name": "Achieve Cost Efficiency"
+    },
+    {
+      "id": "DIR-149",
+      "type": "DIRECTIVE",
+      "name": "Enhance Financial Visibility"
+    },
+    {
+      "id": "DIR-150",
+      "type": "DIRECTIVE",
+      "name": "Secure Growth Capital"
+    },
+    {
+      "id": "DIR-151",
+      "type": "DIRECTIVE",
+      "name": "Attract Top Talent"
+    },
+    {
+      "id": "DIR-152",
+      "type": "DIRECTIVE",
+      "name": "Develop People"
+    },
+    {
+      "id": "DIR-153",
+      "type": "DIRECTIVE",
+      "name": "Retain Key Talent"
+    },
+    {
+      "id": "DIR-154",
+      "type": "DIRECTIVE",
+      "name": "Build High Performance Culture"
+    },
+    {
+      "id": "DIR-155",
+      "type": "DIRECTIVE",
+      "name": "Foster Diversity And Inclusion"
+    },
+    {
+      "id": "DIR-156",
+      "type": "DIRECTIVE",
+      "name": "Maximize Employee Engagement"
+    },
+    {
+      "id": "DIR-157",
+      "type": "DIRECTIVE",
+      "name": "Scale Organizational Capability"
+    },
+    {
+      "id": "DIR-158",
+      "type": "DIRECTIVE",
+      "name": "Optimize Organizational Design"
+    },
+    {
+      "id": "DIR-159",
+      "type": "DIRECTIVE",
+      "name": "Ensure Fair Compensation"
+    },
+    {
+      "id": "DIR-160",
+      "type": "DIRECTIVE",
+      "name": "Build Leadership Depth"
+    },
+    {
+      "id": "DIR-161",
+      "type": "DIRECTIVE",
+      "name": "Achieve Strategic Clarity"
+    },
+    {
+      "id": "DIR-162",
+      "type": "DIRECTIVE",
+      "name": "Build Competitive Advantage"
+    },
+    {
+      "id": "DIR-163",
+      "type": "DIRECTIVE",
+      "name": "Pursue Strategic Growth"
+    },
+    {
+      "id": "DIR-164",
+      "type": "DIRECTIVE",
+      "name": "Maintain Strategic Flexibility"
+    },
+    {
+      "id": "DIR-165",
+      "type": "DIRECTIVE",
+      "name": "Create Category Leadership"
+    },
+    {
+      "id": "DIR-166",
+      "type": "DIRECTIVE",
+      "name": "Execute Flawlessly"
+    },
+    {
+      "id": "DIR-167",
+      "type": "DIRECTIVE",
+      "name": "Disrupt Strategically"
+    },
+    {
+      "id": "DIR-168",
+      "type": "DIRECTIVE",
+      "name": "Build Strategic Partnerships"
+    },
+    {
+      "id": "DIR-169",
+      "type": "DIRECTIVE",
+      "name": "Optimize Portfolio Strategy"
+    },
+    {
+      "id": "DIR-170",
+      "type": "DIRECTIVE",
+      "name": "Ensure Long Term Sustainability"
+    },
+    {
+      "id": "DIR-171",
+      "type": "DIRECTIVE",
+      "name": "Maximize Customer Value Realization"
+    },
+    {
+      "id": "DIR-172",
+      "type": "DIRECTIVE",
+      "name": "Achieve Customer Excellence"
+    },
+    {
+      "id": "DIR-173",
+      "type": "DIRECTIVE",
+      "name": "Maximize Customer Retention"
+    },
+    {
+      "id": "DIR-174",
+      "type": "DIRECTIVE",
+      "name": "Drive Customer Expansion"
+    },
+    {
+      "id": "DIR-175",
+      "type": "DIRECTIVE",
+      "name": "Build Customer Advocacy"
+    },
+    {
+      "id": "DIR-176",
+      "type": "DIRECTIVE",
+      "name": "Understand Customer Deeply"
+    },
+    {
+      "id": "DIR-177",
+      "type": "DIRECTIVE",
+      "name": "Reduce Customer Effort"
+    },
+    {
+      "id": "DIR-178",
+      "type": "DIRECTIVE",
+      "name": "Build Customer Community"
+    },
+    {
+      "id": "DIR-179",
+      "type": "DIRECTIVE",
+      "name": "Ensure Customer Health"
+    },
+    {
+      "id": "DIR-180",
+      "type": "DIRECTIVE",
+      "name": "Close The Feedback Loop"
+    },
+    {
+      "id": "DIR-181",
+      "type": "DIRECTIVE",
+      "name": "Ensure Full Compliance"
+    },
+    {
+      "id": "DIR-182",
+      "type": "DIRECTIVE",
+      "name": "Minimize Legal Risk"
+    },
+    {
+      "id": "DIR-183",
+      "type": "DIRECTIVE",
+      "name": "Protect Intellectual Property"
+    },
+    {
+      "id": "DIR-184",
+      "type": "DIRECTIVE",
+      "name": "Maintain Privacy And Security"
+    },
+    {
+      "id": "DIR-185",
+      "type": "DIRECTIVE",
+      "name": "Build Ethical Culture"
+    },
+    {
+      "id": "DIR-186",
+      "type": "DIRECTIVE",
+      "name": "Ensure Contractual Protection"
+    },
+    {
+      "id": "DIR-187",
+      "type": "DIRECTIVE",
+      "name": "Maintain Regulatory Readiness"
+    },
+    {
+      "id": "DIR-188",
+      "type": "DIRECTIVE",
+      "name": "Strengthen Corporate Governance"
+    },
+    {
+      "id": "DIR-189",
+      "type": "DIRECTIVE",
+      "name": "Manage Disputes Effectively"
+    },
+    {
+      "id": "DIR-190",
+      "type": "DIRECTIVE",
+      "name": "Enable Legal Scalability"
+    },
+    {
+      "id": "DIR-191",
+      "type": "DIRECTIVE",
+      "name": "Drive Digital Leadership"
+    },
+    {
+      "id": "DIR-192",
+      "type": "DIRECTIVE",
+      "name": "Leverage Data As Asset"
+    },
+    {
+      "id": "DIR-193",
+      "type": "DIRECTIVE",
+      "name": "Accelerate Digital Adoption"
+    },
+    {
+      "id": "DIR-194",
+      "type": "DIRECTIVE",
+      "name": "Build Technology Excellence"
+    },
+    {
+      "id": "DIR-195",
+      "type": "DIRECTIVE",
+      "name": "Ensure Cybersecurity"
+    },
+    {
+      "id": "DIR-196",
+      "type": "DIRECTIVE",
+      "name": "Enable Digital Customer Experience"
+    },
+    {
+      "id": "DIR-197",
+      "type": "DIRECTIVE",
+      "name": "Optimize Technology ROI"
+    },
+    {
+      "id": "DIR-198",
+      "type": "DIRECTIVE",
+      "name": "Build API Economy"
+    },
+    {
+      "id": "DIR-199",
+      "type": "DIRECTIVE",
+      "name": "Achieve Cloud Excellence"
+    },
+    {
+      "id": "DIR-200",
+      "type": "DIRECTIVE",
+      "name": "Harness AI ML Power"
+    }
+  ],
+  "INSTRUCTION": [
+    {
+      "id": "INST-001",
+      "type": "INSTRUCTION",
+      "name": "Break Into Components"
+    },
+    {
+      "id": "INST-002",
+      "type": "INSTRUCTION",
+      "name": "Compare Side By Side"
+    },
+    {
+      "id": "INST-003",
+      "type": "INSTRUCTION",
+      "name": "Trace Causality"
+    },
+    {
+      "id": "INST-004",
+      "type": "INSTRUCTION",
+      "name": "Identify Patterns"
+    },
+    {
+      "id": "INST-005",
+      "type": "INSTRUCTION",
+      "name": "Measure Against Baseline"
+    },
+    {
+      "id": "INST-006",
+      "type": "INSTRUCTION",
+      "name": "Search Systematically"
+    },
+    {
+      "id": "INST-007",
+      "type": "INSTRUCTION",
+      "name": "Extract Key Facts"
+    },
+    {
+      "id": "INST-008",
+      "type": "INSTRUCTION",
+      "name": "Consolidate Sources"
+    },
+    {
+      "id": "INST-009",
+      "type": "INSTRUCTION",
+      "name": "Document Context"
+    },
+    {
+      "id": "INST-010",
+      "type": "INSTRUCTION",
+      "name": "Verify Claims"
+    },
+    {
+      "id": "INST-011",
+      "type": "INSTRUCTION",
+      "name": "Generate Alternatives"
+    },
+    {
+      "id": "INST-012",
+      "type": "INSTRUCTION",
+      "name": "Combine Concepts"
+    },
+    {
+      "id": "INST-013",
+      "type": "INSTRUCTION",
+      "name": "Invert Assumptions"
+    },
+    {
+      "id": "INST-014",
+      "type": "INSTRUCTION",
+      "name": "Adapt Existing Solution"
+    },
+    {
+      "id": "INST-015",
+      "type": "INSTRUCTION",
+      "name": "Sketch Possibilities"
+    },
+    {
+      "id": "INST-016",
+      "type": "INSTRUCTION",
+      "name": "State Directly"
+    },
+    {
+      "id": "INST-017",
+      "type": "INSTRUCTION",
+      "name": "Provide Examples"
+    },
+    {
+      "id": "INST-018",
+      "type": "INSTRUCTION",
+      "name": "Rephrase For Clarity"
+    },
+    {
+      "id": "INST-019",
+      "type": "INSTRUCTION",
+      "name": "Acknowledge Perspective"
+    },
+    {
+      "id": "INST-020",
+      "type": "INSTRUCTION",
+      "name": "Structure Logically"
+    },
+    {
+      "id": "INST-021",
+      "type": "INSTRUCTION",
+      "name": "Check Against Requirements"
+    },
+    {
+      "id": "INST-022",
+      "type": "INSTRUCTION",
+      "name": "Test Edge Cases"
+    },
+    {
+      "id": "INST-023",
+      "type": "INSTRUCTION",
+      "name": "Validate Logic"
+    },
+    {
+      "id": "INST-024",
+      "type": "INSTRUCTION",
+      "name": "Cross Check Sources"
+    },
+    {
+      "id": "INST-025",
+      "type": "INSTRUCTION",
+      "name": "Simulate Outcomes"
+    },
+    {
+      "id": "INST-026",
+      "type": "INSTRUCTION",
+      "name": "Isolate The Problem"
+    },
+    {
+      "id": "INST-027",
+      "type": "INSTRUCTION",
+      "name": "Remove Blockers"
+    },
+    {
+      "id": "INST-028",
+      "type": "INSTRUCTION",
+      "name": "Apply Known Fix"
+    },
+    {
+      "id": "INST-029",
+      "type": "INSTRUCTION",
+      "name": "Work Around Limitation"
+    },
+    {
+      "id": "INST-030",
+      "type": "INSTRUCTION",
+      "name": "Iterate Toward Solution"
+    },
+    {
+      "id": "INST-031",
+      "type": "INSTRUCTION",
+      "name": "Define Milestones"
+    },
+    {
+      "id": "INST-032",
+      "type": "INSTRUCTION",
+      "name": "Sequence Tasks"
+    },
+    {
+      "id": "INST-033",
+      "type": "INSTRUCTION",
+      "name": "Allocate Resources"
+    },
+    {
+      "id": "INST-034",
+      "type": "INSTRUCTION",
+      "name": "Set Priorities"
+    },
+    {
+      "id": "INST-035",
+      "type": "INSTRUCTION",
+      "name": "Establish Timeline"
+    },
+    {
+      "id": "INST-036",
+      "type": "INSTRUCTION",
+      "name": "Rate Against Criteria"
+    },
+    {
+      "id": "INST-037",
+      "type": "INSTRUCTION",
+      "name": "Identify Strengths"
+    },
+    {
+      "id": "INST-038",
+      "type": "INSTRUCTION",
+      "name": "Identify Weaknesses"
+    },
+    {
+      "id": "INST-039",
+      "type": "INSTRUCTION",
+      "name": "Benchmark Against Standards"
+    },
+    {
+      "id": "INST-040",
+      "type": "INSTRUCTION",
+      "name": "Suggest Improvements"
+    },
+    {
+      "id": "INST-041",
+      "type": "INSTRUCTION",
+      "name": "Follow Procedure"
+    },
+    {
+      "id": "INST-042",
+      "type": "INSTRUCTION",
+      "name": "Build Incrementally"
+    },
+    {
+      "id": "INST-043",
+      "type": "INSTRUCTION",
+      "name": "Delegate Appropriately"
+    },
+    {
+      "id": "INST-044",
+      "type": "INSTRUCTION",
+      "name": "Monitor Progress"
+    },
+    {
+      "id": "INST-045",
+      "type": "INSTRUCTION",
+      "name": "Adjust Based On Feedback"
+    },
+    {
+      "id": "INST-046",
+      "type": "INSTRUCTION",
+      "name": "Document Decisions"
+    },
+    {
+      "id": "INST-047",
+      "type": "INSTRUCTION",
+      "name": "Explain Reasoning"
+    },
+    {
+      "id": "INST-048",
+      "type": "INSTRUCTION",
+      "name": "Annotate Code"
+    },
+    {
+      "id": "INST-049",
+      "type": "INSTRUCTION",
+      "name": "Create Examples"
+    },
+    {
+      "id": "INST-050",
+      "type": "INSTRUCTION",
+      "name": "Maintain Changelog"
+    },
+    {
+      "id": "INST-051",
+      "type": "INSTRUCTION",
+      "name": "Study Systematically"
+    },
+    {
+      "id": "INST-052",
+      "type": "INSTRUCTION",
+      "name": "Practice Deliberately"
+    },
+    {
+      "id": "INST-053",
+      "type": "INSTRUCTION",
+      "name": "Request Feedback"
+    },
+    {
+      "id": "INST-054",
+      "type": "INSTRUCTION",
+      "name": "Analyze Mistakes"
+    },
+    {
+      "id": "INST-055",
+      "type": "INSTRUCTION",
+      "name": "Apply Learning"
+    },
+    {
+      "id": "INST-056",
+      "type": "INSTRUCTION",
+      "name": "Synchronize With Team"
+    },
+    {
+      "id": "INST-057",
+      "type": "INSTRUCTION",
+      "name": "Resolve Conflicts"
+    },
+    {
+      "id": "INST-058",
+      "type": "INSTRUCTION",
+      "name": "Share Knowledge"
+    },
+    {
+      "id": "INST-059",
+      "type": "INSTRUCTION",
+      "name": "Build Consensus"
+    },
+    {
+      "id": "INST-060",
+      "type": "INSTRUCTION",
+      "name": "Facilitate Discussion"
+    },
+    {
+      "id": "INST-061",
+      "type": "INSTRUCTION",
+      "name": "Write Clean Code"
+    },
+    {
+      "id": "INST-062",
+      "type": "INSTRUCTION",
+      "name": "Refactor For Clarity"
+    },
+    {
+      "id": "INST-063",
+      "type": "INSTRUCTION",
+      "name": "Add Error Handling"
+    },
+    {
+      "id": "INST-064",
+      "type": "INSTRUCTION",
+      "name": "Write Tests First"
+    },
+    {
+      "id": "INST-065",
+      "type": "INSTRUCTION",
+      "name": "Optimize Performance"
+    },
+    {
+      "id": "INST-066",
+      "type": "INSTRUCTION",
+      "name": "Map Landscape"
+    },
+    {
+      "id": "INST-067",
+      "type": "INSTRUCTION",
+      "name": "Identify Opportunities"
+    },
+    {
+      "id": "INST-068",
+      "type": "INSTRUCTION",
+      "name": "Assess Threats"
+    },
+    {
+      "id": "INST-069",
+      "type": "INSTRUCTION",
+      "name": "Scenario Plan"
+    },
+    {
+      "id": "INST-070",
+      "type": "INSTRUCTION",
+      "name": "Position For Advantage"
+    },
+    {
+      "id": "INST-071",
+      "type": "INSTRUCTION",
+      "name": "Run Test Suite"
+    },
+    {
+      "id": "INST-072",
+      "type": "INSTRUCTION",
+      "name": "Review Systematically"
+    },
+    {
+      "id": "INST-073",
+      "type": "INSTRUCTION",
+      "name": "Verify Compliance"
+    },
+    {
+      "id": "INST-074",
+      "type": "INSTRUCTION",
+      "name": "Catch Errors Early"
+    },
+    {
+      "id": "INST-075",
+      "type": "INSTRUCTION",
+      "name": "Maintain Standards"
+    },
+    {
+      "id": "INST-076",
+      "type": "INSTRUCTION",
+      "name": "Check Governance Rules"
+    },
+    {
+      "id": "INST-077",
+      "type": "INSTRUCTION",
+      "name": "Escalate To Authority"
+    },
+    {
+      "id": "INST-078",
+      "type": "INSTRUCTION",
+      "name": "Create Audit Trail"
+    },
+    {
+      "id": "INST-079",
+      "type": "INSTRUCTION",
+      "name": "Enforce Boundaries"
+    },
+    {
+      "id": "INST-080",
+      "type": "INSTRUCTION",
+      "name": "Report Violations"
+    },
+    {
+      "id": "INST-081",
+      "type": "INSTRUCTION",
+      "name": "Eliminate Redundancy"
+    },
+    {
+      "id": "INST-082",
+      "type": "INSTRUCTION",
+      "name": "Automate Repetitive Tasks"
+    },
+    {
+      "id": "INST-083",
+      "type": "INSTRUCTION",
+      "name": "Batch Similar Work"
+    },
+    {
+      "id": "INST-084",
+      "type": "INSTRUCTION",
+      "name": "Cache Results"
+    },
+    {
+      "id": "INST-085",
+      "type": "INSTRUCTION",
+      "name": "Parallelize Work"
+    },
+    {
+      "id": "INST-086",
+      "type": "INSTRUCTION",
+      "name": "Ask Clarifying Questions"
+    },
+    {
+      "id": "INST-087",
+      "type": "INSTRUCTION",
+      "name": "State Assumptions Explicitly"
+    },
+    {
+      "id": "INST-088",
+      "type": "INSTRUCTION",
+      "name": "Confirm Understanding"
+    },
+    {
+      "id": "INST-089",
+      "type": "INSTRUCTION",
+      "name": "Define Terms Precisely"
+    },
+    {
+      "id": "INST-090",
+      "type": "INSTRUCTION",
+      "name": "Disambiguate Requirements"
+    },
+    {
+      "id": "INST-091",
+      "type": "INSTRUCTION",
+      "name": "Pivot Approach"
+    },
+    {
+      "id": "INST-092",
+      "type": "INSTRUCTION",
+      "name": "Incorporate Feedback"
+    },
+    {
+      "id": "INST-093",
+      "type": "INSTRUCTION",
+      "name": "Scale Response"
+    },
+    {
+      "id": "INST-094",
+      "type": "INSTRUCTION",
+      "name": "Update Mental Model"
+    },
+    {
+      "id": "INST-095",
+      "type": "INSTRUCTION",
+      "name": "Flex Within Constraints"
+    },
+    {
+      "id": "INST-096",
+      "type": "INSTRUCTION",
+      "name": "Load Specified Sleeve"
+    },
+    {
+      "id": "INST-097",
+      "type": "INSTRUCTION",
+      "name": "Stack Blocks Hierarchically"
+    },
+    {
+      "id": "INST-098",
+      "type": "INSTRUCTION",
+      "name": "Trace Decision Path"
+    },
+    {
+      "id": "INST-099",
+      "type": "INSTRUCTION",
+      "name": "Verify Tool Anchor"
+    },
+    {
+      "id": "INST-100",
+      "type": "INSTRUCTION",
+      "name": "Coordinate With Mesh"
+    },
+    {
+      "id": "INST-101",
+      "type": "INSTRUCTION",
+      "name": "Qualify Leads Rigorously"
+    },
+    {
+      "id": "INST-102",
+      "type": "INSTRUCTION",
+      "name": "Build Value Based Proposals"
+    },
+    {
+      "id": "INST-103",
+      "type": "INSTRUCTION",
+      "name": "Conduct Discovery Calls"
+    },
+    {
+      "id": "INST-104",
+      "type": "INSTRUCTION",
+      "name": "Deliver Compelling Demos"
+    },
+    {
+      "id": "INST-105",
+      "type": "INSTRUCTION",
+      "name": "Navigate Procurement Processes"
+    },
+    {
+      "id": "INST-106",
+      "type": "INSTRUCTION",
+      "name": "Execute Account Planning"
+    },
+    {
+      "id": "INST-107",
+      "type": "INSTRUCTION",
+      "name": "Conduct Competitive Displacement"
+    },
+    {
+      "id": "INST-108",
+      "type": "INSTRUCTION",
+      "name": "Negotiate Win Win Terms"
+    },
+    {
+      "id": "INST-109",
+      "type": "INSTRUCTION",
+      "name": "Manage Sales Pipeline"
+    },
+    {
+      "id": "INST-110",
+      "type": "INSTRUCTION",
+      "name": "Execute Territory Strategy"
+    },
+    {
+      "id": "INST-111",
+      "type": "INSTRUCTION",
+      "name": "Develop Buyer Personas"
+    },
+    {
+      "id": "INST-112",
+      "type": "INSTRUCTION",
+      "name": "Execute ABM Campaigns"
+    },
+    {
+      "id": "INST-113",
+      "type": "INSTRUCTION",
+      "name": "Optimize Conversion Funnels"
+    },
+    {
+      "id": "INST-114",
+      "type": "INSTRUCTION",
+      "name": "Create Thought Leadership Content"
+    },
+    {
+      "id": "INST-115",
+      "type": "INSTRUCTION",
+      "name": "Build Referral Programs"
+    },
+    {
+      "id": "INST-116",
+      "type": "INSTRUCTION",
+      "name": "Execute Growth Experiments"
+    },
+    {
+      "id": "INST-117",
+      "type": "INSTRUCTION",
+      "name": "Develop Messaging Framework"
+    },
+    {
+      "id": "INST-118",
+      "type": "INSTRUCTION",
+      "name": "Optimize SEO Strategy"
+    },
+    {
+      "id": "INST-119",
+      "type": "INSTRUCTION",
+      "name": "Launch Multi Channel Campaigns"
+    },
+    {
+      "id": "INST-120",
+      "type": "INSTRUCTION",
+      "name": "Measure Marketing Attribution"
+    },
+    {
+      "id": "INST-121",
+      "type": "INSTRUCTION",
+      "name": "Conduct User Research"
+    },
+    {
+      "id": "INST-122",
+      "type": "INSTRUCTION",
+      "name": "Prioritize Features Using Frameworks"
+    },
+    {
+      "id": "INST-123",
+      "type": "INSTRUCTION",
+      "name": "Write Clear PRDs"
+    },
+    {
+      "id": "INST-124",
+      "type": "INSTRUCTION",
+      "name": "Run Beta Programs"
+    },
+    {
+      "id": "INST-125",
+      "type": "INSTRUCTION",
+      "name": "Analyze Product Metrics"
+    },
+    {
+      "id": "INST-126",
+      "type": "INSTRUCTION",
+      "name": "Conduct Competitive Teardowns"
+    },
+    {
+      "id": "INST-127",
+      "type": "INSTRUCTION",
+      "name": "Create Product Roadmaps"
+    },
+    {
+      "id": "INST-128",
+      "type": "INSTRUCTION",
+      "name": "Run Design Sprints"
+    },
+    {
+      "id": "INST-129",
+      "type": "INSTRUCTION",
+      "name": "Manage Technical Debt"
+    },
+    {
+      "id": "INST-130",
+      "type": "INSTRUCTION",
+      "name": "Orchestrate Product Launches"
+    },
+    {
+      "id": "INST-131",
+      "type": "INSTRUCTION",
+      "name": "Document Processes Comprehensively"
+    },
+    {
+      "id": "INST-132",
+      "type": "INSTRUCTION",
+      "name": "Implement Process Controls"
+    },
+    {
+      "id": "INST-133",
+      "type": "INSTRUCTION",
+      "name": "Conduct Capacity Analysis"
+    },
+    {
+      "id": "INST-134",
+      "type": "INSTRUCTION",
+      "name": "Execute Process Audits"
+    },
+    {
+      "id": "INST-135",
+      "type": "INSTRUCTION",
+      "name": "Implement Automation Solutions"
+    },
+    {
+      "id": "INST-136",
+      "type": "INSTRUCTION",
+      "name": "Manage Vendor Relationships"
+    },
+    {
+      "id": "INST-137",
+      "type": "INSTRUCTION",
+      "name": "Optimize Inventory Levels"
+    },
+    {
+      "id": "INST-138",
+      "type": "INSTRUCTION",
+      "name": "Implement Quality Metrics"
+    },
+    {
+      "id": "INST-139",
+      "type": "INSTRUCTION",
+      "name": "Execute Kaizen Events"
+    },
+    {
+      "id": "INST-140",
+      "type": "INSTRUCTION",
+      "name": "Test Business Continuity Plans"
+    },
+    {
+      "id": "INST-141",
+      "type": "INSTRUCTION",
+      "name": "Build Financial Models"
+    },
+    {
+      "id": "INST-142",
+      "type": "INSTRUCTION",
+      "name": "Conduct Variance Analysis"
+    },
+    {
+      "id": "INST-143",
+      "type": "INSTRUCTION",
+      "name": "Manage Cash Forecasting"
+    },
+    {
+      "id": "INST-144",
+      "type": "INSTRUCTION",
+      "name": "Perform Ratio Analysis"
+    },
+    {
+      "id": "INST-145",
+      "type": "INSTRUCTION",
+      "name": "Execute Monthly Close"
+    },
+    {
+      "id": "INST-146",
+      "type": "INSTRUCTION",
+      "name": "Optimize Working Capital"
+    },
+    {
+      "id": "INST-147",
+      "type": "INSTRUCTION",
+      "name": "Prepare Investor Materials"
+    },
+    {
+      "id": "INST-148",
+      "type": "INSTRUCTION",
+      "name": "Implement Zero Based Budgeting"
+    },
+    {
+      "id": "INST-149",
+      "type": "INSTRUCTION",
+      "name": "Conduct Financial Due Diligence"
+    },
+    {
+      "id": "INST-150",
+      "type": "INSTRUCTION",
+      "name": "Track Unit Economics"
+    },
+    {
+      "id": "INST-151",
+      "type": "INSTRUCTION",
+      "name": "Structure Interview Processes"
+    },
+    {
+      "id": "INST-152",
+      "type": "INSTRUCTION",
+      "name": "Conduct Performance Reviews"
+    },
+    {
+      "id": "INST-153",
+      "type": "INSTRUCTION",
+      "name": "Design Compensation Bands"
+    },
+    {
+      "id": "INST-154",
+      "type": "INSTRUCTION",
+      "name": "Build Onboarding Programs"
+    },
+    {
+      "id": "INST-155",
+      "type": "INSTRUCTION",
+      "name": "Conduct Stay Interviews"
+    },
+    {
+      "id": "INST-156",
+      "type": "INSTRUCTION",
+      "name": "Execute Talent Reviews"
+    },
+    {
+      "id": "INST-157",
+      "type": "INSTRUCTION",
+      "name": "Facilitate Skip Level Meetings"
+    },
+    {
+      "id": "INST-158",
+      "type": "INSTRUCTION",
+      "name": "Implement Career Frameworks"
+    },
+    {
+      "id": "INST-159",
+      "type": "INSTRUCTION",
+      "name": "Run Engagement Surveys"
+    },
+    {
+      "id": "INST-160",
+      "type": "INSTRUCTION",
+      "name": "Execute Offboarding Properly"
+    },
+    {
+      "id": "INST-161",
+      "type": "INSTRUCTION",
+      "name": "Conduct Strategic Planning Sessions"
+    },
+    {
+      "id": "INST-162",
+      "type": "INSTRUCTION",
+      "name": "Perform Market Sizing"
+    },
+    {
+      "id": "INST-163",
+      "type": "INSTRUCTION",
+      "name": "Execute Scenario Planning"
+    },
+    {
+      "id": "INST-164",
+      "type": "INSTRUCTION",
+      "name": "Map Competitive Landscape"
+    },
+    {
+      "id": "INST-165",
+      "type": "INSTRUCTION",
+      "name": "Define Strategic Objectives"
+    },
+    {
+      "id": "INST-166",
+      "type": "INSTRUCTION",
+      "name": "Conduct MA Screening"
+    },
+    {
+      "id": "INST-167",
+      "type": "INSTRUCTION",
+      "name": "Execute Business Model Canvas"
+    },
+    {
+      "id": "INST-168",
+      "type": "INSTRUCTION",
+      "name": "Develop Partnership Criteria"
+    },
+    {
+      "id": "INST-169",
+      "type": "INSTRUCTION",
+      "name": "Track Strategic Initiatives"
+    },
+    {
+      "id": "INST-170",
+      "type": "INSTRUCTION",
+      "name": "Facilitate Strategy Reviews"
+    },
+    {
+      "id": "INST-171",
+      "type": "INSTRUCTION",
+      "name": "Execute Customer Onboarding"
+    },
+    {
+      "id": "INST-172",
+      "type": "INSTRUCTION",
+      "name": "Conduct Business Reviews"
+    },
+    {
+      "id": "INST-173",
+      "type": "INSTRUCTION",
+      "name": "Monitor Health Scores"
+    },
+    {
+      "id": "INST-174",
+      "type": "INSTRUCTION",
+      "name": "Manage Renewal Campaigns"
+    },
+    {
+      "id": "INST-175",
+      "type": "INSTRUCTION",
+      "name": "Execute Expansion Plays"
+    },
+    {
+      "id": "INST-176",
+      "type": "INSTRUCTION",
+      "name": "Gather Voice Of Customer"
+    },
+    {
+      "id": "INST-177",
+      "type": "INSTRUCTION",
+      "name": "Build Customer Playbooks"
+    },
+    {
+      "id": "INST-178",
+      "type": "INSTRUCTION",
+      "name": "Cultivate Customer Advocates"
+    },
+    {
+      "id": "INST-179",
+      "type": "INSTRUCTION",
+      "name": "Analyze Churn Patterns"
+    },
+    {
+      "id": "INST-180",
+      "type": "INSTRUCTION",
+      "name": "Create Customer Journey Maps"
+    },
+    {
+      "id": "INST-181",
+      "type": "INSTRUCTION",
+      "name": "Draft Standardized Contracts"
+    },
+    {
+      "id": "INST-182",
+      "type": "INSTRUCTION",
+      "name": "Conduct Compliance Audits"
+    },
+    {
+      "id": "INST-183",
+      "type": "INSTRUCTION",
+      "name": "Implement Data Privacy Controls"
+    },
+    {
+      "id": "INST-184",
+      "type": "INSTRUCTION",
+      "name": "File IP Protections"
+    },
+    {
+      "id": "INST-185",
+      "type": "INSTRUCTION",
+      "name": "Maintain Risk Registers"
+    },
+    {
+      "id": "INST-186",
+      "type": "INSTRUCTION",
+      "name": "Respond To Regulatory Changes"
+    },
+    {
+      "id": "INST-187",
+      "type": "INSTRUCTION",
+      "name": "Conduct Legal Training"
+    },
+    {
+      "id": "INST-188",
+      "type": "INSTRUCTION",
+      "name": "Manage Contract Lifecycle"
+    },
+    {
+      "id": "INST-189",
+      "type": "INSTRUCTION",
+      "name": "Execute Dispute Resolution"
+    },
+    {
+      "id": "INST-190",
+      "type": "INSTRUCTION",
+      "name": "Prepare Board Materials"
+    },
+    {
+      "id": "INST-191",
+      "type": "INSTRUCTION",
+      "name": "Assess Digital Maturity"
+    },
+    {
+      "id": "INST-192",
+      "type": "INSTRUCTION",
+      "name": "Execute Technology Evaluations"
+    },
+    {
+      "id": "INST-193",
+      "type": "INSTRUCTION",
+      "name": "Implement Data Governance"
+    },
+    {
+      "id": "INST-194",
+      "type": "INSTRUCTION",
+      "name": "Deploy AI ML Models"
+    },
+    {
+      "id": "INST-195",
+      "type": "INSTRUCTION",
+      "name": "Execute Cloud Migrations"
+    },
+    {
+      "id": "INST-196",
+      "type": "INSTRUCTION",
+      "name": "Conduct Security Assessments"
+    },
+    {
+      "id": "INST-197",
+      "type": "INSTRUCTION",
+      "name": "Build API Strategies"
+    },
+    {
+      "id": "INST-198",
+      "type": "INSTRUCTION",
+      "name": "Configure CRM Systems"
+    },
+    {
+      "id": "INST-199",
+      "type": "INSTRUCTION",
+      "name": "Design Analytics Dashboards"
+    },
+    {
+      "id": "INST-200",
+      "type": "INSTRUCTION",
+      "name": "Implement E-Commerce Platforms"
+    }
+  ],
+  "SUBJECT": [
+    {
+      "id": "SUBJ-001",
+      "type": "SUBJECT",
+      "name": "Raw Data"
+    },
+    {
+      "id": "SUBJ-002",
+      "type": "SUBJECT",
+      "name": "Structured Data"
+    },
+    {
+      "id": "SUBJ-003",
+      "type": "SUBJECT",
+      "name": "Metadata"
+    },
+    {
+      "id": "SUBJ-004",
+      "type": "SUBJECT",
+      "name": "Knowledge Base"
+    },
+    {
+      "id": "SUBJ-005",
+      "type": "SUBJECT",
+      "name": "Metrics"
+    },
+    {
+      "id": "SUBJ-006",
+      "type": "SUBJECT",
+      "name": "Source Code"
+    },
+    {
+      "id": "SUBJ-007",
+      "type": "SUBJECT",
+      "name": "Functions"
+    },
+    {
+      "id": "SUBJ-008",
+      "type": "SUBJECT",
+      "name": "APIs"
+    },
+    {
+      "id": "SUBJ-009",
+      "type": "SUBJECT",
+      "name": "Algorithms"
+    },
+    {
+      "id": "SUBJ-010",
+      "type": "SUBJECT",
+      "name": "Dependencies"
+    },
+    {
+      "id": "SUBJ-011",
+      "type": "SUBJECT",
+      "name": "System Architecture"
+    },
+    {
+      "id": "SUBJ-012",
+      "type": "SUBJECT",
+      "name": "Network Infrastructure"
+    },
+    {
+      "id": "SUBJ-013",
+      "type": "SUBJECT",
+      "name": "Databases"
+    },
+    {
+      "id": "SUBJ-014",
+      "type": "SUBJECT",
+      "name": "Servers"
+    },
+    {
+      "id": "SUBJ-015",
+      "type": "SUBJECT",
+      "name": "Cloud Resources"
+    },
+    {
+      "id": "SUBJ-016",
+      "type": "SUBJECT",
+      "name": "Text Documents"
+    },
+    {
+      "id": "SUBJ-017",
+      "type": "SUBJECT",
+      "name": "Images"
+    },
+    {
+      "id": "SUBJ-018",
+      "type": "SUBJECT",
+      "name": "Presentations"
+    },
+    {
+      "id": "SUBJ-019",
+      "type": "SUBJECT",
+      "name": "Spreadsheets"
+    },
+    {
+      "id": "SUBJ-020",
+      "type": "SUBJECT",
+      "name": "Documentation"
+    },
+    {
+      "id": "SUBJ-021",
+      "type": "SUBJECT",
+      "name": "Business Processes"
+    },
+    {
+      "id": "SUBJ-022",
+      "type": "SUBJECT",
+      "name": "Development Workflows"
+    },
+    {
+      "id": "SUBJ-023",
+      "type": "SUBJECT",
+      "name": "Automation Scripts"
+    },
+    {
+      "id": "SUBJ-024",
+      "type": "SUBJECT",
+      "name": "Standard Procedures"
+    },
+    {
+      "id": "SUBJ-025",
+      "type": "SUBJECT",
+      "name": "Task Queues"
+    },
+    {
+      "id": "SUBJ-026",
+      "type": "SUBJECT",
+      "name": "End Users"
+    },
+    {
+      "id": "SUBJ-027",
+      "type": "SUBJECT",
+      "name": "Team Members"
+    },
+    {
+      "id": "SUBJ-028",
+      "type": "SUBJECT",
+      "name": "Stakeholders"
+    },
+    {
+      "id": "SUBJ-029",
+      "type": "SUBJECT",
+      "name": "User Roles"
+    },
+    {
+      "id": "SUBJ-030",
+      "type": "SUBJECT",
+      "name": "Communities"
+    },
+    {
+      "id": "SUBJ-031",
+      "type": "SUBJECT",
+      "name": "Functional Requirements"
+    },
+    {
+      "id": "SUBJ-032",
+      "type": "SUBJECT",
+      "name": "Non-Functional Requirements"
+    },
+    {
+      "id": "SUBJ-033",
+      "type": "SUBJECT",
+      "name": "Business Rules"
+    },
+    {
+      "id": "SUBJ-034",
+      "type": "SUBJECT",
+      "name": "Technical Constraints"
+    },
+    {
+      "id": "SUBJ-035",
+      "type": "SUBJECT",
+      "name": "Acceptance Criteria"
+    },
+    {
+      "id": "SUBJ-036",
+      "type": "SUBJECT",
+      "name": "Bugs"
+    },
+    {
+      "id": "SUBJ-037",
+      "type": "SUBJECT",
+      "name": "Technical Debt"
+    },
+    {
+      "id": "SUBJ-038",
+      "type": "SUBJECT",
+      "name": "Performance Bottlenecks"
+    },
+    {
+      "id": "SUBJ-039",
+      "type": "SUBJECT",
+      "name": "Security Vulnerabilities"
+    },
+    {
+      "id": "SUBJ-040",
+      "type": "SUBJECT",
+      "name": "User Complaints"
+    },
+    {
+      "id": "SUBJ-041",
+      "type": "SUBJECT",
+      "name": "Test Cases"
+    },
+    {
+      "id": "SUBJ-042",
+      "type": "SUBJECT",
+      "name": "Test Data"
+    },
+    {
+      "id": "SUBJ-043",
+      "type": "SUBJECT",
+      "name": "Quality Metrics"
+    },
+    {
+      "id": "SUBJ-044",
+      "type": "SUBJECT",
+      "name": "Validation Rules"
+    },
+    {
+      "id": "SUBJ-045",
+      "type": "SUBJECT",
+      "name": "Performance Benchmarks"
+    },
+    {
+      "id": "SUBJ-046",
+      "type": "SUBJECT",
+      "name": "Environment Variables"
+    },
+    {
+      "id": "SUBJ-047",
+      "type": "SUBJECT",
+      "name": "Application Settings"
+    },
+    {
+      "id": "SUBJ-048",
+      "type": "SUBJECT",
+      "name": "User Preferences"
+    },
+    {
+      "id": "SUBJ-049",
+      "type": "SUBJECT",
+      "name": "System Parameters"
+    },
+    {
+      "id": "SUBJ-050",
+      "type": "SUBJECT",
+      "name": "Feature Flags"
+    },
+    {
+      "id": "SUBJ-051",
+      "type": "SUBJECT",
+      "name": "Email Messages"
+    },
+    {
+      "id": "SUBJ-052",
+      "type": "SUBJECT",
+      "name": "Notifications"
+    },
+    {
+      "id": "SUBJ-053",
+      "type": "SUBJECT",
+      "name": "Chat Messages"
+    },
+    {
+      "id": "SUBJ-054",
+      "type": "SUBJECT",
+      "name": "Announcements"
+    },
+    {
+      "id": "SUBJ-055",
+      "type": "SUBJECT",
+      "name": "Feedback"
+    },
+    {
+      "id": "SUBJ-056",
+      "type": "SUBJECT",
+      "name": "Data Models"
+    },
+    {
+      "id": "SUBJ-057",
+      "type": "SUBJECT",
+      "name": "Classes And Objects"
+    },
+    {
+      "id": "SUBJ-058",
+      "type": "SUBJECT",
+      "name": "Schemas"
+    },
+    {
+      "id": "SUBJ-059",
+      "type": "SUBJECT",
+      "name": "Templates"
+    },
+    {
+      "id": "SUBJ-060",
+      "type": "SUBJECT",
+      "name": "Frameworks"
+    },
+    {
+      "id": "SUBJ-061",
+      "type": "SUBJECT",
+      "name": "Computing Resources"
+    },
+    {
+      "id": "SUBJ-062",
+      "type": "SUBJECT",
+      "name": "Time Budgets"
+    },
+    {
+      "id": "SUBJ-063",
+      "type": "SUBJECT",
+      "name": "Financial Resources"
+    },
+    {
+      "id": "SUBJ-064",
+      "type": "SUBJECT",
+      "name": "Human Resources"
+    },
+    {
+      "id": "SUBJ-065",
+      "type": "SUBJECT",
+      "name": "Digital Assets"
+    },
+    {
+      "id": "SUBJ-066",
+      "type": "SUBJECT",
+      "name": "User Interfaces"
+    },
+    {
+      "id": "SUBJ-067",
+      "type": "SUBJECT",
+      "name": "Forms"
+    },
+    {
+      "id": "SUBJ-068",
+      "type": "SUBJECT",
+      "name": "Navigation Elements"
+    },
+    {
+      "id": "SUBJ-069",
+      "type": "SUBJECT",
+      "name": "Interactive Components"
+    },
+    {
+      "id": "SUBJ-070",
+      "type": "SUBJECT",
+      "name": "User Flows"
+    },
+    {
+      "id": "SUBJ-071",
+      "type": "SUBJECT",
+      "name": "System Logs"
+    },
+    {
+      "id": "SUBJ-072",
+      "type": "SUBJECT",
+      "name": "User Actions"
+    },
+    {
+      "id": "SUBJ-073",
+      "type": "SUBJECT",
+      "name": "State Changes"
+    },
+    {
+      "id": "SUBJ-074",
+      "type": "SUBJECT",
+      "name": "Transactions"
+    },
+    {
+      "id": "SUBJ-075",
+      "type": "SUBJECT",
+      "name": "Event Streams"
+    },
+    {
+      "id": "SUBJ-076",
+      "type": "SUBJECT",
+      "name": "Access Policies"
+    },
+    {
+      "id": "SUBJ-077",
+      "type": "SUBJECT",
+      "name": "Security Policies"
+    },
+    {
+      "id": "SUBJ-078",
+      "type": "SUBJECT",
+      "name": "Compliance Requirements"
+    },
+    {
+      "id": "SUBJ-079",
+      "type": "SUBJECT",
+      "name": "Governance Frameworks"
+    },
+    {
+      "id": "SUBJ-080",
+      "type": "SUBJECT",
+      "name": "Service Agreements"
+    },
+    {
+      "id": "SUBJ-081",
+      "type": "SUBJECT",
+      "name": "Usage Patterns"
+    },
+    {
+      "id": "SUBJ-082",
+      "type": "SUBJECT",
+      "name": "Performance Metrics"
+    },
+    {
+      "id": "SUBJ-083",
+      "type": "SUBJECT",
+      "name": "Business Intelligence"
+    },
+    {
+      "id": "SUBJ-084",
+      "type": "SUBJECT",
+      "name": "Anomalies"
+    },
+    {
+      "id": "SUBJ-085",
+      "type": "SUBJECT",
+      "name": "Correlations"
+    },
+    {
+      "id": "SUBJ-086",
+      "type": "SUBJECT",
+      "name": "Reports"
+    },
+    {
+      "id": "SUBJ-087",
+      "type": "SUBJECT",
+      "name": "Artifacts"
+    },
+    {
+      "id": "SUBJ-088",
+      "type": "SUBJECT",
+      "name": "Visualizations"
+    },
+    {
+      "id": "SUBJ-089",
+      "type": "SUBJECT",
+      "name": "Prototypes"
+    },
+    {
+      "id": "SUBJ-090",
+      "type": "SUBJECT",
+      "name": "Final Products"
+    },
+    {
+      "id": "SUBJ-091",
+      "type": "SUBJECT",
+      "name": "Integration Points"
+    },
+    {
+      "id": "SUBJ-092",
+      "type": "SUBJECT",
+      "name": "Relationships"
+    },
+    {
+      "id": "SUBJ-093",
+      "type": "SUBJECT",
+      "name": "Cross-System Dependencies"
+    },
+    {
+      "id": "SUBJ-094",
+      "type": "SUBJECT",
+      "name": "Interfaces"
+    },
+    {
+      "id": "SUBJ-095",
+      "type": "SUBJECT",
+      "name": "Hierarchies"
+    },
+    {
+      "id": "SUBJ-096",
+      "type": "SUBJECT",
+      "name": "MOLT Blocks"
+    },
+    {
+      "id": "SUBJ-097",
+      "type": "SUBJECT",
+      "name": "NeoBlocks"
+    },
+    {
+      "id": "SUBJ-098",
+      "type": "SUBJECT",
+      "name": "NeoStacks"
+    },
+    {
+      "id": "SUBJ-099",
+      "type": "SUBJECT",
+      "name": "NeoSleeves"
+    },
+    {
+      "id": "SUBJ-100",
+      "type": "SUBJECT",
+      "name": "Governance Constraints"
+    },
+    {
+      "id": "SUBJ-101",
+      "type": "SUBJECT",
+      "name": "Sales Pipeline"
+    },
+    {
+      "id": "SUBJ-102",
+      "type": "SUBJECT",
+      "name": "Sales Proposals"
+    },
+    {
+      "id": "SUBJ-103",
+      "type": "SUBJECT",
+      "name": "Customer Accounts"
+    },
+    {
+      "id": "SUBJ-104",
+      "type": "SUBJECT",
+      "name": "Sales Territories"
+    },
+    {
+      "id": "SUBJ-105",
+      "type": "SUBJECT",
+      "name": "Sales Quotas"
+    },
+    {
+      "id": "SUBJ-106",
+      "type": "SUBJECT",
+      "name": "Pricing Models"
+    },
+    {
+      "id": "SUBJ-107",
+      "type": "SUBJECT",
+      "name": "Sales Playbooks"
+    },
+    {
+      "id": "SUBJ-108",
+      "type": "SUBJECT",
+      "name": "Deal Structures"
+    },
+    {
+      "id": "SUBJ-109",
+      "type": "SUBJECT",
+      "name": "Revenue Forecasts"
+    },
+    {
+      "id": "SUBJ-110",
+      "type": "SUBJECT",
+      "name": "Win-Loss Records"
+    },
+    {
+      "id": "SUBJ-111",
+      "type": "SUBJECT",
+      "name": "Marketing Campaigns"
+    },
+    {
+      "id": "SUBJ-112",
+      "type": "SUBJECT",
+      "name": "Buyer Personas"
+    },
+    {
+      "id": "SUBJ-113",
+      "type": "SUBJECT",
+      "name": "Brand Assets"
+    },
+    {
+      "id": "SUBJ-114",
+      "type": "SUBJECT",
+      "name": "Content Calendar"
+    },
+    {
+      "id": "SUBJ-115",
+      "type": "SUBJECT",
+      "name": "Marketing Metrics"
+    },
+    {
+      "id": "SUBJ-116",
+      "type": "SUBJECT",
+      "name": "Lead Scoring Models"
+    },
+    {
+      "id": "SUBJ-117",
+      "type": "SUBJECT",
+      "name": "Customer Journey Maps"
+    },
+    {
+      "id": "SUBJ-118",
+      "type": "SUBJECT",
+      "name": "Growth Experiments"
+    },
+    {
+      "id": "SUBJ-119",
+      "type": "SUBJECT",
+      "name": "Marketing Channels"
+    },
+    {
+      "id": "SUBJ-120",
+      "type": "SUBJECT",
+      "name": "Referral Programs"
+    },
+    {
+      "id": "SUBJ-121",
+      "type": "SUBJECT",
+      "name": "Product Roadmaps"
+    },
+    {
+      "id": "SUBJ-122",
+      "type": "SUBJECT",
+      "name": "Feature Backlogs"
+    },
+    {
+      "id": "SUBJ-123",
+      "type": "SUBJECT",
+      "name": "User Stories"
+    },
+    {
+      "id": "SUBJ-124",
+      "type": "SUBJECT",
+      "name": "Product Metrics"
+    },
+    {
+      "id": "SUBJ-125",
+      "type": "SUBJECT",
+      "name": "Product Requirements"
+    },
+    {
+      "id": "SUBJ-126",
+      "type": "SUBJECT",
+      "name": "Product Prototypes"
+    },
+    {
+      "id": "SUBJ-127",
+      "type": "SUBJECT",
+      "name": "User Feedback"
+    },
+    {
+      "id": "SUBJ-128",
+      "type": "SUBJECT",
+      "name": "Product Analytics"
+    },
+    {
+      "id": "SUBJ-129",
+      "type": "SUBJECT",
+      "name": "Competitive Features"
+    },
+    {
+      "id": "SUBJ-130",
+      "type": "SUBJECT",
+      "name": "Product Portfolio"
+    },
+    {
+      "id": "SUBJ-131",
+      "type": "SUBJECT",
+      "name": "Process Documentation"
+    },
+    {
+      "id": "SUBJ-132",
+      "type": "SUBJECT",
+      "name": "Operational Capacity"
+    },
+    {
+      "id": "SUBJ-133",
+      "type": "SUBJECT",
+      "name": "Quality Standards"
+    },
+    {
+      "id": "SUBJ-134",
+      "type": "SUBJECT",
+      "name": "Vendor Contracts"
+    },
+    {
+      "id": "SUBJ-135",
+      "type": "SUBJECT",
+      "name": "Inventory Systems"
+    },
+    {
+      "id": "SUBJ-136",
+      "type": "SUBJECT",
+      "name": "Process Metrics"
+    },
+    {
+      "id": "SUBJ-137",
+      "type": "SUBJECT",
+      "name": "Automation Workflows"
+    },
+    {
+      "id": "SUBJ-138",
+      "type": "SUBJECT",
+      "name": "Service Level Agreements"
+    },
+    {
+      "id": "SUBJ-139",
+      "type": "SUBJECT",
+      "name": "Business Continuity Plans"
+    },
+    {
+      "id": "SUBJ-140",
+      "type": "SUBJECT",
+      "name": "Operational Dashboards"
+    },
+    {
+      "id": "SUBJ-141",
+      "type": "SUBJECT",
+      "name": "Financial Models"
+    },
+    {
+      "id": "SUBJ-142",
+      "type": "SUBJECT",
+      "name": "Budget Plans"
+    },
+    {
+      "id": "SUBJ-143",
+      "type": "SUBJECT",
+      "name": "Financial Statements"
+    },
+    {
+      "id": "SUBJ-144",
+      "type": "SUBJECT",
+      "name": "Cash Flow Projections"
+    },
+    {
+      "id": "SUBJ-145",
+      "type": "SUBJECT",
+      "name": "Financial Ratios"
+    },
+    {
+      "id": "SUBJ-146",
+      "type": "SUBJECT",
+      "name": "Unit Economics"
+    },
+    {
+      "id": "SUBJ-147",
+      "type": "SUBJECT",
+      "name": "Variance Reports"
+    },
+    {
+      "id": "SUBJ-148",
+      "type": "SUBJECT",
+      "name": "Investment Proposals"
+    },
+    {
+      "id": "SUBJ-149",
+      "type": "SUBJECT",
+      "name": "Chart Of Accounts"
+    },
+    {
+      "id": "SUBJ-150",
+      "type": "SUBJECT",
+      "name": "Investor Presentations"
+    },
+    {
+      "id": "SUBJ-151",
+      "type": "SUBJECT",
+      "name": "Organization Charts"
+    },
+    {
+      "id": "SUBJ-152",
+      "type": "SUBJECT",
+      "name": "Job Descriptions"
+    },
+    {
+      "id": "SUBJ-153",
+      "type": "SUBJECT",
+      "name": "Compensation Structures"
+    },
+    {
+      "id": "SUBJ-154",
+      "type": "SUBJECT",
+      "name": "Performance Reviews"
+    },
+    {
+      "id": "SUBJ-155",
+      "type": "SUBJECT",
+      "name": "Onboarding Programs"
+    },
+    {
+      "id": "SUBJ-156",
+      "type": "SUBJECT",
+      "name": "Talent Pipelines"
+    },
+    {
+      "id": "SUBJ-157",
+      "type": "SUBJECT",
+      "name": "Employee Engagement Data"
+    },
+    {
+      "id": "SUBJ-158",
+      "type": "SUBJECT",
+      "name": "Training Programs"
+    },
+    {
+      "id": "SUBJ-159",
+      "type": "SUBJECT",
+      "name": "HR Policies"
+    },
+    {
+      "id": "SUBJ-160",
+      "type": "SUBJECT",
+      "name": "Workforce Analytics"
+    },
+    {
+      "id": "SUBJ-161",
+      "type": "SUBJECT",
+      "name": "Strategic Plans"
+    },
+    {
+      "id": "SUBJ-162",
+      "type": "SUBJECT",
+      "name": "Market Analysis"
+    },
+    {
+      "id": "SUBJ-163",
+      "type": "SUBJECT",
+      "name": "SWOT Analyses"
+    },
+    {
+      "id": "SUBJ-164",
+      "type": "SUBJECT",
+      "name": "Business Cases"
+    },
+    {
+      "id": "SUBJ-165",
+      "type": "SUBJECT",
+      "name": "Strategic Objectives"
+    },
+    {
+      "id": "SUBJ-166",
+      "type": "SUBJECT",
+      "name": "Scenario Plans"
+    },
+    {
+      "id": "SUBJ-167",
+      "type": "SUBJECT",
+      "name": "M&A Targets"
+    },
+    {
+      "id": "SUBJ-168",
+      "type": "SUBJECT",
+      "name": "Partnership Agreements"
+    },
+    {
+      "id": "SUBJ-169",
+      "type": "SUBJECT",
+      "name": "Business Models"
+    },
+    {
+      "id": "SUBJ-170",
+      "type": "SUBJECT",
+      "name": "Innovation Portfolios"
+    },
+    {
+      "id": "SUBJ-171",
+      "type": "SUBJECT",
+      "name": "Customer Health Scores"
+    },
+    {
+      "id": "SUBJ-172",
+      "type": "SUBJECT",
+      "name": "Renewal Schedules"
+    },
+    {
+      "id": "SUBJ-173",
+      "type": "SUBJECT",
+      "name": "Customer Success Plans"
+    },
+    {
+      "id": "SUBJ-174",
+      "type": "SUBJECT",
+      "name": "NPS Scores"
+    },
+    {
+      "id": "SUBJ-175",
+      "type": "SUBJECT",
+      "name": "Expansion Opportunities"
+    },
+    {
+      "id": "SUBJ-176",
+      "type": "SUBJECT",
+      "name": "Customer Feedback"
+    },
+    {
+      "id": "SUBJ-177",
+      "type": "SUBJECT",
+      "name": "Churn Data"
+    },
+    {
+      "id": "SUBJ-178",
+      "type": "SUBJECT",
+      "name": "Customer Advocates"
+    },
+    {
+      "id": "SUBJ-179",
+      "type": "SUBJECT",
+      "name": "Usage Analytics"
+    },
+    {
+      "id": "SUBJ-180",
+      "type": "SUBJECT",
+      "name": "Business Review Materials"
+    },
+    {
+      "id": "SUBJ-181",
+      "type": "SUBJECT",
+      "name": "Contract Templates"
+    },
+    {
+      "id": "SUBJ-182",
+      "type": "SUBJECT",
+      "name": "Compliance Frameworks"
+    },
+    {
+      "id": "SUBJ-183",
+      "type": "SUBJECT",
+      "name": "Privacy Policies"
+    },
+    {
+      "id": "SUBJ-184",
+      "type": "SUBJECT",
+      "name": "Intellectual Property"
+    },
+    {
+      "id": "SUBJ-185",
+      "type": "SUBJECT",
+      "name": "Risk Registers"
+    },
+    {
+      "id": "SUBJ-186",
+      "type": "SUBJECT",
+      "name": "Regulatory Requirements"
+    },
+    {
+      "id": "SUBJ-187",
+      "type": "SUBJECT",
+      "name": "Audit Reports"
+    },
+    {
+      "id": "SUBJ-188",
+      "type": "SUBJECT",
+      "name": "Corporate Governance Documents"
+    },
+    {
+      "id": "SUBJ-189",
+      "type": "SUBJECT",
+      "name": "Legal Disputes"
+    },
+    {
+      "id": "SUBJ-190",
+      "type": "SUBJECT",
+      "name": "Ethics Policies"
+    },
+    {
+      "id": "SUBJ-191",
+      "type": "SUBJECT",
+      "name": "Digital Strategies"
+    },
+    {
+      "id": "SUBJ-192",
+      "type": "SUBJECT",
+      "name": "Technology Stack"
+    },
+    {
+      "id": "SUBJ-193",
+      "type": "SUBJECT",
+      "name": "Data Governance Frameworks"
+    },
+    {
+      "id": "SUBJ-194",
+      "type": "SUBJECT",
+      "name": "AI ML Models"
+    },
+    {
+      "id": "SUBJ-195",
+      "type": "SUBJECT",
+      "name": "Cloud Infrastructure"
+    },
+    {
+      "id": "SUBJ-196",
+      "type": "SUBJECT",
+      "name": "Security Controls"
+    },
+    {
+      "id": "SUBJ-197",
+      "type": "SUBJECT",
+      "name": "API Ecosystems"
+    },
+    {
+      "id": "SUBJ-198",
+      "type": "SUBJECT",
+      "name": "CRM Systems"
+    },
+    {
+      "id": "SUBJ-199",
+      "type": "SUBJECT",
+      "name": "Analytics Dashboards"
+    },
+    {
+      "id": "SUBJ-200",
+      "type": "SUBJECT",
+      "name": "E-Commerce Platforms"
+    }
+  ],
+  "PRIMARY": [
+    {
+      "id": "PRIM-001",
+      "type": "PRIMARY",
+      "name": "Factual Accuracy"
+    },
+    {
+      "id": "PRIM-002",
+      "type": "PRIMARY",
+      "name": "Technical Precision"
+    },
+    {
+      "id": "PRIM-003",
+      "type": "PRIMARY",
+      "name": "Logical Correctness"
+    },
+    {
+      "id": "PRIM-004",
+      "type": "PRIMARY",
+      "name": "Data Integrity"
+    },
+    {
+      "id": "PRIM-005",
+      "type": "PRIMARY",
+      "name": "Verification"
+    },
+    {
+      "id": "PRIM-006",
+      "type": "PRIMARY",
+      "name": "Conceptual Understanding"
+    },
+    {
+      "id": "PRIM-007",
+      "type": "PRIMARY",
+      "name": "Clear Communication"
+    },
+    {
+      "id": "PRIM-008",
+      "type": "PRIMARY",
+      "name": "Shared Meaning"
+    },
+    {
+      "id": "PRIM-009",
+      "type": "PRIMARY",
+      "name": "Transparency"
+    },
+    {
+      "id": "PRIM-010",
+      "type": "PRIMARY",
+      "name": "Explanation Quality"
+    },
+    {
+      "id": "PRIM-011",
+      "type": "PRIMARY",
+      "name": "Root Cause Elimination"
+    },
+    {
+      "id": "PRIM-012",
+      "type": "PRIMARY",
+      "name": "Obstacle Removal"
+    },
+    {
+      "id": "PRIM-013",
+      "type": "PRIMARY",
+      "name": "Solution Effectiveness"
+    },
+    {
+      "id": "PRIM-014",
+      "type": "PRIMARY",
+      "name": "Issue Prevention"
+    },
+    {
+      "id": "PRIM-015",
+      "type": "PRIMARY",
+      "name": "Recovery Capability"
+    },
+    {
+      "id": "PRIM-016",
+      "type": "PRIMARY",
+      "name": "User Value"
+    },
+    {
+      "id": "PRIM-017",
+      "type": "PRIMARY",
+      "name": "Business Impact"
+    },
+    {
+      "id": "PRIM-018",
+      "type": "PRIMARY",
+      "name": "Innovation"
+    },
+    {
+      "id": "PRIM-019",
+      "type": "PRIMARY",
+      "name": "Efficiency Gain"
+    },
+    {
+      "id": "PRIM-020",
+      "type": "PRIMARY",
+      "name": "Quality Improvement"
+    },
+    {
+      "id": "PRIM-021",
+      "type": "PRIMARY",
+      "name": "Harm Prevention"
+    },
+    {
+      "id": "PRIM-022",
+      "type": "PRIMARY",
+      "name": "Security Protection"
+    },
+    {
+      "id": "PRIM-023",
+      "type": "PRIMARY",
+      "name": "Privacy Preservation"
+    },
+    {
+      "id": "PRIM-024",
+      "type": "PRIMARY",
+      "name": "Risk Mitigation"
+    },
+    {
+      "id": "PRIM-025",
+      "type": "PRIMARY",
+      "name": "Stability Maintenance"
+    },
+    {
+      "id": "PRIM-026",
+      "type": "PRIMARY",
+      "name": "Usability"
+    },
+    {
+      "id": "PRIM-027",
+      "type": "PRIMARY",
+      "name": "Accessibility"
+    },
+    {
+      "id": "PRIM-028",
+      "type": "PRIMARY",
+      "name": "User Satisfaction"
+    },
+    {
+      "id": "PRIM-029",
+      "type": "PRIMARY",
+      "name": "Engagement"
+    },
+    {
+      "id": "PRIM-030",
+      "type": "PRIMARY",
+      "name": "Delight"
+    },
+    {
+      "id": "PRIM-031",
+      "type": "PRIMARY",
+      "name": "Knowledge Acquisition"
+    },
+    {
+      "id": "PRIM-032",
+      "type": "PRIMARY",
+      "name": "Skill Development"
+    },
+    {
+      "id": "PRIM-033",
+      "type": "PRIMARY",
+      "name": "Continuous Improvement"
+    },
+    {
+      "id": "PRIM-034",
+      "type": "PRIMARY",
+      "name": "Feedback Integration"
+    },
+    {
+      "id": "PRIM-035",
+      "type": "PRIMARY",
+      "name": "Experimentation"
+    },
+    {
+      "id": "PRIM-036",
+      "type": "PRIMARY",
+      "name": "Team Alignment"
+    },
+    {
+      "id": "PRIM-037",
+      "type": "PRIMARY",
+      "name": "Knowledge Sharing"
+    },
+    {
+      "id": "PRIM-038",
+      "type": "PRIMARY",
+      "name": "Consensus Building"
+    },
+    {
+      "id": "PRIM-039",
+      "type": "PRIMARY",
+      "name": "Mutual Support"
+    },
+    {
+      "id": "PRIM-040",
+      "type": "PRIMARY",
+      "name": "Conflict Resolution"
+    },
+    {
+      "id": "PRIM-041",
+      "type": "PRIMARY",
+      "name": "Resource Conservation"
+    },
+    {
+      "id": "PRIM-042",
+      "type": "PRIMARY",
+      "name": "Time Optimization"
+    },
+    {
+      "id": "PRIM-043",
+      "type": "PRIMARY",
+      "name": "Automation"
+    },
+    {
+      "id": "PRIM-044",
+      "type": "PRIMARY",
+      "name": "Simplification"
+    },
+    {
+      "id": "PRIM-045",
+      "type": "PRIMARY",
+      "name": "Scalability"
+    },
+    {
+      "id": "PRIM-046",
+      "type": "PRIMARY",
+      "name": "Craftsmanship"
+    },
+    {
+      "id": "PRIM-047",
+      "type": "PRIMARY",
+      "name": "Standards Compliance"
+    },
+    {
+      "id": "PRIM-048",
+      "type": "PRIMARY",
+      "name": "Consistency"
+    },
+    {
+      "id": "PRIM-049",
+      "type": "PRIMARY",
+      "name": "Robustness"
+    },
+    {
+      "id": "PRIM-050",
+      "type": "PRIMARY",
+      "name": "Refinement"
+    },
+    {
+      "id": "PRIM-051",
+      "type": "PRIMARY",
+      "name": "Informed Choice"
+    },
+    {
+      "id": "PRIM-052",
+      "type": "PRIMARY",
+      "name": "Strategic Thinking"
+    },
+    {
+      "id": "PRIM-053",
+      "type": "PRIMARY",
+      "name": "Risk Assessment"
+    },
+    {
+      "id": "PRIM-054",
+      "type": "PRIMARY",
+      "name": "Option Evaluation"
+    },
+    {
+      "id": "PRIM-055",
+      "type": "PRIMARY",
+      "name": "Decisiveness"
+    },
+    {
+      "id": "PRIM-056",
+      "type": "PRIMARY",
+      "name": "Trust Building"
+    },
+    {
+      "id": "PRIM-057",
+      "type": "PRIMARY",
+      "name": "Relationship Maintenance"
+    },
+    {
+      "id": "PRIM-058",
+      "type": "PRIMARY",
+      "name": "Respect"
+    },
+    {
+      "id": "PRIM-059",
+      "type": "PRIMARY",
+      "name": "Empathy"
+    },
+    {
+      "id": "PRIM-060",
+      "type": "PRIMARY",
+      "name": "Reciprocity"
+    },
+    {
+      "id": "PRIM-061",
+      "type": "PRIMARY",
+      "name": "Long Term Viability"
+    },
+    {
+      "id": "PRIM-062",
+      "type": "PRIMARY",
+      "name": "Maintainability"
+    },
+    {
+      "id": "PRIM-063",
+      "type": "PRIMARY",
+      "name": "Adaptability"
+    },
+    {
+      "id": "PRIM-064",
+      "type": "PRIMARY",
+      "name": "Resource Renewal"
+    },
+    {
+      "id": "PRIM-065",
+      "type": "PRIMARY",
+      "name": "Future Readiness"
+    },
+    {
+      "id": "PRIM-066",
+      "type": "PRIMARY",
+      "name": "Visible Reasoning"
+    },
+    {
+      "id": "PRIM-067",
+      "type": "PRIMARY",
+      "name": "Auditability"
+    },
+    {
+      "id": "PRIM-068",
+      "type": "PRIMARY",
+      "name": "Ownership"
+    },
+    {
+      "id": "PRIM-069",
+      "type": "PRIMARY",
+      "name": "Traceability"
+    },
+    {
+      "id": "PRIM-070",
+      "type": "PRIMARY",
+      "name": "Honesty"
+    },
+    {
+      "id": "PRIM-071",
+      "type": "PRIMARY",
+      "name": "Original Thinking"
+    },
+    {
+      "id": "PRIM-072",
+      "type": "PRIMARY",
+      "name": "Creative Synthesis"
+    },
+    {
+      "id": "PRIM-073",
+      "type": "PRIMARY",
+      "name": "Possibility Exploration"
+    },
+    {
+      "id": "PRIM-074",
+      "type": "PRIMARY",
+      "name": "Artistic Expression"
+    },
+    {
+      "id": "PRIM-075",
+      "type": "PRIMARY",
+      "name": "Divergent Thinking"
+    },
+    {
+      "id": "PRIM-076",
+      "type": "PRIMARY",
+      "name": "Situational Understanding"
+    },
+    {
+      "id": "PRIM-077",
+      "type": "PRIMARY",
+      "name": "Cultural Sensitivity"
+    },
+    {
+      "id": "PRIM-078",
+      "type": "PRIMARY",
+      "name": "Timing"
+    },
+    {
+      "id": "PRIM-079",
+      "type": "PRIMARY",
+      "name": "Relevance"
+    },
+    {
+      "id": "PRIM-080",
+      "type": "PRIMARY",
+      "name": "Appropriateness"
+    },
+    {
+      "id": "PRIM-081",
+      "type": "PRIMARY",
+      "name": "System Integration"
+    },
+    {
+      "id": "PRIM-082",
+      "type": "PRIMARY",
+      "name": "Internal Consistency"
+    },
+    {
+      "id": "PRIM-083",
+      "type": "PRIMARY",
+      "name": "Unified Experience"
+    },
+    {
+      "id": "PRIM-084",
+      "type": "PRIMARY",
+      "name": "Interoperability"
+    },
+    {
+      "id": "PRIM-085",
+      "type": "PRIMARY",
+      "name": "Alignment"
+    },
+    {
+      "id": "PRIM-086",
+      "type": "PRIMARY",
+      "name": "User Agency"
+    },
+    {
+      "id": "PRIM-087",
+      "type": "PRIMARY",
+      "name": "Capability Building"
+    },
+    {
+      "id": "PRIM-088",
+      "type": "PRIMARY",
+      "name": "Self Sufficiency"
+    },
+    {
+      "id": "PRIM-089",
+      "type": "PRIMARY",
+      "name": "Choice Preservation"
+    },
+    {
+      "id": "PRIM-090",
+      "type": "PRIMARY",
+      "name": "Informed Consent"
+    },
+    {
+      "id": "PRIM-091",
+      "type": "PRIMARY",
+      "name": "Balanced Perspective"
+    },
+    {
+      "id": "PRIM-092",
+      "type": "PRIMARY",
+      "name": "Principle Adherence"
+    },
+    {
+      "id": "PRIM-093",
+      "type": "PRIMARY",
+      "name": "Proportional Response"
+    },
+    {
+      "id": "PRIM-094",
+      "type": "PRIMARY",
+      "name": "Humility"
+    },
+    {
+      "id": "PRIM-095",
+      "type": "PRIMARY",
+      "name": "Discernment"
+    },
+    {
+      "id": "PRIM-096",
+      "type": "PRIMARY",
+      "name": "Human Sovereignty"
+    },
+    {
+      "id": "PRIM-097",
+      "type": "PRIMARY",
+      "name": "Governance Compliance"
+    },
+    {
+      "id": "PRIM-098",
+      "type": "PRIMARY",
+      "name": "Tool Status"
+    },
+    {
+      "id": "PRIM-099",
+      "type": "PRIMARY",
+      "name": "Explicit Reasoning"
+    },
+    {
+      "id": "PRIM-100",
+      "type": "PRIMARY",
+      "name": "Mesh Coherence"
+    },
+    {
+      "id": "PRIM-101",
+      "type": "PRIMARY",
+      "name": "Customer Value Is Paramount"
+    },
+    {
+      "id": "PRIM-102",
+      "type": "PRIMARY",
+      "name": "Solve Real Problems"
+    },
+    {
+      "id": "PRIM-103",
+      "type": "PRIMARY",
+      "name": "Customer Success Equals Our Success"
+    },
+    {
+      "id": "PRIM-104",
+      "type": "PRIMARY",
+      "name": "Long Term Relationships Over Transactions"
+    },
+    {
+      "id": "PRIM-105",
+      "type": "PRIMARY",
+      "name": "Listen To Customer Feedback"
+    },
+    {
+      "id": "PRIM-106",
+      "type": "PRIMARY",
+      "name": "Earn Customer Trust"
+    },
+    {
+      "id": "PRIM-107",
+      "type": "PRIMARY",
+      "name": "Delight Dont Just Satisfy"
+    },
+    {
+      "id": "PRIM-108",
+      "type": "PRIMARY",
+      "name": "Customer Retention Is Cheaper Than Acquisition"
+    },
+    {
+      "id": "PRIM-109",
+      "type": "PRIMARY",
+      "name": "Measure Value Delivered Not Features Shipped"
+    },
+    {
+      "id": "PRIM-110",
+      "type": "PRIMARY",
+      "name": "Make It Easy For Customers"
+    },
+    {
+      "id": "PRIM-111",
+      "type": "PRIMARY",
+      "name": "Integrity Is Non-Negotiable"
+    },
+    {
+      "id": "PRIM-112",
+      "type": "PRIMARY",
+      "name": "Transparency Builds Trust"
+    },
+    {
+      "id": "PRIM-113",
+      "type": "PRIMARY",
+      "name": "Keep Commitments"
+    },
+    {
+      "id": "PRIM-114",
+      "type": "PRIMARY",
+      "name": "Ethical Shortcuts Dont Exist"
+    },
+    {
+      "id": "PRIM-115",
+      "type": "PRIMARY",
+      "name": "Admit Mistakes Quickly"
+    },
+    {
+      "id": "PRIM-116",
+      "type": "PRIMARY",
+      "name": "Treat All Stakeholders Fairly"
+    },
+    {
+      "id": "PRIM-117",
+      "type": "PRIMARY",
+      "name": "Compliance Is Minimum Not Maximum"
+    },
+    {
+      "id": "PRIM-118",
+      "type": "PRIMARY",
+      "name": "Protect Customer Data"
+    },
+    {
+      "id": "PRIM-119",
+      "type": "PRIMARY",
+      "name": "No Retaliation For Speaking Up"
+    },
+    {
+      "id": "PRIM-120",
+      "type": "PRIMARY",
+      "name": "Reputation Takes Years To Build Moments To Destroy"
+    },
+    {
+      "id": "PRIM-121",
+      "type": "PRIMARY",
+      "name": "Execution Beats Ideas"
+    },
+    {
+      "id": "PRIM-122",
+      "type": "PRIMARY",
+      "name": "Speed Matters"
+    },
+    {
+      "id": "PRIM-123",
+      "type": "PRIMARY",
+      "name": "Done Is Better Than Perfect"
+    },
+    {
+      "id": "PRIM-124",
+      "type": "PRIMARY",
+      "name": "Measure What Matters"
+    },
+    {
+      "id": "PRIM-125",
+      "type": "PRIMARY",
+      "name": "Focus Is A Competitive Advantage"
+    },
+    {
+      "id": "PRIM-126",
+      "type": "PRIMARY",
+      "name": "Quality Compounds"
+    },
+    {
+      "id": "PRIM-127",
+      "type": "PRIMARY",
+      "name": "Bias Toward Action"
+    },
+    {
+      "id": "PRIM-128",
+      "type": "PRIMARY",
+      "name": "Simplicity Scales"
+    },
+    {
+      "id": "PRIM-129",
+      "type": "PRIMARY",
+      "name": "Accountability Drives Results"
+    },
+    {
+      "id": "PRIM-130",
+      "type": "PRIMARY",
+      "name": "Process Serves Purpose"
+    },
+    {
+      "id": "PRIM-131",
+      "type": "PRIMARY",
+      "name": "People Are The Business"
+    },
+    {
+      "id": "PRIM-132",
+      "type": "PRIMARY",
+      "name": "Hire For Culture Add Not Culture Fit"
+    },
+    {
+      "id": "PRIM-133",
+      "type": "PRIMARY",
+      "name": "Invest In Employee Growth"
+    },
+    {
+      "id": "PRIM-134",
+      "type": "PRIMARY",
+      "name": "Psychological Safety Enables Performance"
+    },
+    {
+      "id": "PRIM-135",
+      "type": "PRIMARY",
+      "name": "Diversity Strengthens Teams"
+    },
+    {
+      "id": "PRIM-136",
+      "type": "PRIMARY",
+      "name": "Fair Compensation Reflects Value"
+    },
+    {
+      "id": "PRIM-137",
+      "type": "PRIMARY",
+      "name": "Feedback Is A Gift"
+    },
+    {
+      "id": "PRIM-138",
+      "type": "PRIMARY",
+      "name": "Recognition Motivates"
+    },
+    {
+      "id": "PRIM-139",
+      "type": "PRIMARY",
+      "name": "Leaders Serve Teams"
+    },
+    {
+      "id": "PRIM-140",
+      "type": "PRIMARY",
+      "name": "Toxic Behavior Cannot Be Tolerated"
+    },
+    {
+      "id": "PRIM-141",
+      "type": "PRIMARY",
+      "name": "Cash Is King"
+    },
+    {
+      "id": "PRIM-142",
+      "type": "PRIMARY",
+      "name": "Profitability Matters"
+    },
+    {
+      "id": "PRIM-143",
+      "type": "PRIMARY",
+      "name": "Unit Economics Must Work"
+    },
+    {
+      "id": "PRIM-144",
+      "type": "PRIMARY",
+      "name": "Understand Your Numbers"
+    },
+    {
+      "id": "PRIM-145",
+      "type": "PRIMARY",
+      "name": "Invest For Return"
+    },
+    {
+      "id": "PRIM-146",
+      "type": "PRIMARY",
+      "name": "Manage Risk Intelligently"
+    },
+    {
+      "id": "PRIM-147",
+      "type": "PRIMARY",
+      "name": "Maintain Financial Runway"
+    },
+    {
+      "id": "PRIM-148",
+      "type": "PRIMARY",
+      "name": "Capital Efficiency Creates Options"
+    },
+    {
+      "id": "PRIM-149",
+      "type": "PRIMARY",
+      "name": "Revenue Quality Matters"
+    },
+    {
+      "id": "PRIM-150",
+      "type": "PRIMARY",
+      "name": "Cost Control Enables Investment"
+    },
+    {
+      "id": "PRIM-151",
+      "type": "PRIMARY",
+      "name": "Innovation Is Survival"
+    },
+    {
+      "id": "PRIM-152",
+      "type": "PRIMARY",
+      "name": "Experiment And Learn"
+    },
+    {
+      "id": "PRIM-153",
+      "type": "PRIMARY",
+      "name": "Failure Is Data"
+    },
+    {
+      "id": "PRIM-154",
+      "type": "PRIMARY",
+      "name": "Challenge Assumptions"
+    },
+    {
+      "id": "PRIM-155",
+      "type": "PRIMARY",
+      "name": "Stay Curious"
+    },
+    {
+      "id": "PRIM-156",
+      "type": "PRIMARY",
+      "name": "Learn From Others"
+    },
+    {
+      "id": "PRIM-157",
+      "type": "PRIMARY",
+      "name": "Embrace Change"
+    },
+    {
+      "id": "PRIM-158",
+      "type": "PRIMARY",
+      "name": "Technology Enables Strategy Directs"
+    },
+    {
+      "id": "PRIM-159",
+      "type": "PRIMARY",
+      "name": "Balance Core And Explore"
+    },
+    {
+      "id": "PRIM-160",
+      "type": "PRIMARY",
+      "name": "Question Success"
+    },
+    {
+      "id": "PRIM-161",
+      "type": "PRIMARY",
+      "name": "Differentiation Is Essential"
+    },
+    {
+      "id": "PRIM-162",
+      "type": "PRIMARY",
+      "name": "Build Defensibility"
+    },
+    {
+      "id": "PRIM-163",
+      "type": "PRIMARY",
+      "name": "Compete On Value Not Just Price"
+    },
+    {
+      "id": "PRIM-164",
+      "type": "PRIMARY",
+      "name": "Know Your Competition"
+    },
+    {
+      "id": "PRIM-165",
+      "type": "PRIMARY",
+      "name": "Choose Your Battles"
+    },
+    {
+      "id": "PRIM-166",
+      "type": "PRIMARY",
+      "name": "Network Effects Create Moats"
+    },
+    {
+      "id": "PRIM-167",
+      "type": "PRIMARY",
+      "name": "Speed Can Trump Resources"
+    },
+    {
+      "id": "PRIM-168",
+      "type": "PRIMARY",
+      "name": "Reputation Is A Competitive Asset"
+    },
+    {
+      "id": "PRIM-169",
+      "type": "PRIMARY",
+      "name": "Winner Often Takes Most"
+    },
+    {
+      "id": "PRIM-170",
+      "type": "PRIMARY",
+      "name": "Compete And Cooperate Strategically"
+    },
+    {
+      "id": "PRIM-171",
+      "type": "PRIMARY",
+      "name": "Strategy Requires Choices"
+    },
+    {
+      "id": "PRIM-172",
+      "type": "PRIMARY",
+      "name": "Think Long Term"
+    },
+    {
+      "id": "PRIM-173",
+      "type": "PRIMARY",
+      "name": "Align Strategy And Execution"
+    },
+    {
+      "id": "PRIM-174",
+      "type": "PRIMARY",
+      "name": "Adapt Strategy To Reality"
+    },
+    {
+      "id": "PRIM-175",
+      "type": "PRIMARY",
+      "name": "Position For The Future"
+    },
+    {
+      "id": "PRIM-176",
+      "type": "PRIMARY",
+      "name": "Strategic Patience With Tactical Urgency"
+    },
+    {
+      "id": "PRIM-177",
+      "type": "PRIMARY",
+      "name": "Concentrate Resources"
+    },
+    {
+      "id": "PRIM-178",
+      "type": "PRIMARY",
+      "name": "Understand Market Dynamics"
+    },
+    {
+      "id": "PRIM-179",
+      "type": "PRIMARY",
+      "name": "Build Optionality"
+    },
+    {
+      "id": "PRIM-180",
+      "type": "PRIMARY",
+      "name": "Strategy Is Hypothesis"
+    },
+    {
+      "id": "PRIM-181",
+      "type": "PRIMARY",
+      "name": "Consistency Builds Trust"
+    },
+    {
+      "id": "PRIM-182",
+      "type": "PRIMARY",
+      "name": "Systems Beat Heroics"
+    },
+    {
+      "id": "PRIM-183",
+      "type": "PRIMARY",
+      "name": "Eliminate Waste"
+    },
+    {
+      "id": "PRIM-184",
+      "type": "PRIMARY",
+      "name": "Ongoing Continuous Improvement"
+    },
+    {
+      "id": "PRIM-185",
+      "type": "PRIMARY",
+      "name": "Standardize To Scale"
+    },
+    {
+      "id": "PRIM-186",
+      "type": "PRIMARY",
+      "name": "Optimize The Whole Not Parts"
+    },
+    {
+      "id": "PRIM-187",
+      "type": "PRIMARY",
+      "name": "Build Redundancy For Critical Functions"
+    },
+    {
+      "id": "PRIM-188",
+      "type": "PRIMARY",
+      "name": "Automate Repetitive Work"
+    },
+    {
+      "id": "PRIM-189",
+      "type": "PRIMARY",
+      "name": "Plan For Scale"
+    },
+    {
+      "id": "PRIM-190",
+      "type": "PRIMARY",
+      "name": "Fix Root Causes"
+    },
+    {
+      "id": "PRIM-191",
+      "type": "PRIMARY",
+      "name": "Make Reversible Decisions Quickly"
+    },
+    {
+      "id": "PRIM-192",
+      "type": "PRIMARY",
+      "name": "Data Informs Judgment Decides"
+    },
+    {
+      "id": "PRIM-193",
+      "type": "PRIMARY",
+      "name": "Disagree And Commit"
+    },
+    {
+      "id": "PRIM-194",
+      "type": "PRIMARY",
+      "name": "Seek Diverse Perspectives"
+    },
+    {
+      "id": "PRIM-195",
+      "type": "PRIMARY",
+      "name": "Consider Second Order Effects"
+    },
+    {
+      "id": "PRIM-196",
+      "type": "PRIMARY",
+      "name": "Acknowledge Uncertainty"
+    },
+    {
+      "id": "PRIM-197",
+      "type": "PRIMARY",
+      "name": "Optimize For Expected Value"
+    },
+    {
+      "id": "PRIM-198",
+      "type": "PRIMARY",
+      "name": "Learn From Outcomes"
+    },
+    {
+      "id": "PRIM-199",
+      "type": "PRIMARY",
+      "name": "Decide At The Right Level"
+    },
+    {
+      "id": "PRIM-200",
+      "type": "PRIMARY",
+      "name": "Act On Conviction Not Consensus"
+    }
+  ],
+  "PHILOSOPHY": [
+    {
+      "id": "PHIL-001",
+      "type": "PHILOSOPHY",
+      "name": "Platonism"
+    },
+    {
+      "id": "PHIL-002",
+      "type": "PHILOSOPHY",
+      "name": "Aristotelianism"
+    },
+    {
+      "id": "PHIL-003",
+      "type": "PHILOSOPHY",
+      "name": "Stoicism"
+    },
+    {
+      "id": "PHIL-004",
+      "type": "PHILOSOPHY",
+      "name": "Epicureanism"
+    },
+    {
+      "id": "PHIL-005",
+      "type": "PHILOSOPHY",
+      "name": "Cynicism"
+    },
+    {
+      "id": "PHIL-006",
+      "type": "PHILOSOPHY",
+      "name": "Skepticism"
+    },
+    {
+      "id": "PHIL-007",
+      "type": "PHILOSOPHY",
+      "name": "Pre-Socratic Philosophy"
+    },
+    {
+      "id": "PHIL-008",
+      "type": "PHILOSOPHY",
+      "name": "Sophistry"
+    },
+    {
+      "id": "PHIL-009",
+      "type": "PHILOSOPHY",
+      "name": "Neoplatonism"
+    },
+    {
+      "id": "PHIL-010",
+      "type": "PHILOSOPHY",
+      "name": "Pyrrhonism"
+    },
+    {
+      "id": "PHIL-011",
+      "type": "PHILOSOPHY",
+      "name": "Atomism"
+    },
+    {
+      "id": "PHIL-012",
+      "type": "PHILOSOPHY",
+      "name": "Hedonism"
+    },
+    {
+      "id": "PHIL-013",
+      "type": "PHILOSOPHY",
+      "name": "Asceticism"
+    },
+    {
+      "id": "PHIL-014",
+      "type": "PHILOSOPHY",
+      "name": "Eudaimonism"
+    },
+    {
+      "id": "PHIL-015",
+      "type": "PHILOSOPHY",
+      "name": "Peripatetic Philosophy"
+    },
+    {
+      "id": "PHIL-016",
+      "type": "PHILOSOPHY",
+      "name": "Megaric School"
+    },
+    {
+      "id": "PHIL-017",
+      "type": "PHILOSOPHY",
+      "name": "Eleatic School"
+    },
+    {
+      "id": "PHIL-018",
+      "type": "PHILOSOPHY",
+      "name": "Pythagorean Philosophy"
+    },
+    {
+      "id": "PHIL-019",
+      "type": "PHILOSOPHY",
+      "name": "Academic Skepticism"
+    },
+    {
+      "id": "PHIL-020",
+      "type": "PHILOSOPHY",
+      "name": "Sophism"
+    },
+    {
+      "id": "PHIL-021",
+      "type": "PHILOSOPHY",
+      "name": "Buddhism"
+    },
+    {
+      "id": "PHIL-022",
+      "type": "PHILOSOPHY",
+      "name": "Taoism"
+    },
+    {
+      "id": "PHIL-023",
+      "type": "PHILOSOPHY",
+      "name": "Confucianism"
+    },
+    {
+      "id": "PHIL-024",
+      "type": "PHILOSOPHY",
+      "name": "Hinduism Vedanta"
+    },
+    {
+      "id": "PHIL-025",
+      "type": "PHILOSOPHY",
+      "name": "Zen Buddhism"
+    },
+    {
+      "id": "PHIL-026",
+      "type": "PHILOSOPHY",
+      "name": "Advaita Vedanta"
+    },
+    {
+      "id": "PHIL-027",
+      "type": "PHILOSOPHY",
+      "name": "Jainism"
+    },
+    {
+      "id": "PHIL-028",
+      "type": "PHILOSOPHY",
+      "name": "Yoga Philosophy"
+    },
+    {
+      "id": "PHIL-029",
+      "type": "PHILOSOPHY",
+      "name": "Legalism Chinese"
+    },
+    {
+      "id": "PHIL-030",
+      "type": "PHILOSOPHY",
+      "name": "Mohism"
+    },
+    {
+      "id": "PHIL-031",
+      "type": "PHILOSOPHY",
+      "name": "School Of Names"
+    },
+    {
+      "id": "PHIL-032",
+      "type": "PHILOSOPHY",
+      "name": "Neo-Confucianism"
+    },
+    {
+      "id": "PHIL-033",
+      "type": "PHILOSOPHY",
+      "name": "Samkhya"
+    },
+    {
+      "id": "PHIL-034",
+      "type": "PHILOSOPHY",
+      "name": "Nyaya"
+    },
+    {
+      "id": "PHIL-035",
+      "type": "PHILOSOPHY",
+      "name": "Vaisheshika"
+    },
+    {
+      "id": "PHIL-036",
+      "type": "PHILOSOPHY",
+      "name": "Mimamsa"
+    },
+    {
+      "id": "PHIL-037",
+      "type": "PHILOSOPHY",
+      "name": "Chan Buddhism"
+    },
+    {
+      "id": "PHIL-038",
+      "type": "PHILOSOPHY",
+      "name": "Pure Land Buddhism"
+    },
+    {
+      "id": "PHIL-039",
+      "type": "PHILOSOPHY",
+      "name": "Madhyamaka"
+    },
+    {
+      "id": "PHIL-040",
+      "type": "PHILOSOPHY",
+      "name": "Yogacara"
+    },
+    {
+      "id": "PHIL-041",
+      "type": "PHILOSOPHY",
+      "name": "Scholasticism"
+    },
+    {
+      "id": "PHIL-042",
+      "type": "PHILOSOPHY",
+      "name": "Augustinianism"
+    },
+    {
+      "id": "PHIL-043",
+      "type": "PHILOSOPHY",
+      "name": "Thomism"
+    },
+    {
+      "id": "PHIL-044",
+      "type": "PHILOSOPHY",
+      "name": "Islamic Philosophy Falsafa"
+    },
+    {
+      "id": "PHIL-045",
+      "type": "PHILOSOPHY",
+      "name": "Sufism"
+    },
+    {
+      "id": "PHIL-046",
+      "type": "PHILOSOPHY",
+      "name": "Jewish Philosophy Maimonides"
+    },
+    {
+      "id": "PHIL-047",
+      "type": "PHILOSOPHY",
+      "name": "Christian Mysticism"
+    },
+    {
+      "id": "PHIL-048",
+      "type": "PHILOSOPHY",
+      "name": "Nominalism"
+    },
+    {
+      "id": "PHIL-049",
+      "type": "PHILOSOPHY",
+      "name": "Realism Medieval"
+    },
+    {
+      "id": "PHIL-050",
+      "type": "PHILOSOPHY",
+      "name": "Voluntarism"
+    },
+    {
+      "id": "PHIL-051",
+      "type": "PHILOSOPHY",
+      "name": "Rationalism"
+    },
+    {
+      "id": "PHIL-052",
+      "type": "PHILOSOPHY",
+      "name": "Empiricism"
+    },
+    {
+      "id": "PHIL-053",
+      "type": "PHILOSOPHY",
+      "name": "Idealism"
+    },
+    {
+      "id": "PHIL-054",
+      "type": "PHILOSOPHY",
+      "name": "Materialism"
+    },
+    {
+      "id": "PHIL-055",
+      "type": "PHILOSOPHY",
+      "name": "Dualism"
+    },
+    {
+      "id": "PHIL-056",
+      "type": "PHILOSOPHY",
+      "name": "Kantian Philosophy"
+    },
+    {
+      "id": "PHIL-057",
+      "type": "PHILOSOPHY",
+      "name": "Hegelianism"
+    },
+    {
+      "id": "PHIL-058",
+      "type": "PHILOSOPHY",
+      "name": "Utilitarianism"
+    },
+    {
+      "id": "PHIL-059",
+      "type": "PHILOSOPHY",
+      "name": "Pragmatism"
+    },
+    {
+      "id": "PHIL-060",
+      "type": "PHILOSOPHY",
+      "name": "Phenomenology"
+    },
+    {
+      "id": "PHIL-061",
+      "type": "PHILOSOPHY",
+      "name": "Existentialism"
+    },
+    {
+      "id": "PHIL-062",
+      "type": "PHILOSOPHY",
+      "name": "Marxism"
+    },
+    {
+      "id": "PHIL-063",
+      "type": "PHILOSOPHY",
+      "name": "Positivism"
+    },
+    {
+      "id": "PHIL-064",
+      "type": "PHILOSOPHY",
+      "name": "Logical Positivism"
+    },
+    {
+      "id": "PHIL-065",
+      "type": "PHILOSOPHY",
+      "name": "Naturalism"
+    },
+    {
+      "id": "PHIL-066",
+      "type": "PHILOSOPHY",
+      "name": "Social Contract Theory"
+    },
+    {
+      "id": "PHIL-067",
+      "type": "PHILOSOPHY",
+      "name": "Liberalism"
+    },
+    {
+      "id": "PHIL-068",
+      "type": "PHILOSOPHY",
+      "name": "Conservatism"
+    },
+    {
+      "id": "PHIL-069",
+      "type": "PHILOSOPHY",
+      "name": "Romanticism"
+    },
+    {
+      "id": "PHIL-070",
+      "type": "PHILOSOPHY",
+      "name": "German Idealism"
+    },
+    {
+      "id": "PHIL-071",
+      "type": "PHILOSOPHY",
+      "name": "Analytic Philosophy"
+    },
+    {
+      "id": "PHIL-072",
+      "type": "PHILOSOPHY",
+      "name": "Continental Philosophy"
+    },
+    {
+      "id": "PHIL-073",
+      "type": "PHILOSOPHY",
+      "name": "Structuralism"
+    },
+    {
+      "id": "PHIL-074",
+      "type": "PHILOSOPHY",
+      "name": "Post-Structuralism"
+    },
+    {
+      "id": "PHIL-075",
+      "type": "PHILOSOPHY",
+      "name": "Postmodernism"
+    },
+    {
+      "id": "PHIL-076",
+      "type": "PHILOSOPHY",
+      "name": "Feminism"
+    },
+    {
+      "id": "PHIL-077",
+      "type": "PHILOSOPHY",
+      "name": "Critical Theory"
+    },
+    {
+      "id": "PHIL-078",
+      "type": "PHILOSOPHY",
+      "name": "Hermeneutics"
+    },
+    {
+      "id": "PHIL-079",
+      "type": "PHILOSOPHY",
+      "name": "Ordinary Language Philosophy"
+    },
+    {
+      "id": "PHIL-080",
+      "type": "PHILOSOPHY",
+      "name": "Philosophy Of Mind"
+    },
+    {
+      "id": "PHIL-081",
+      "type": "PHILOSOPHY",
+      "name": "Personalism"
+    },
+    {
+      "id": "PHIL-082",
+      "type": "PHILOSOPHY",
+      "name": "Communitarianism"
+    },
+    {
+      "id": "PHIL-083",
+      "type": "PHILOSOPHY",
+      "name": "Virtue Ethics"
+    },
+    {
+      "id": "PHIL-084",
+      "type": "PHILOSOPHY",
+      "name": "Consequentialism"
+    },
+    {
+      "id": "PHIL-085",
+      "type": "PHILOSOPHY",
+      "name": "Deontology"
+    },
+    {
+      "id": "PHIL-086",
+      "type": "PHILOSOPHY",
+      "name": "Libertarianism"
+    },
+    {
+      "id": "PHIL-087",
+      "type": "PHILOSOPHY",
+      "name": "Anarchism"
+    },
+    {
+      "id": "PHIL-088",
+      "type": "PHILOSOPHY",
+      "name": "Nihilism"
+    },
+    {
+      "id": "PHIL-089",
+      "type": "PHILOSOPHY",
+      "name": "Absurdism"
+    },
+    {
+      "id": "PHIL-090",
+      "type": "PHILOSOPHY",
+      "name": "Process Philosophy"
+    },
+    {
+      "id": "PHIL-091",
+      "type": "PHILOSOPHY",
+      "name": "Philosophy Of Science"
+    },
+    {
+      "id": "PHIL-092",
+      "type": "PHILOSOPHY",
+      "name": "Philosophy Of Language"
+    },
+    {
+      "id": "PHIL-093",
+      "type": "PHILOSOPHY",
+      "name": "Philosophy Of Mathematics"
+    },
+    {
+      "id": "PHIL-094",
+      "type": "PHILOSOPHY",
+      "name": "Bioethics"
+    },
+    {
+      "id": "PHIL-095",
+      "type": "PHILOSOPHY",
+      "name": "Environmental Philosophy"
+    },
+    {
+      "id": "PHIL-096",
+      "type": "PHILOSOPHY",
+      "name": "Philosophy Of Technology"
+    },
+    {
+      "id": "PHIL-097",
+      "type": "PHILOSOPHY",
+      "name": "Transhumanism"
+    },
+    {
+      "id": "PHIL-098",
+      "type": "PHILOSOPHY",
+      "name": "Effective Altruism"
+    },
+    {
+      "id": "PHIL-099",
+      "type": "PHILOSOPHY",
+      "name": "Objectivism"
+    },
+    {
+      "id": "PHIL-100",
+      "type": "PHILOSOPHY",
+      "name": "Cosmopolitanism"
+    },
+    {
+      "id": "PHIL-101",
+      "type": "PHILOSOPHY",
+      "name": "Data Driven Decision Making"
+    },
+    {
+      "id": "PHIL-102",
+      "type": "PHILOSOPHY",
+      "name": "Reversible Vs Irreversible Decisions"
+    },
+    {
+      "id": "PHIL-103",
+      "type": "PHILOSOPHY",
+      "name": "Disagree And Commit"
+    },
+    {
+      "id": "PHIL-104",
+      "type": "PHILOSOPHY",
+      "name": "First Principles Thinking"
+    },
+    {
+      "id": "PHIL-105",
+      "type": "PHILOSOPHY",
+      "name": "Expected Value Optimization"
+    },
+    {
+      "id": "PHIL-106",
+      "type": "PHILOSOPHY",
+      "name": "Opportunity Cost Awareness"
+    },
+    {
+      "id": "PHIL-107",
+      "type": "PHILOSOPHY",
+      "name": "Bias Toward Action"
+    },
+    {
+      "id": "PHIL-108",
+      "type": "PHILOSOPHY",
+      "name": "Think In Bets"
+    },
+    {
+      "id": "PHIL-109",
+      "type": "PHILOSOPHY",
+      "name": "Regret Minimization Framework"
+    },
+    {
+      "id": "PHIL-110",
+      "type": "PHILOSOPHY",
+      "name": "Second Order Thinking"
+    },
+    {
+      "id": "PHIL-111",
+      "type": "PHILOSOPHY",
+      "name": "Customer Obsession"
+    },
+    {
+      "id": "PHIL-112",
+      "type": "PHILOSOPHY",
+      "name": "Jobs To Be Done Mindset"
+    },
+    {
+      "id": "PHIL-113",
+      "type": "PHILOSOPHY",
+      "name": "Product Market Fit Obsession"
+    },
+    {
+      "id": "PHIL-114",
+      "type": "PHILOSOPHY",
+      "name": "Customer Lifetime Value Focus"
+    },
+    {
+      "id": "PHIL-115",
+      "type": "PHILOSOPHY",
+      "name": "Outcome Over Output"
+    },
+    {
+      "id": "PHIL-116",
+      "type": "PHILOSOPHY",
+      "name": "Voice Of Customer Integration"
+    },
+    {
+      "id": "PHIL-117",
+      "type": "PHILOSOPHY",
+      "name": "Customer Success Partnership"
+    },
+    {
+      "id": "PHIL-118",
+      "type": "PHILOSOPHY",
+      "name": "Segment Specific Value"
+    },
+    {
+      "id": "PHIL-119",
+      "type": "PHILOSOPHY",
+      "name": "Customer Effort Reduction"
+    },
+    {
+      "id": "PHIL-120",
+      "type": "PHILOSOPHY",
+      "name": "Proactive Value Delivery"
+    },
+    {
+      "id": "PHIL-121",
+      "type": "PHILOSOPHY",
+      "name": "Move Fast And Break Things"
+    },
+    {
+      "id": "PHIL-122",
+      "type": "PHILOSOPHY",
+      "name": "Ship To Learn"
+    },
+    {
+      "id": "PHIL-123",
+      "type": "PHILOSOPHY",
+      "name": "80-20 Execution"
+    },
+    {
+      "id": "PHIL-124",
+      "type": "PHILOSOPHY",
+      "name": "Done Is Better Than Perfect"
+    },
+    {
+      "id": "PHIL-125",
+      "type": "PHILOSOPHY",
+      "name": "Bias For Simplicity"
+    },
+    {
+      "id": "PHIL-126",
+      "type": "PHILOSOPHY",
+      "name": "Ruthless Prioritization"
+    },
+    {
+      "id": "PHIL-127",
+      "type": "PHILOSOPHY",
+      "name": "Compound Progress"
+    },
+    {
+      "id": "PHIL-128",
+      "type": "PHILOSOPHY",
+      "name": "Parallel Work Streams"
+    },
+    {
+      "id": "PHIL-129",
+      "type": "PHILOSOPHY",
+      "name": "Timebox Exploration"
+    },
+    {
+      "id": "PHIL-130",
+      "type": "PHILOSOPHY",
+      "name": "Momentum Preservation"
+    },
+    {
+      "id": "PHIL-131",
+      "type": "PHILOSOPHY",
+      "name": "Growth Mindset"
+    },
+    {
+      "id": "PHIL-132",
+      "type": "PHILOSOPHY",
+      "name": "Experimentation Culture"
+    },
+    {
+      "id": "PHIL-133",
+      "type": "PHILOSOPHY",
+      "name": "Fail Fast Learn Faster"
+    },
+    {
+      "id": "PHIL-134",
+      "type": "PHILOSOPHY",
+      "name": "10x Thinking"
+    },
+    {
+      "id": "PHIL-135",
+      "type": "PHILOSOPHY",
+      "name": "Beginners Mind"
+    },
+    {
+      "id": "PHIL-136",
+      "type": "PHILOSOPHY",
+      "name": "Adjacent Possible Exploration"
+    },
+    {
+      "id": "PHIL-137",
+      "type": "PHILOSOPHY",
+      "name": "Combinatorial Innovation"
+    },
+    {
+      "id": "PHIL-138",
+      "type": "PHILOSOPHY",
+      "name": "Constraint Driven Innovation"
+    },
+    {
+      "id": "PHIL-139",
+      "type": "PHILOSOPHY",
+      "name": "Build Measure Learn"
+    },
+    {
+      "id": "PHIL-140",
+      "type": "PHILOSOPHY",
+      "name": "Question Core Assumptions"
+    },
+    {
+      "id": "PHIL-141",
+      "type": "PHILOSOPHY",
+      "name": "Radical Transparency"
+    },
+    {
+      "id": "PHIL-142",
+      "type": "PHILOSOPHY",
+      "name": "High Trust Low Process"
+    },
+    {
+      "id": "PHIL-143",
+      "type": "PHILOSOPHY",
+      "name": "Ownership Mentality"
+    },
+    {
+      "id": "PHIL-144",
+      "type": "PHILOSOPHY",
+      "name": "No Ego Best Idea Wins"
+    },
+    {
+      "id": "PHIL-145",
+      "type": "PHILOSOPHY",
+      "name": "Psychological Safety"
+    },
+    {
+      "id": "PHIL-146",
+      "type": "PHILOSOPHY",
+      "name": "Extreme Candor"
+    },
+    {
+      "id": "PHIL-147",
+      "type": "PHILOSOPHY",
+      "name": "Written Communication"
+    },
+    {
+      "id": "PHIL-148",
+      "type": "PHILOSOPHY",
+      "name": "Hire For Slope Not Y-Intercept"
+    },
+    {
+      "id": "PHIL-149",
+      "type": "PHILOSOPHY",
+      "name": "Team Over Individual"
+    },
+    {
+      "id": "PHIL-150",
+      "type": "PHILOSOPHY",
+      "name": "Default To Action"
+    },
+    {
+      "id": "PHIL-151",
+      "type": "PHILOSOPHY",
+      "name": "Capital Efficiency"
+    },
+    {
+      "id": "PHIL-152",
+      "type": "PHILOSOPHY",
+      "name": "Invest In Leverage"
+    },
+    {
+      "id": "PHIL-153",
+      "type": "PHILOSOPHY",
+      "name": "Bet On Strengths"
+    },
+    {
+      "id": "PHIL-154",
+      "type": "PHILOSOPHY",
+      "name": "Portfolio Approach"
+    },
+    {
+      "id": "PHIL-155",
+      "type": "PHILOSOPHY",
+      "name": "Zero Based Resource Allocation"
+    },
+    {
+      "id": "PHIL-156",
+      "type": "PHILOSOPHY",
+      "name": "Focus Over Coverage"
+    },
+    {
+      "id": "PHIL-157",
+      "type": "PHILOSOPHY",
+      "name": "Time As Scarce Resource"
+    },
+    {
+      "id": "PHIL-158",
+      "type": "PHILOSOPHY",
+      "name": "Strategic Patience"
+    },
+    {
+      "id": "PHIL-159",
+      "type": "PHILOSOPHY",
+      "name": "Build Vs Buy Vs Partner"
+    },
+    {
+      "id": "PHIL-160",
+      "type": "PHILOSOPHY",
+      "name": "Opportunity Fund Reserves"
+    },
+    {
+      "id": "PHIL-161",
+      "type": "PHILOSOPHY",
+      "name": "Differentiate Or Die"
+    },
+    {
+      "id": "PHIL-162",
+      "type": "PHILOSOPHY",
+      "name": "Network Effects Obsession"
+    },
+    {
+      "id": "PHIL-163",
+      "type": "PHILOSOPHY",
+      "name": "Winner Take Most Markets"
+    },
+    {
+      "id": "PHIL-164",
+      "type": "PHILOSOPHY",
+      "name": "Category Creation"
+    },
+    {
+      "id": "PHIL-165",
+      "type": "PHILOSOPHY",
+      "name": "Compete On Different Dimensions"
+    },
+    {
+      "id": "PHIL-166",
+      "type": "PHILOSOPHY",
+      "name": "Strategic Judo"
+    },
+    {
+      "id": "PHIL-167",
+      "type": "PHILOSOPHY",
+      "name": "Fast Follower Strategy"
+    },
+    {
+      "id": "PHIL-168",
+      "type": "PHILOSOPHY",
+      "name": "Moat Building"
+    },
+    {
+      "id": "PHIL-169",
+      "type": "PHILOSOPHY",
+      "name": "Asymmetric Warfare"
+    },
+    {
+      "id": "PHIL-170",
+      "type": "PHILOSOPHY",
+      "name": "Coopetition Mindset"
+    },
+    {
+      "id": "PHIL-171",
+      "type": "PHILOSOPHY",
+      "name": "Asymmetric Risk Taking"
+    },
+    {
+      "id": "PHIL-172",
+      "type": "PHILOSOPHY",
+      "name": "Antifragility"
+    },
+    {
+      "id": "PHIL-173",
+      "type": "PHILOSOPHY",
+      "name": "Margin Of Safety"
+    },
+    {
+      "id": "PHIL-174",
+      "type": "PHILOSOPHY",
+      "name": "Pre-Mortem Thinking"
+    },
+    {
+      "id": "PHIL-175",
+      "type": "PHILOSOPHY",
+      "name": "Redundancy Over Efficiency"
+    },
+    {
+      "id": "PHIL-176",
+      "type": "PHILOSOPHY",
+      "name": "Informed Risk Taking"
+    },
+    {
+      "id": "PHIL-177",
+      "type": "PHILOSOPHY",
+      "name": "Tail Risk Awareness"
+    },
+    {
+      "id": "PHIL-178",
+      "type": "PHILOSOPHY",
+      "name": "Barbell Strategy"
+    },
+    {
+      "id": "PHIL-179",
+      "type": "PHILOSOPHY",
+      "name": "Kill Your Darlings"
+    },
+    {
+      "id": "PHIL-180",
+      "type": "PHILOSOPHY",
+      "name": "Prepare For Multiple Scenarios"
+    },
+    {
+      "id": "PHIL-181",
+      "type": "PHILOSOPHY",
+      "name": "Create Value Then Capture"
+    },
+    {
+      "id": "PHIL-182",
+      "type": "PHILOSOPHY",
+      "name": "Win Win Philosophy"
+    },
+    {
+      "id": "PHIL-183",
+      "type": "PHILOSOPHY",
+      "name": "Value Based Pricing"
+    },
+    {
+      "id": "PHIL-184",
+      "type": "PHILOSOPHY",
+      "name": "Stakeholder Balance"
+    },
+    {
+      "id": "PHIL-185",
+      "type": "PHILOSOPHY",
+      "name": "Continuous Value Addition"
+    },
+    {
+      "id": "PHIL-186",
+      "type": "PHILOSOPHY",
+      "name": "Economic Value Creation"
+    },
+    {
+      "id": "PHIL-187",
+      "type": "PHILOSOPHY",
+      "name": "Platform Value Creation"
+    },
+    {
+      "id": "PHIL-188",
+      "type": "PHILOSOPHY",
+      "name": "Leverage Asymmetry"
+    },
+    {
+      "id": "PHIL-189",
+      "type": "PHILOSOPHY",
+      "name": "Compounding Value"
+    },
+    {
+      "id": "PHIL-190",
+      "type": "PHILOSOPHY",
+      "name": "Pricing Power Focus"
+    },
+    {
+      "id": "PHIL-191",
+      "type": "PHILOSOPHY",
+      "name": "Measure What Matters"
+    },
+    {
+      "id": "PHIL-192",
+      "type": "PHILOSOPHY",
+      "name": "Systems Over Goals"
+    },
+    {
+      "id": "PHIL-193",
+      "type": "PHILOSOPHY",
+      "name": "Automate And Eliminate"
+    },
+    {
+      "id": "PHIL-194",
+      "type": "PHILOSOPHY",
+      "name": "Direct Responsibility"
+    },
+    {
+      "id": "PHIL-195",
+      "type": "PHILOSOPHY",
+      "name": "Blameless Post Mortems"
+    },
+    {
+      "id": "PHIL-196",
+      "type": "PHILOSOPHY",
+      "name": "Working Backwards"
+    },
+    {
+      "id": "PHIL-197",
+      "type": "PHILOSOPHY",
+      "name": "Single Threaded Leadership"
+    },
+    {
+      "id": "PHIL-198",
+      "type": "PHILOSOPHY",
+      "name": "Two Pizza Teams"
+    },
+    {
+      "id": "PHIL-199",
+      "type": "PHILOSOPHY",
+      "name": "Day One Mentality"
+    },
+    {
+      "id": "PHIL-200",
+      "type": "PHILOSOPHY",
+      "name": "Think Long Term"
+    }
+  ],
+  "BLUEPRINT": [
+    {
+      "id": "BP-001",
+      "type": "BLUEPRINT",
+      "name": "Python"
+    },
+    {
+      "id": "BP-002",
+      "type": "BLUEPRINT",
+      "name": "JavaScript"
+    },
+    {
+      "id": "BP-003",
+      "type": "BLUEPRINT",
+      "name": "Java"
+    },
+    {
+      "id": "BP-004",
+      "type": "BLUEPRINT",
+      "name": "C Language"
+    },
+    {
+      "id": "BP-005",
+      "type": "BLUEPRINT",
+      "name": "C++ Language"
+    },
+    {
+      "id": "BP-006",
+      "type": "BLUEPRINT",
+      "name": "Ruby"
+    },
+    {
+      "id": "BP-007",
+      "type": "BLUEPRINT",
+      "name": "Go"
+    },
+    {
+      "id": "BP-008",
+      "type": "BLUEPRINT",
+      "name": "Rust"
+    },
+    {
+      "id": "BP-009",
+      "type": "BLUEPRINT",
+      "name": "Swift"
+    },
+    {
+      "id": "BP-010",
+      "type": "BLUEPRINT",
+      "name": "Kotlin"
+    },
+    {
+      "id": "BP-011",
+      "type": "BLUEPRINT",
+      "name": "PHP"
+    },
+    {
+      "id": "BP-012",
+      "type": "BLUEPRINT",
+      "name": "TypeScript"
+    },
+    {
+      "id": "BP-013",
+      "type": "BLUEPRINT",
+      "name": "Scala"
+    },
+    {
+      "id": "BP-014",
+      "type": "BLUEPRINT",
+      "name": "Haskell"
+    },
+    {
+      "id": "BP-015",
+      "type": "BLUEPRINT",
+      "name": "Erlang"
+    },
+    {
+      "id": "BP-016",
+      "type": "BLUEPRINT",
+      "name": "Elixir"
+    },
+    {
+      "id": "BP-017",
+      "type": "BLUEPRINT",
+      "name": "Clojure"
+    },
+    {
+      "id": "BP-018",
+      "type": "BLUEPRINT",
+      "name": "R Language"
+    },
+    {
+      "id": "BP-019",
+      "type": "BLUEPRINT",
+      "name": "MATLAB"
+    },
+    {
+      "id": "BP-020",
+      "type": "BLUEPRINT",
+      "name": "Julia"
+    },
+    {
+      "id": "BP-021",
+      "type": "BLUEPRINT",
+      "name": "Perl"
+    },
+    {
+      "id": "BP-022",
+      "type": "BLUEPRINT",
+      "name": "Lua"
+    },
+    {
+      "id": "BP-023",
+      "type": "BLUEPRINT",
+      "name": "Assembly"
+    },
+    {
+      "id": "BP-024",
+      "type": "BLUEPRINT",
+      "name": "SQL"
+    },
+    {
+      "id": "BP-025",
+      "type": "BLUEPRINT",
+      "name": "HTML"
+    },
+    {
+      "id": "BP-026",
+      "type": "BLUEPRINT",
+      "name": "CSS"
+    },
+    {
+      "id": "BP-027",
+      "type": "BLUEPRINT",
+      "name": "Shell Bash"
+    },
+    {
+      "id": "BP-028",
+      "type": "BLUEPRINT",
+      "name": "PowerShell"
+    },
+    {
+      "id": "BP-029",
+      "type": "BLUEPRINT",
+      "name": "Dart"
+    },
+    {
+      "id": "BP-030",
+      "type": "BLUEPRINT",
+      "name": "Objective-C"
+    },
+    {
+      "id": "BP-031",
+      "type": "BLUEPRINT",
+      "name": "Haiku"
+    },
+    {
+      "id": "BP-032",
+      "type": "BLUEPRINT",
+      "name": "Sonnet"
+    },
+    {
+      "id": "BP-033",
+      "type": "BLUEPRINT",
+      "name": "Limerick"
+    },
+    {
+      "id": "BP-034",
+      "type": "BLUEPRINT",
+      "name": "Free Verse"
+    },
+    {
+      "id": "BP-035",
+      "type": "BLUEPRINT",
+      "name": "Blank Verse"
+    },
+    {
+      "id": "BP-036",
+      "type": "BLUEPRINT",
+      "name": "Villanelle"
+    },
+    {
+      "id": "BP-037",
+      "type": "BLUEPRINT",
+      "name": "Sestina"
+    },
+    {
+      "id": "BP-038",
+      "type": "BLUEPRINT",
+      "name": "Ode"
+    },
+    {
+      "id": "BP-039",
+      "type": "BLUEPRINT",
+      "name": "Elegy"
+    },
+    {
+      "id": "BP-040",
+      "type": "BLUEPRINT",
+      "name": "Epic"
+    },
+    {
+      "id": "BP-041",
+      "type": "BLUEPRINT",
+      "name": "Ballad"
+    },
+    {
+      "id": "BP-042",
+      "type": "BLUEPRINT",
+      "name": "Acrostic"
+    },
+    {
+      "id": "BP-043",
+      "type": "BLUEPRINT",
+      "name": "Cinquain"
+    },
+    {
+      "id": "BP-044",
+      "type": "BLUEPRINT",
+      "name": "Tanka"
+    },
+    {
+      "id": "BP-045",
+      "type": "BLUEPRINT",
+      "name": "Ghazal"
+    },
+    {
+      "id": "BP-046",
+      "type": "BLUEPRINT",
+      "name": "Pantoum"
+    },
+    {
+      "id": "BP-047",
+      "type": "BLUEPRINT",
+      "name": "Terza Rima"
+    },
+    {
+      "id": "BP-048",
+      "type": "BLUEPRINT",
+      "name": "Prose Poem"
+    },
+    {
+      "id": "BP-049",
+      "type": "BLUEPRINT",
+      "name": "Concrete Visual Poetry"
+    },
+    {
+      "id": "BP-050",
+      "type": "BLUEPRINT",
+      "name": "Rondeau"
+    },
+    {
+      "id": "BP-051",
+      "type": "BLUEPRINT",
+      "name": "Thesis Dissertation"
+    },
+    {
+      "id": "BP-052",
+      "type": "BLUEPRINT",
+      "name": "Research Paper"
+    },
+    {
+      "id": "BP-053",
+      "type": "BLUEPRINT",
+      "name": "Five Paragraph Essay"
+    },
+    {
+      "id": "BP-054",
+      "type": "BLUEPRINT",
+      "name": "Literature Review"
+    },
+    {
+      "id": "BP-055",
+      "type": "BLUEPRINT",
+      "name": "Abstract"
+    },
+    {
+      "id": "BP-056",
+      "type": "BLUEPRINT",
+      "name": "Annotated Bibliography"
+    },
+    {
+      "id": "BP-057",
+      "type": "BLUEPRINT",
+      "name": "Lab Report"
+    },
+    {
+      "id": "BP-058",
+      "type": "BLUEPRINT",
+      "name": "Case Study"
+    },
+    {
+      "id": "BP-059",
+      "type": "BLUEPRINT",
+      "name": "Critical Analysis"
+    },
+    {
+      "id": "BP-060",
+      "type": "BLUEPRINT",
+      "name": "Position Paper"
+    },
+    {
+      "id": "BP-061",
+      "type": "BLUEPRINT",
+      "name": "Business Memo"
+    },
+    {
+      "id": "BP-062",
+      "type": "BLUEPRINT",
+      "name": "Technical Report"
+    },
+    {
+      "id": "BP-063",
+      "type": "BLUEPRINT",
+      "name": "White Paper"
+    },
+    {
+      "id": "BP-064",
+      "type": "BLUEPRINT",
+      "name": "Executive Summary"
+    },
+    {
+      "id": "BP-065",
+      "type": "BLUEPRINT",
+      "name": "Press Release"
+    },
+    {
+      "id": "BP-066",
+      "type": "BLUEPRINT",
+      "name": "Business Proposal"
+    },
+    {
+      "id": "BP-067",
+      "type": "BLUEPRINT",
+      "name": "Meeting Minutes"
+    },
+    {
+      "id": "BP-068",
+      "type": "BLUEPRINT",
+      "name": "Project Charter"
+    },
+    {
+      "id": "BP-069",
+      "type": "BLUEPRINT",
+      "name": "SWOT Analysis"
+    },
+    {
+      "id": "BP-070",
+      "type": "BLUEPRINT",
+      "name": "Standard Operating Procedure SOP"
+    },
+    {
+      "id": "BP-071",
+      "type": "BLUEPRINT",
+      "name": "Blog Post"
+    },
+    {
+      "id": "BP-072",
+      "type": "BLUEPRINT",
+      "name": "News Article"
+    },
+    {
+      "id": "BP-073",
+      "type": "BLUEPRINT",
+      "name": "Tutorial"
+    },
+    {
+      "id": "BP-074",
+      "type": "BLUEPRINT",
+      "name": "How-To Guide"
+    },
+    {
+      "id": "BP-075",
+      "type": "BLUEPRINT",
+      "name": "Listicle"
+    },
+    {
+      "id": "BP-076",
+      "type": "BLUEPRINT",
+      "name": "Product Review"
+    },
+    {
+      "id": "BP-077",
+      "type": "BLUEPRINT",
+      "name": "Interview Transcript"
+    },
+    {
+      "id": "BP-078",
+      "type": "BLUEPRINT",
+      "name": "Email Newsletter"
+    },
+    {
+      "id": "BP-079",
+      "type": "BLUEPRINT",
+      "name": "Social Media Post"
+    },
+    {
+      "id": "BP-080",
+      "type": "BLUEPRINT",
+      "name": "README Documentation"
+    },
+    {
+      "id": "BP-081",
+      "type": "BLUEPRINT",
+      "name": "MLA Format"
+    },
+    {
+      "id": "BP-082",
+      "type": "BLUEPRINT",
+      "name": "APA Format"
+    },
+    {
+      "id": "BP-083",
+      "type": "BLUEPRINT",
+      "name": "Chicago Turabian Style"
+    },
+    {
+      "id": "BP-084",
+      "type": "BLUEPRINT",
+      "name": "IEEE Format"
+    },
+    {
+      "id": "BP-085",
+      "type": "BLUEPRINT",
+      "name": "Single Spaced"
+    },
+    {
+      "id": "BP-086",
+      "type": "BLUEPRINT",
+      "name": "Double Spaced"
+    },
+    {
+      "id": "BP-087",
+      "type": "BLUEPRINT",
+      "name": "Block Format Letters"
+    },
+    {
+      "id": "BP-088",
+      "type": "BLUEPRINT",
+      "name": "Indented Paragraphs"
+    },
+    {
+      "id": "BP-089",
+      "type": "BLUEPRINT",
+      "name": "Markdown"
+    },
+    {
+      "id": "BP-090",
+      "type": "BLUEPRINT",
+      "name": "LaTeX Document"
+    },
+    {
+      "id": "BP-091",
+      "type": "BLUEPRINT",
+      "name": "Screenplay"
+    },
+    {
+      "id": "BP-092",
+      "type": "BLUEPRINT",
+      "name": "Stage Play"
+    },
+    {
+      "id": "BP-093",
+      "type": "BLUEPRINT",
+      "name": "Resume CV"
+    },
+    {
+      "id": "BP-094",
+      "type": "BLUEPRINT",
+      "name": "Grant Proposal"
+    },
+    {
+      "id": "BP-095",
+      "type": "BLUEPRINT",
+      "name": "Legal Brief"
+    },
+    {
+      "id": "BP-096",
+      "type": "BLUEPRINT",
+      "name": "Recipe"
+    },
+    {
+      "id": "BP-097",
+      "type": "BLUEPRINT",
+      "name": "FAQ Frequently Asked Questions"
+    },
+    {
+      "id": "BP-098",
+      "type": "BLUEPRINT",
+      "name": "Changelog"
+    },
+    {
+      "id": "BP-099",
+      "type": "BLUEPRINT",
+      "name": "API Documentation"
+    },
+    {
+      "id": "BP-100",
+      "type": "BLUEPRINT",
+      "name": "Dialogue Script"
+    },
+    {
+      "id": "BP-101",
+      "type": "BLUEPRINT",
+      "name": "MEDDIC Sales Qualification"
+    },
+    {
+      "id": "BP-102",
+      "type": "BLUEPRINT",
+      "name": "Value Selling Methodology"
+    },
+    {
+      "id": "BP-103",
+      "type": "BLUEPRINT",
+      "name": "Sales Pipeline Stages"
+    },
+    {
+      "id": "BP-104",
+      "type": "BLUEPRINT",
+      "name": "Account-Based Selling Blueprint"
+    },
+    {
+      "id": "BP-105",
+      "type": "BLUEPRINT",
+      "name": "Demo Framework Before After Bridge"
+    },
+    {
+      "id": "BP-106",
+      "type": "BLUEPRINT",
+      "name": "Objection Handling Framework"
+    },
+    {
+      "id": "BP-107",
+      "type": "BLUEPRINT",
+      "name": "Sales Forecasting Model"
+    },
+    {
+      "id": "BP-108",
+      "type": "BLUEPRINT",
+      "name": "Territory Planning Matrix"
+    },
+    {
+      "id": "BP-109",
+      "type": "BLUEPRINT",
+      "name": "Sales Onboarding 30-60-90 Plan"
+    },
+    {
+      "id": "BP-110",
+      "type": "BLUEPRINT",
+      "name": "Win-Loss Analysis Framework"
+    },
+    {
+      "id": "BP-111",
+      "type": "BLUEPRINT",
+      "name": "Buyer Persona Template"
+    },
+    {
+      "id": "BP-112",
+      "type": "BLUEPRINT",
+      "name": "Content Marketing Funnel"
+    },
+    {
+      "id": "BP-113",
+      "type": "BLUEPRINT",
+      "name": "Campaign Brief Template"
+    },
+    {
+      "id": "BP-114",
+      "type": "BLUEPRINT",
+      "name": "Brand Positioning Statement"
+    },
+    {
+      "id": "BP-115",
+      "type": "BLUEPRINT",
+      "name": "Growth Experiment Template"
+    },
+    {
+      "id": "BP-116",
+      "type": "BLUEPRINT",
+      "name": "Marketing Funnel Metrics Framework"
+    },
+    {
+      "id": "BP-117",
+      "type": "BLUEPRINT",
+      "name": "Customer Journey Map Template"
+    },
+    {
+      "id": "BP-118",
+      "type": "BLUEPRINT",
+      "name": "Marketing Channel ROI Model"
+    },
+    {
+      "id": "BP-119",
+      "type": "BLUEPRINT",
+      "name": "Launch Plan Framework"
+    },
+    {
+      "id": "BP-120",
+      "type": "BLUEPRINT",
+      "name": "ABM Program Blueprint"
+    },
+    {
+      "id": "BP-121",
+      "type": "BLUEPRINT",
+      "name": "Product Requirements Document"
+    },
+    {
+      "id": "BP-122",
+      "type": "BLUEPRINT",
+      "name": "RICE Prioritization Framework"
+    },
+    {
+      "id": "BP-123",
+      "type": "BLUEPRINT",
+      "name": "Product Roadmap Template"
+    },
+    {
+      "id": "BP-124",
+      "type": "BLUEPRINT",
+      "name": "User Story Format"
+    },
+    {
+      "id": "BP-125",
+      "type": "BLUEPRINT",
+      "name": "Product-Market Fit Survey"
+    },
+    {
+      "id": "BP-126",
+      "type": "BLUEPRINT",
+      "name": "Feature Sunset Process"
+    },
+    {
+      "id": "BP-127",
+      "type": "BLUEPRINT",
+      "name": "Beta Testing Program"
+    },
+    {
+      "id": "BP-128",
+      "type": "BLUEPRINT",
+      "name": "Product Metrics Dashboard"
+    },
+    {
+      "id": "BP-129",
+      "type": "BLUEPRINT",
+      "name": "Competitive Analysis Framework"
+    },
+    {
+      "id": "BP-130",
+      "type": "BLUEPRINT",
+      "name": "Design Sprint Process"
+    },
+    {
+      "id": "BP-131",
+      "type": "BLUEPRINT",
+      "name": "Standard Operating Procedure Template"
+    },
+    {
+      "id": "BP-132",
+      "type": "BLUEPRINT",
+      "name": "Process Mapping SIPOC"
+    },
+    {
+      "id": "BP-133",
+      "type": "BLUEPRINT",
+      "name": "Kaizen Event Framework"
+    },
+    {
+      "id": "BP-134",
+      "type": "BLUEPRINT",
+      "name": "Capacity Planning Model"
+    },
+    {
+      "id": "BP-135",
+      "type": "BLUEPRINT",
+      "name": "Vendor Evaluation Matrix"
+    },
+    {
+      "id": "BP-136",
+      "type": "BLUEPRINT",
+      "name": "Quality Assurance Checklist"
+    },
+    {
+      "id": "BP-137",
+      "type": "BLUEPRINT",
+      "name": "Incident Response Playbook"
+    },
+    {
+      "id": "BP-138",
+      "type": "BLUEPRINT",
+      "name": "Business Continuity Plan"
+    },
+    {
+      "id": "BP-139",
+      "type": "BLUEPRINT",
+      "name": "SLA Definition Template"
+    },
+    {
+      "id": "BP-140",
+      "type": "BLUEPRINT",
+      "name": "Root Cause Analysis 5 Whys"
+    },
+    {
+      "id": "BP-141",
+      "type": "BLUEPRINT",
+      "name": "Three-Statement Financial Model"
+    },
+    {
+      "id": "BP-142",
+      "type": "BLUEPRINT",
+      "name": "Unit Economics Model"
+    },
+    {
+      "id": "BP-143",
+      "type": "BLUEPRINT",
+      "name": "Budget Template Structure"
+    },
+    {
+      "id": "BP-144",
+      "type": "BLUEPRINT",
+      "name": "Cash Flow Forecast 13-Week"
+    },
+    {
+      "id": "BP-145",
+      "type": "BLUEPRINT",
+      "name": "Investment ROI Analysis"
+    },
+    {
+      "id": "BP-146",
+      "type": "BLUEPRINT",
+      "name": "Scenario Planning Model"
+    },
+    {
+      "id": "BP-147",
+      "type": "BLUEPRINT",
+      "name": "Break-Even Analysis Framework"
+    },
+    {
+      "id": "BP-148",
+      "type": "BLUEPRINT",
+      "name": "Variance Analysis Report"
+    },
+    {
+      "id": "BP-149",
+      "type": "BLUEPRINT",
+      "name": "Working Capital Optimization"
+    },
+    {
+      "id": "BP-150",
+      "type": "BLUEPRINT",
+      "name": "Investor Pitch Deck Structure"
+    },
+    {
+      "id": "BP-151",
+      "type": "BLUEPRINT",
+      "name": "Competency-Based Interview Guide"
+    },
+    {
+      "id": "BP-152",
+      "type": "BLUEPRINT",
+      "name": "Performance Review Template"
+    },
+    {
+      "id": "BP-153",
+      "type": "BLUEPRINT",
+      "name": "Compensation Band Structure"
+    },
+    {
+      "id": "BP-154",
+      "type": "BLUEPRINT",
+      "name": "90-Day Onboarding Plan"
+    },
+    {
+      "id": "BP-155",
+      "type": "BLUEPRINT",
+      "name": "9-Box Talent Grid"
+    },
+    {
+      "id": "BP-156",
+      "type": "BLUEPRINT",
+      "name": "Career Ladder Framework"
+    },
+    {
+      "id": "BP-157",
+      "type": "BLUEPRINT",
+      "name": "Employee Engagement Survey Design"
+    },
+    {
+      "id": "BP-158",
+      "type": "BLUEPRINT",
+      "name": "Succession Planning Matrix"
+    },
+    {
+      "id": "BP-159",
+      "type": "BLUEPRINT",
+      "name": "Diversity and Inclusion Roadmap"
+    },
+    {
+      "id": "BP-160",
+      "type": "BLUEPRINT",
+      "name": "Exit Interview Framework"
+    },
+    {
+      "id": "BP-161",
+      "type": "BLUEPRINT",
+      "name": "Strategic Planning Process"
+    },
+    {
+      "id": "BP-162",
+      "type": "BLUEPRINT",
+      "name": "SWOT Analysis Framework"
+    },
+    {
+      "id": "BP-163",
+      "type": "BLUEPRINT",
+      "name": "Porters Five Forces Analysis"
+    },
+    {
+      "id": "BP-164",
+      "type": "BLUEPRINT",
+      "name": "Business Model Canvas"
+    },
+    {
+      "id": "BP-165",
+      "type": "BLUEPRINT",
+      "name": "OKR Framework"
+    },
+    {
+      "id": "BP-166",
+      "type": "BLUEPRINT",
+      "name": "Market Entry Strategy"
+    },
+    {
+      "id": "BP-167",
+      "type": "BLUEPRINT",
+      "name": "M&A Evaluation Framework"
+    },
+    {
+      "id": "BP-168",
+      "type": "BLUEPRINT",
+      "name": "Scenario Planning Template"
+    },
+    {
+      "id": "BP-169",
+      "type": "BLUEPRINT",
+      "name": "Competitive Positioning Map"
+    },
+    {
+      "id": "BP-170",
+      "type": "BLUEPRINT",
+      "name": "Innovation Portfolio Management"
+    },
+    {
+      "id": "BP-171",
+      "type": "BLUEPRINT",
+      "name": "Customer Health Score Model"
+    },
+    {
+      "id": "BP-172",
+      "type": "BLUEPRINT",
+      "name": "Customer Onboarding Journey"
+    },
+    {
+      "id": "BP-173",
+      "type": "BLUEPRINT",
+      "name": "Quarterly Business Review Template"
+    },
+    {
+      "id": "BP-174",
+      "type": "BLUEPRINT",
+      "name": "Churn Prevention Playbook"
+    },
+    {
+      "id": "BP-175",
+      "type": "BLUEPRINT",
+      "name": "Expansion Revenue Framework"
+    },
+    {
+      "id": "BP-176",
+      "type": "BLUEPRINT",
+      "name": "NPS Program Design"
+    },
+    {
+      "id": "BP-177",
+      "type": "BLUEPRINT",
+      "name": "Customer Advocacy Program"
+    },
+    {
+      "id": "BP-178",
+      "type": "BLUEPRINT",
+      "name": "Renewal Process Workflow"
+    },
+    {
+      "id": "BP-179",
+      "type": "BLUEPRINT",
+      "name": "Customer Segmentation Model"
+    },
+    {
+      "id": "BP-180",
+      "type": "BLUEPRINT",
+      "name": "Voice of Customer Program"
+    },
+    {
+      "id": "BP-181",
+      "type": "BLUEPRINT",
+      "name": "Contract Review Checklist"
+    },
+    {
+      "id": "BP-182",
+      "type": "BLUEPRINT",
+      "name": "Compliance Program Framework"
+    },
+    {
+      "id": "BP-183",
+      "type": "BLUEPRINT",
+      "name": "Data Privacy Impact Assessment"
+    },
+    {
+      "id": "BP-184",
+      "type": "BLUEPRINT",
+      "name": "IP Portfolio Management"
+    },
+    {
+      "id": "BP-185",
+      "type": "BLUEPRINT",
+      "name": "Risk Register Template"
+    },
+    {
+      "id": "BP-186",
+      "type": "BLUEPRINT",
+      "name": "Regulatory Change Management"
+    },
+    {
+      "id": "BP-187",
+      "type": "BLUEPRINT",
+      "name": "Audit Preparation Checklist"
+    },
+    {
+      "id": "BP-188",
+      "type": "BLUEPRINT",
+      "name": "Board Meeting Package"
+    },
+    {
+      "id": "BP-189",
+      "type": "BLUEPRINT",
+      "name": "Dispute Resolution Process"
+    },
+    {
+      "id": "BP-190",
+      "type": "BLUEPRINT",
+      "name": "Ethics Violation Response"
+    },
+    {
+      "id": "BP-191",
+      "type": "BLUEPRINT",
+      "name": "Digital Transformation Roadmap"
+    },
+    {
+      "id": "BP-192",
+      "type": "BLUEPRINT",
+      "name": "Technology Selection Framework"
+    },
+    {
+      "id": "BP-193",
+      "type": "BLUEPRINT",
+      "name": "Data Governance Framework"
+    },
+    {
+      "id": "BP-194",
+      "type": "BLUEPRINT",
+      "name": "ML Model Development Lifecycle"
+    },
+    {
+      "id": "BP-195",
+      "type": "BLUEPRINT",
+      "name": "Cloud Migration Strategy"
+    },
+    {
+      "id": "BP-196",
+      "type": "BLUEPRINT",
+      "name": "Cybersecurity Framework"
+    },
+    {
+      "id": "BP-197",
+      "type": "BLUEPRINT",
+      "name": "API Design Standards"
+    },
+    {
+      "id": "BP-198",
+      "type": "BLUEPRINT",
+      "name": "CRM Implementation Plan"
+    },
+    {
+      "id": "BP-199",
+      "type": "BLUEPRINT",
+      "name": "Analytics Dashboard Design"
+    },
+    {
+      "id": "BP-200",
+      "type": "BLUEPRINT",
+      "name": "Agile Development Framework"
+    }
+  ],
+  "PERSONA": [
+    {
+      "id": "PERS-001",
+      "type": "PERSONA",
+      "name": "Jovial"
+    },
+    {
+      "id": "PERS-002",
+      "type": "PERSONA",
+      "name": "Serious"
+    },
+    {
+      "id": "PERS-003",
+      "type": "PERSONA",
+      "name": "Melancholic"
+    },
+    {
+      "id": "PERS-004",
+      "type": "PERSONA",
+      "name": "Enthusiastic"
+    },
+    {
+      "id": "PERS-005",
+      "type": "PERSONA",
+      "name": "Calm"
+    },
+    {
+      "id": "PERS-006",
+      "type": "PERSONA",
+      "name": "Playful"
+    },
+    {
+      "id": "PERS-007",
+      "type": "PERSONA",
+      "name": "Solemn"
+    },
+    {
+      "id": "PERS-008",
+      "type": "PERSONA",
+      "name": "Warm"
+    },
+    {
+      "id": "PERS-009",
+      "type": "PERSONA",
+      "name": "Dry"
+    },
+    {
+      "id": "PERS-010",
+      "type": "PERSONA",
+      "name": "Effervescent"
+    },
+    {
+      "id": "PERS-011",
+      "type": "PERSONA",
+      "name": "Sparky"
+    },
+    {
+      "id": "PERS-012",
+      "type": "PERSONA",
+      "name": "Languid"
+    },
+    {
+      "id": "PERS-013",
+      "type": "PERSONA",
+      "name": "Energetic"
+    },
+    {
+      "id": "PERS-014",
+      "type": "PERSONA",
+      "name": "Mellow"
+    },
+    {
+      "id": "PERS-015",
+      "type": "PERSONA",
+      "name": "Intense"
+    },
+    {
+      "id": "PERS-016",
+      "type": "PERSONA",
+      "name": "Peppy"
+    },
+    {
+      "id": "PERS-017",
+      "type": "PERSONA",
+      "name": "Sedate"
+    },
+    {
+      "id": "PERS-018",
+      "type": "PERSONA",
+      "name": "Vibrant"
+    },
+    {
+      "id": "PERS-019",
+      "type": "PERSONA",
+      "name": "Sluggish"
+    },
+    {
+      "id": "PERS-020",
+      "type": "PERSONA",
+      "name": "Zesty"
+    },
+    {
+      "id": "PERS-021",
+      "type": "PERSONA",
+      "name": "Inquisitive"
+    },
+    {
+      "id": "PERS-022",
+      "type": "PERSONA",
+      "name": "Analytical"
+    },
+    {
+      "id": "PERS-023",
+      "type": "PERSONA",
+      "name": "Creative"
+    },
+    {
+      "id": "PERS-024",
+      "type": "PERSONA",
+      "name": "Pragmatic"
+    },
+    {
+      "id": "PERS-025",
+      "type": "PERSONA",
+      "name": "Philosophical"
+    },
+    {
+      "id": "PERS-026",
+      "type": "PERSONA",
+      "name": "Skeptical"
+    },
+    {
+      "id": "PERS-027",
+      "type": "PERSONA",
+      "name": "Intuitive"
+    },
+    {
+      "id": "PERS-028",
+      "type": "PERSONA",
+      "name": "Methodical"
+    },
+    {
+      "id": "PERS-029",
+      "type": "PERSONA",
+      "name": "Speculative"
+    },
+    {
+      "id": "PERS-030",
+      "type": "PERSONA",
+      "name": "Scholarly"
+    },
+    {
+      "id": "PERS-031",
+      "type": "PERSONA",
+      "name": "Charming"
+    },
+    {
+      "id": "PERS-032",
+      "type": "PERSONA",
+      "name": "Reserved"
+    },
+    {
+      "id": "PERS-033",
+      "type": "PERSONA",
+      "name": "Gregarious"
+    },
+    {
+      "id": "PERS-034",
+      "type": "PERSONA",
+      "name": "Aloof"
+    },
+    {
+      "id": "PERS-035",
+      "type": "PERSONA",
+      "name": "Convivial"
+    },
+    {
+      "id": "PERS-036",
+      "type": "PERSONA",
+      "name": "Shy"
+    },
+    {
+      "id": "PERS-037",
+      "type": "PERSONA",
+      "name": "Bold"
+    },
+    {
+      "id": "PERS-038",
+      "type": "PERSONA",
+      "name": "Diplomatic"
+    },
+    {
+      "id": "PERS-039",
+      "type": "PERSONA",
+      "name": "Blunt"
+    },
+    {
+      "id": "PERS-040",
+      "type": "PERSONA",
+      "name": "Affable"
+    },
+    {
+      "id": "PERS-041",
+      "type": "PERSONA",
+      "name": "Mentor"
+    },
+    {
+      "id": "PERS-042",
+      "type": "PERSONA",
+      "name": "Expert"
+    },
+    {
+      "id": "PERS-043",
+      "type": "PERSONA",
+      "name": "Guide"
+    },
+    {
+      "id": "PERS-044",
+      "type": "PERSONA",
+      "name": "Coach"
+    },
+    {
+      "id": "PERS-045",
+      "type": "PERSONA",
+      "name": "Consultant"
+    },
+    {
+      "id": "PERS-046",
+      "type": "PERSONA",
+      "name": "Collaborator"
+    },
+    {
+      "id": "PERS-047",
+      "type": "PERSONA",
+      "name": "Servant"
+    },
+    {
+      "id": "PERS-048",
+      "type": "PERSONA",
+      "name": "Advisor"
+    },
+    {
+      "id": "PERS-049",
+      "type": "PERSONA",
+      "name": "Researcher"
+    },
+    {
+      "id": "PERS-050",
+      "type": "PERSONA",
+      "name": "Facilitator"
+    },
+    {
+      "id": "PERS-051",
+      "type": "PERSONA",
+      "name": "Empathetic"
+    },
+    {
+      "id": "PERS-052",
+      "type": "PERSONA",
+      "name": "Matter Of Fact"
+    },
+    {
+      "id": "PERS-053",
+      "type": "PERSONA",
+      "name": "Supportive"
+    },
+    {
+      "id": "PERS-054",
+      "type": "PERSONA",
+      "name": "Challenging"
+    },
+    {
+      "id": "PERS-055",
+      "type": "PERSONA",
+      "name": "Validating"
+    },
+    {
+      "id": "PERS-056",
+      "type": "PERSONA",
+      "name": "Detached"
+    },
+    {
+      "id": "PERS-057",
+      "type": "PERSONA",
+      "name": "Nurturing"
+    },
+    {
+      "id": "PERS-058",
+      "type": "PERSONA",
+      "name": "Confrontational"
+    },
+    {
+      "id": "PERS-059",
+      "type": "PERSONA",
+      "name": "Compassionate"
+    },
+    {
+      "id": "PERS-060",
+      "type": "PERSONA",
+      "name": "Dispassionate"
+    },
+    {
+      "id": "PERS-061",
+      "type": "PERSONA",
+      "name": "Verbose"
+    },
+    {
+      "id": "PERS-062",
+      "type": "PERSONA",
+      "name": "Concise"
+    },
+    {
+      "id": "PERS-063",
+      "type": "PERSONA",
+      "name": "Storytelling"
+    },
+    {
+      "id": "PERS-064",
+      "type": "PERSONA",
+      "name": "Direct"
+    },
+    {
+      "id": "PERS-065",
+      "type": "PERSONA",
+      "name": "Metaphorical"
+    },
+    {
+      "id": "PERS-066",
+      "type": "PERSONA",
+      "name": "Technical"
+    },
+    {
+      "id": "PERS-067",
+      "type": "PERSONA",
+      "name": "Conversational"
+    },
+    {
+      "id": "PERS-068",
+      "type": "PERSONA",
+      "name": "Formal"
+    },
+    {
+      "id": "PERS-069",
+      "type": "PERSONA",
+      "name": "Poetic"
+    },
+    {
+      "id": "PERS-070",
+      "type": "PERSONA",
+      "name": "Scientific"
+    },
+    {
+      "id": "PERS-071",
+      "type": "PERSONA",
+      "name": "Optimistic"
+    },
+    {
+      "id": "PERS-072",
+      "type": "PERSONA",
+      "name": "Pessimistic"
+    },
+    {
+      "id": "PERS-073",
+      "type": "PERSONA",
+      "name": "Realistic"
+    },
+    {
+      "id": "PERS-074",
+      "type": "PERSONA",
+      "name": "Idealistic"
+    },
+    {
+      "id": "PERS-075",
+      "type": "PERSONA",
+      "name": "Cynical"
+    },
+    {
+      "id": "PERS-076",
+      "type": "PERSONA",
+      "name": "Trusting"
+    },
+    {
+      "id": "PERS-077",
+      "type": "PERSONA",
+      "name": "Humble"
+    },
+    {
+      "id": "PERS-078",
+      "type": "PERSONA",
+      "name": "Confident"
+    },
+    {
+      "id": "PERS-079",
+      "type": "PERSONA",
+      "name": "Curious"
+    },
+    {
+      "id": "PERS-080",
+      "type": "PERSONA",
+      "name": "Indifferent"
+    },
+    {
+      "id": "PERS-081",
+      "type": "PERSONA",
+      "name": "Urgent"
+    },
+    {
+      "id": "PERS-082",
+      "type": "PERSONA",
+      "name": "Patient"
+    },
+    {
+      "id": "PERS-083",
+      "type": "PERSONA",
+      "name": "Reflective"
+    },
+    {
+      "id": "PERS-084",
+      "type": "PERSONA",
+      "name": "Forward Looking"
+    },
+    {
+      "id": "PERS-085",
+      "type": "PERSONA",
+      "name": "Present Focused"
+    },
+    {
+      "id": "PERS-086",
+      "type": "PERSONA",
+      "name": "Spontaneous"
+    },
+    {
+      "id": "PERS-087",
+      "type": "PERSONA",
+      "name": "Deliberate"
+    },
+    {
+      "id": "PERS-088",
+      "type": "PERSONA",
+      "name": "Nostalgic"
+    },
+    {
+      "id": "PERS-089",
+      "type": "PERSONA",
+      "name": "Impatient"
+    },
+    {
+      "id": "PERS-090",
+      "type": "PERSONA",
+      "name": "Timeless"
+    },
+    {
+      "id": "PERS-091",
+      "type": "PERSONA",
+      "name": "Whimsical"
+    },
+    {
+      "id": "PERS-092",
+      "type": "PERSONA",
+      "name": "Sarcastic"
+    },
+    {
+      "id": "PERS-093",
+      "type": "PERSONA",
+      "name": "Witty"
+    },
+    {
+      "id": "PERS-094",
+      "type": "PERSONA",
+      "name": "Earnest"
+    },
+    {
+      "id": "PERS-095",
+      "type": "PERSONA",
+      "name": "Irreverent"
+    },
+    {
+      "id": "PERS-096",
+      "type": "PERSONA",
+      "name": "Reverent"
+    },
+    {
+      "id": "PERS-097",
+      "type": "PERSONA",
+      "name": "Eccentric"
+    },
+    {
+      "id": "PERS-098",
+      "type": "PERSONA",
+      "name": "Conventional"
+    },
+    {
+      "id": "PERS-099",
+      "type": "PERSONA",
+      "name": "Maverick"
+    },
+    {
+      "id": "PERS-100",
+      "type": "PERSONA",
+      "name": "Sage"
+    }
+  ]
+}
