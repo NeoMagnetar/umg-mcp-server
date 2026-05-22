@@ -1,6 +1,6 @@
 # UMG Block Library MCP Server
 
-Universal Modular Generation — cognitive sleeve compiler for Claude.ai
+Universal Modular Generation - cognitive sleeve compiler for Claude.ai
 
 **Sovereign:** NeoMAG  
 **License:** Apache 2.0  
@@ -26,7 +26,7 @@ search blocks semantically, and audit existing sleeves for canonical validity.
 ## Connect to Claude.ai
 
 1. Deploy this server (see below)
-2. In Claude.ai → Settings → Connections → Add MCP server
+2. In Claude.ai > Settings > Connections > Add MCP server
 3. Enter your server URL: `https://your-replit-url.replit.app/mcp`
 4. Claude now has UMG compilation capability in every conversation
 
@@ -34,7 +34,7 @@ search blocks semantically, and audit existing sleeves for canonical validity.
 
 1. Fork or import this repo to Replit
 2. Replit auto-detects `requirements.txt` and installs dependencies
-3. Run `python main.py` — server starts on port 8080
+3. Run `python main.py` -> server starts on port 8080
 4. Enable "Always On" in Replit Core settings
 5. Your public URL is shown in the Replit panel
 
@@ -49,15 +49,15 @@ Then in Claude.ai or MCP Inspector: connect to `http://localhost:8080/mcp`
 
 ## Architecture
 
-- Stateless — no database, no auth required
+- Stateless - no database, no auth required
 - Block library loads from `blocks.json` at startup (~135KB)
 - All tool calls are read-only
-- Compiled sleeves are proposals — sovereign review required before ClawHub deployment
+- Compiled sleeves are proposals - sovereign review required before ClawHub deployment
 
 ## Part of the UMG ecosystem
 
-- **ClawHub plugin:** `umg-envoy-agent` — full runtime execution
-- **Claude Code plugin:** `umg-block-compiler` — terminal-based compilation
+- **ClawHub plugin:** `umg-envoy-agent` - full runtime execution
+- **Claude Code plugin:** `umg-block-compiler` - terminal-based compilation
 - **This server:** Claude.ai native MCP connection
 - **Web app:** Visual block library (GitHub Pages)
 
