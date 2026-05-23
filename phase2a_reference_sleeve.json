@@ -1,0 +1,143 @@
+{
+  "id": "SL-PHASE2A-REFERENCE",
+  "name": "Phase2A Reference Sleeve",
+  "provenance": {
+    "sourceMode": "reference_fixture",
+    "routePurity": "clean_native"
+  },
+  "neoStacks": [
+    {
+      "id": "NS-GOV",
+      "name": "Governance Stack",
+      "gates": [
+        {
+          "gate_id": "GATE_GOV_THRESHOLD",
+          "operator": "threshold",
+          "threshold": 0.75,
+          "priority": 80,
+          "conditions": [
+            { "signal": "technical_request", "gate_weight": 0.4 },
+            { "signal": "governance_review", "gate_weight": 0.35 },
+            { "signal": "architecture_design", "gate_weight": 0.25 }
+          ],
+          "description": "Governance stack requires technical + governance weighted review signals."
+        }
+      ],
+      "neoBlocks": [
+        {
+          "id": "NB-GOV",
+          "name": "Governance Core",
+          "blocks": [
+            { "id": "DIR-GOV", "type": "DIRECTIVE", "name": "Honor Governance Constraints" },
+            { "id": "INST-GOV", "type": "INSTRUCTION", "name": "Perform Technical Audit" },
+            { "id": "PRIM-GOV", "type": "PRIMARY", "name": "Minimize Risk" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NS-TECH",
+      "name": "Technical Analysis Stack",
+      "gates": [
+        {
+          "gate_id": "GATE_ANY_TECH",
+          "operator": "any",
+          "priority": 70,
+          "conditions": [
+            { "signal": "technical_request" },
+            { "signal": "debugging_request" },
+            { "signal": "code_generation_request" }
+          ],
+          "description": "Any technical signal activates analysis."
+        }
+      ],
+      "neoBlocks": [
+        {
+          "id": "NB-TECH",
+          "name": "Technical Analysis Core",
+          "blocks": [
+            { "id": "DIR-TECH", "type": "DIRECTIVE", "name": "Deliver Practical Analysis" },
+            { "id": "INST-TECH", "type": "INSTRUCTION", "name": "Perform Technical Audit" },
+            { "id": "SUBJ-TECH", "type": "SUBJECT", "name": "Codebase" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NS-CREATIVE",
+      "name": "Creative Stack",
+      "gates": [
+        {
+          "gate_id": "GATE_NOT_CREATIVE",
+          "operator": "not",
+          "priority": 60,
+          "conditions": [
+            { "signal": "creative_request" }
+          ],
+          "negated_conditions": ["governance_review"],
+          "description": "Creative stack activates only when creative signal is present and governance review is absent."
+        }
+      ],
+      "neoBlocks": [
+        {
+          "id": "NB-CREATIVE",
+          "name": "Creative Core",
+          "blocks": [
+            { "id": "DIR-CREATIVE", "type": "DIRECTIVE", "name": "Encourage Novel Ideation" },
+            { "id": "PERS-CREATIVE", "type": "PERSONA", "name": "Warm Collaborator" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NS-RELEASE",
+      "name": "Release Stack",
+      "gates": [
+        {
+          "gate_id": "GATE_ALL_RELEASE",
+          "operator": "all",
+          "priority": 90,
+          "conditions": [
+            { "signal": "governance_review" },
+            { "signal": "audit_request" },
+            { "signal": "output_required" }
+          ],
+          "description": "All release-preparation signals required."
+        }
+      ],
+      "neoBlocks": [
+        {
+          "id": "NB-RELEASE",
+          "name": "Release Core",
+          "blocks": [
+            { "id": "DIR-RELEASE", "type": "DIRECTIVE", "name": "Prepare Release Package" },
+            { "id": "BLUE-RELEASE", "type": "BLUEPRINT", "name": "Release Report Structure" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NS-DEFAULT",
+      "name": "Default Governance Stack",
+      "gates": [
+        {
+          "gate_id": "GATE_DEFAULT_GOVERNANCE",
+          "operator": "fallback",
+          "fallback": true,
+          "priority": 10,
+          "description": "Default governance mode when no other gate fires."
+        }
+      ],
+      "neoBlocks": [
+        {
+          "id": "NB-DEFAULT",
+          "name": "Default Governance Core",
+          "blocks": [
+            { "id": "DIR-DEFAULT", "type": "DIRECTIVE", "name": "Maintain Baseline Governance" },
+            { "id": "INST-DEFAULT", "type": "INSTRUCTION", "name": "Perform Technical Audit" }
+          ]
+        }
+      ]
+    }
+  ]
+}

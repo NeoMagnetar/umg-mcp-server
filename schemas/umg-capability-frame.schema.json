@@ -43,7 +43,7 @@
       "description": "Turn count within session."
     },
 
-    "active_stacks": {
+    "active_neostacks": {
       "type": "array",
       "items": { "type": "string" },
       "description": "IDs of active NeoStacks contributing to this frame."
@@ -235,7 +235,7 @@
       "active_sleeve": "OG_ENVOY_SESSION.v1",
       "session_id": null,
       "turn_index": null,
-      "active_stacks": ["Governance Core", "Tool Orchestration"],
+      "active_neostacks": ["Governance Core", "Tool Orchestration"],
       "active_bundles": [
         {
           "bundle_id": "BUNDLE_GOVERNANCE_CORE",
