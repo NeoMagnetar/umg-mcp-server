@@ -61,6 +61,16 @@ Then in Claude.ai or MCP Inspector: connect to `http://localhost:8080/mcp`
 - **This server:** Claude.ai native MCP connection
 - **Web app:** Visual block library (GitHub Pages)
 
+## Naming convention
+
+- RuntimeSpec is the canonical type and schema concept.
+- `runtime-spec.json` is the emitted artifact filename.
+- Trace is the canonical type and schema concept.
+- `trace.json` is the emitted artifact filename.
+- NeoStack is the canonical typed structural layer above NeoBlock and below Sleeve.
+- Machine-facing resolver and MCP outputs use `active_neostacks` for typed NeoStack records.
+- `active_stacks` is treated as a deprecated preview alias only where backward compatibility is required.
+
 ## Related
 
 - [UMG Envoy Resleever](https://github.com/NeoMagnetar/UMG_Envoy_Resleever)

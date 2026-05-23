@@ -160,7 +160,7 @@ def _make_runtime_seed(sleeve: dict, active_context) -> dict:
         "previous_runtime_id": None,
         "stateful_features_enabled": False,
         "gate_evaluations": [],
-        "active_stacks": [],
+        "active_neostacks": [],
         "suppressed_items": [],
         "active_blocks": [],
         "conflicts": [],
@@ -203,7 +203,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
 
     Output fields populated:
     - runtime_spec["gate_evaluations"]: list[GateEvaluationResult]
-    - runtime_spec["active_stacks"]: list[{stack_id, stack_name, gate_id, priority}]
+    - runtime_spec["active_neostacks"]: list[{stack_id, stack_name, gate_id, priority}]
     - runtime_spec["suppressed_items"]: appended stack suppression records
     - runtime_spec["route_trace"]: gate_evaluation pass entries
     """
@@ -349,7 +349,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
     if non_fallback_matches:
         non_fallback_matches.sort(key=lambda item: (-item[0], item[1]))
         for priority, _ns_idx, ns, gate, evaluation in non_fallback_matches:
-            runtime_spec["active_stacks"].append({
+            runtime_spec["active_neostacks"].append({
                 "stack_id": evaluation["target_stack_id"],
                 "stack_name": ns.get("name", evaluation["target_stack_id"]),
                 "gate_id": evaluation["gate_id"],
@@ -375,7 +375,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
                 "stack_name": stack_name,
             }
             evaluations.append(evaluation)
-            runtime_spec["active_stacks"].append({
+            runtime_spec["active_neostacks"].append({
                 "stack_id": stack_id,
                 "stack_name": stack_name,
                 "gate_id": gate_id,
@@ -419,7 +419,7 @@ def resolve_vertical_hierarchy(runtime_spec: dict, sleeve: dict) -> dict:
     - runtime_spec["route_trace"] vertical_resolution pass entries
     """
     step_index = len(runtime_spec["route_trace"])
-    active_stack_ids = {s["stack_id"] for s in runtime_spec.get("active_stacks", [])}
+    active_stack_ids = {s["stack_id"] for s in runtime_spec.get("active_neostacks", [])}
     candidate_blocks = []
     stack_lookup = {}
 
@@ -442,7 +442,7 @@ def resolve_vertical_hierarchy(runtime_spec: dict, sleeve: dict) -> dict:
                     "neoblock_id": nb_id,
                     "neostack_id": stack_id,
                     "source": "library" if block.get("name") in NAME_IDX.get(molt_type, {}) else "candidate",
-                    "stack_priority": next((s["priority"] for s in runtime_spec["active_stacks"] if s["stack_id"] == stack_id), 0),
+                    "stack_priority": next((s["priority"] for s in runtime_spec["active_neostacks"] if s["stack_id"] == stack_id), 0),
                 })
 
     candidate_blocks.sort(key=lambda b: (b["authority_rank"], -b["stack_priority"], b["block_id"]))
@@ -1125,7 +1125,7 @@ def umg_preview_gate_eval(sleeve_json: str, active_context: list[str] = None) ->
     Output contract:
     - runtime_id, sleeve_id, sleeve_name, source_mode, active_context
     - gate_evaluations[] with exact threshold score/threshold fields
-    - active_stacks[] sorted by gate priority
+    - active_neostacks[] sorted by gate priority
     - active_blocks[] after vertical hierarchy dominance
     - suppressed_items[] with explicit reason codes
     - conflicts[] authority-conflict records

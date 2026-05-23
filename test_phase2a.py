@@ -11,7 +11,7 @@ REFERENCE_SLEEVE = json.loads((ROOT / 'phase2a_reference_sleeve.json').read_text
 class Phase2AAcceptanceTests(unittest.TestCase):
     def test_runtime_state_governance_and_technical_active_creative_suppressed(self):
         result = main._run_phase2a_preview(REFERENCE_SLEEVE, ["technical_request", "governance_review"])
-        active_stack_ids = [s["stack_id"] for s in result["active_stacks"]]
+        active_stack_ids = [s["stack_id"] for s in result["active_neostacks"]]
         self.assertEqual(active_stack_ids, ["NS-GOV", "NS-TECH"])
 
         gate_results = {g["gate_id"]: g for g in result["gate_evaluations"]}
@@ -44,7 +44,7 @@ class Phase2AAcceptanceTests(unittest.TestCase):
 
     def test_fallback_gate_activates_when_nothing_else_matches(self):
         result = main._run_phase2a_preview(REFERENCE_SLEEVE, ["unrelated_signal"])
-        active_stack_ids = [s["stack_id"] for s in result["active_stacks"]]
+        active_stack_ids = [s["stack_id"] for s in result["active_neostacks"]]
         self.assertEqual(active_stack_ids, ["NS-DEFAULT"])
         gate = next(g for g in result["gate_evaluations"] if g["gate_id"] == "GATE_DEFAULT_GOVERNANCE")
         self.assertEqual(gate["result"], "fallback_activated")
