@@ -1116,7 +1116,7 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
 
 
 @mcp.tool()
-def umg_preview_gate_eval(sleeve_json: str, active_context: list[str] = None) -> dict:
+def umg_preview_gate_eval(sleeve_json: str, active_context: str = None) -> dict:
     """
     Preview Phase 2a gate evaluation and vertical hierarchy resolution.
 
