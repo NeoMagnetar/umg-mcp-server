@@ -1157,6 +1157,8 @@ def _build_assembly_metadata(source_tool: str, sleeve_name: str, neostacks: list
 
 mcp = FastMCP(
     "UMG Block Library",
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", 8080)),
     json_response=True,
     instructions=(
         "You are connected to the UMG (Universal Modular Generation) runtime. "
@@ -1365,6 +1367,23 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
 
 @mcp.tool()
 def umg_preview_gate_eval(sleeve_json: str, active_context: list[str] = None) -> dict:
+    """
+    Preview Phase 2a gate evaluation and vertical hierarchy resolution.
+
+    Input contract:
+    - sleeve_json: serialized sleeve JSON with v0.2 gate expressions embedded in NeoStacks.gates[]
+    - active_context: list of signal names, or omitted for fallback-only/default behavior
+
+    Output contract:
+    - runtime_id, sleeve_id, sleeve_name, source_mode, active_context
+    - gate_evaluations[] with exact threshold score/threshold fields
+    - active_neostacks[] sorted by gate priority
+    - active_blocks[] after vertical hierarchy dominance
+    - suppressed_items[] with explicit reason codes
+    - conflicts[] authority-conflict records
+    - vertical_resolution summary
+    - route_trace[] entries for gate_evaluation and vertical_resolution passes
+    """
     try:
         sleeve = json.loads(sleeve_json)
     except json.JSONDecodeError as e:
@@ -1568,5 +1587,4 @@ def get_block_types() -> dict:
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+    mcp.run(transport="streamable-http")
