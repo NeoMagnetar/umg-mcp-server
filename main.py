@@ -12,6 +12,7 @@ Tools:
   audit_sleeve        — validate a sleeve against the canonical registry
   get_block_types     — overview of all 8 MOLT block types
   umg_preview_gate_eval — Phase 2a gate + vertical hierarchy preview
+  umg_build_neostack  — build a candidate NeoStack from purpose
 
 Sovereign: NeoMAG  |  License: Apache 2.0  |  Version: 0.2.0-preview
 """
@@ -38,9 +39,9 @@ except ModuleNotFoundError:  # pragma: no cover - lightweight test fallback
         def run(self, *args, **kwargs):
             raise RuntimeError("FastMCP runtime unavailable in this Python environment")
 
-# ── LOAD BLOCK LIBRARY ───────────────────────────────────────────────────────
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-with open(os.path.join(BASE_DIR, "blocks.json")) as f:
+with open(os.path.join(BASE_DIR, "blocks.json"), encoding="utf-8") as f:
     LIBRARY = json.load(f)
 
 NAME_IDX = {
@@ -50,28 +51,83 @@ NAME_IDX = {
 ALL_BLOCKS = [b for blocks in LIBRARY.values() for b in blocks]
 TOTAL = sum(len(v) for v in LIBRARY.values())
 
-# ── MOLT AUTHORITY HIERARCHY ─────────────────────────────────────────────────
-# Lower rank = higher authority. DIRECTIVE governs everything below it.
-AUTHORITY_RANK = {
-    "TRIGGER": 0,
-    "DIRECTIVE": 1,
-    "INSTRUCTION": 2,
-    "SUBJECT": 3,
-    "PRIMARY": 4,
-    "PHILOSOPHY": 5,
-    "BLUEPRINT": 6,
-    "PERSONA": 7,
+MOLT_AUTHORITY_RANKS = {
+    "Directive": 1,
+    "Instruction": 2,
+    "Subject": 3,
+    "Primary": 4,
+    "Aim": 4,
+    "Use": 4,
+    "Need": 4,
+    "Philosophy": 6,
+    "Blueprint": 7,
+    "Persona": 8,
 }
+AUTHORITY_RANK = {key.upper(): value for key, value in MOLT_AUTHORITY_RANKS.items()}
 
 TYPE_DESCRIPTIONS = {
     "TRIGGER": "Gates - activation conditions that open a cognitive path. Never used inside NeoBlocks.",
-    "DIRECTIVE": "Authority - strategic behavioral overlay and scope. Governs all blocks below it.",
+    "DIRECTIVE": "Authority - strategic behavioral overlay and scope. Governs lower-rank content only on explicit contradiction.",
     "INSTRUCTION": "Method - procedural logic and execution approach.",
     "SUBJECT": "Target - domains, data entities, and objects of cognition.",
     "PRIMARY": "Outcome - core values and results being driven.",
     "PHILOSOPHY": "Worldview - ethical lens and decision framework.",
     "BLUEPRINT": "Structure - output format, schema, and form.",
     "PERSONA": "Voice - communication style and relational mode.",
+    "AIM": "Meta-MOLT - primary-adjacent intent anchor used in composed/runtime-adjacent structures.",
+    "USE": "Meta-MOLT - primary-adjacent use framing for composed/runtime-adjacent structures.",
+    "NEED": "Meta-MOLT - primary-adjacent need framing for composed/runtime-adjacent structures.",
+}
+
+PURPOSE_BLOCK_MAP = {
+    "debug": {
+        "directives": ["Assess Accurately", "Identify Root Causes"],
+        "instructions": ["Trace Causality", "Break Into Components", "Measure Against Baseline"],
+        "subjects": ["Code", "System Architecture", "Metrics"],
+        "primaries": ["Technical Precision", "Factual Accuracy"],
+        "philosophies": ["First Principles Thinking"],
+        "personas": ["Methodical"],
+    },
+    "research": {
+        "directives": ["Assess Accurately", "Seek Truth"],
+        "instructions": ["Compare Side By Side", "Identify Patterns"],
+        "subjects": ["Knowledge Base", "Raw Data"],
+        "primaries": ["Factual Accuracy", "Logical Correctness"],
+        "philosophies": ["Empiricism"],
+        "personas": ["Analytical"],
+    },
+    "plan": {
+        "directives": ["Think Long Term", "Build Robustly"],
+        "instructions": ["Define Milestones", "Sequence Tasks"],
+        "subjects": ["Strategic Goals", "Stakeholders"],
+        "primaries": ["Strategic Alignment", "Robustness"],
+        "philosophies": ["Pragmatism"],
+        "personas": ["Deliberate"],
+    },
+    "govern": {
+        "directives": ["Honor Governance", "Be Transparent"],
+        "instructions": ["Verify Tool Anchor", "Check Against Requirements"],
+        "subjects": ["Governance Frameworks", "Governance Constraints"],
+        "primaries": ["Human Sovereignty", "Governance Compliance"],
+        "philosophies": ["Deontology"],
+        "personas": ["Analytical"],
+    },
+    "create": {
+        "directives": ["Generate Novelty", "Reveal Patterns"],
+        "instructions": ["Identify Patterns", "Express Authentically"],
+        "subjects": ["Frameworks", "Knowledge Base"],
+        "primaries": ["Original Thinking", "Novelty"],
+        "philosophies": ["Pragmatism"],
+        "personas": ["Enthusiastic"],
+    },
+    "audit": {
+        "directives": ["Assess Accurately", "Evaluate Objectively"],
+        "instructions": ["Check Against Requirements", "Identify Weaknesses", "Measure Against Baseline"],
+        "subjects": ["Governance Frameworks", "Metrics"],
+        "primaries": ["Factual Accuracy", "Logical Correctness"],
+        "philosophies": ["Stoicism"],
+        "personas": ["Analytical"],
+    },
 }
 
 COMPILATION_RULES = """
@@ -83,27 +139,24 @@ STRUCTURE:
 - NeoBlock: 2-5 blocks from non-TRIGGER types only
 - TRIGGER blocks go in NeoStack gates[] ONLY - never inside NeoBlocks
 - Each NeoBlock should mix at least 2 different block types
+- Every compiled NeoBlock must contain at least one Directive
 
 AUTHORITY ORDER within NeoBlocks (apply top-down):
   DIRECTIVE (1) → INSTRUCTION (2) → SUBJECT (3) → PRIMARY (4)
-  → PHILOSOPHY (5) → BLUEPRINT (6) → PERSONA (7)
+  → PHILOSOPHY (6) → BLUEPRINT (7) → PERSONA (8)
 
-NAMING: Use EXACT canonical block names from the library provided.
-No fabrication - if a concept doesn't exist, flag it as custom.
+CANON:
+- Merge is action / synthesis metadata, never a block type
+- Off is runtime state / suppression metadata, never a body MOLT type
+- Trigger is a gate, not a body block in the authority chain
 
 OUTPUT FORMAT (governed sleeve JSON):
 {
   "sleeve_name": "...",
-  "reasoning": "brief design rationale",
-  "provenance": {
-    "sourceMode": "compiled_by_claude",
-    "routePurity": "unverified",
-    "sovereignReviewRequired": true
-  },
   "neoStacks": [
     {
       "name": "...",
-      "gates": [{"type": "TRIGGER", "name": "exact canonical name"}],
+      "gates": [],
       "neoBlocks": [
         {
           "name": "...",
@@ -120,7 +173,6 @@ OUTPUT FORMAT (governed sleeve JSON):
 """
 
 
-# ── PHASE 2A HELPERS ─────────────────────────────────────────────────────────
 def _normalize_signal_name(value: str) -> str:
     return str(value or "").strip().lower()
 
@@ -149,13 +201,14 @@ def _make_trace_entry(pass_name: str, step_index: int, target_id: str | None, re
 def _make_runtime_seed(sleeve: dict, active_context) -> dict:
     return {
         "runtime_id": f"RT-{int(time.time())}",
-        "sleeve_id": sleeve.get("id", sleeve.get("sleeve_id", "unknown")),
+        "sleeve_id": sleeve.get("id", sleeve.get("sleeve_id", sleeve.get("sleeve_name", "unknown"))),
         "sleeve_name": sleeve.get("name", sleeve.get("sleeve_name", "unnamed")),
         "source_mode": sleeve.get("provenance", {}).get("sourceMode", "unknown"),
         "active_context": {
             "signals": sorted(_active_signal_set(active_context)),
             "raw": deepcopy(active_context) if active_context is not None else [],
         },
+        "session_id": None,
         "turn_index": 1,
         "previous_runtime_id": None,
         "stateful_features_enabled": False,
@@ -173,12 +226,12 @@ def _stack_id(ns: dict, idx: int) -> str:
     return ns.get("id") or f"NS-{idx + 1}"
 
 
-def _block_id(block: dict, ns_id: str, nb_id: str, idx: int) -> str:
-    return block.get("id") or f"{ns_id}:{nb_id}:BLK-{idx + 1}"
-
-
 def _neoblock_id(nb: dict, ns_id: str, idx: int) -> str:
     return nb.get("id") or f"{ns_id}:NB-{idx + 1}"
+
+
+def _block_id(block: dict, ns_id: str, nb_id: str, idx: int) -> str:
+    return block.get("id") or f"{ns_id}:{nb_id}:BLK-{idx + 1}"
 
 
 def _default_gate_for_stack(ns: dict, idx: int) -> dict:
@@ -194,19 +247,198 @@ def _default_gate_for_stack(ns: dict, idx: int) -> dict:
     }
 
 
-# ── PHASE 2A: GATE ENGINE ────────────────────────────────────────────────────
+def _normalize_molt_type(value: str | None) -> str:
+    return str(value or "").strip().title()
+
+
+def _block_runtime_type(block: dict) -> str:
+    return _normalize_molt_type(block.get("molt_type") or block.get("type"))
+
+
+def _is_off_block(block: dict) -> bool:
+    return _block_runtime_type(block) == "Off" or str(block.get("state", "")).strip().lower() == "off"
+
+
+def _hierarchy_rank(block: dict):
+    return MOLT_AUTHORITY_RANKS.get(_block_runtime_type(block))
+
+
+def _block_dedupe_key(block: dict) -> str:
+    return block.get("block_id") or block.get("id") or block.get("name")
+
+
+def _build_trace_event(trace_id: str, event_type: str, reason_summary: str, *, object_id: str | None = None,
+                       stage: str = "assembly", object_refs: list | None = None, molt_type: str | None = None) -> dict:
+    event = {
+        "trace_id": trace_id,
+        "event_type": event_type,
+        "stage": stage,
+        "reason_summary": reason_summary,
+    }
+    if object_id is not None:
+        event["object_id"] = object_id
+    if object_refs is not None:
+        event["object_refs"] = object_refs
+    if molt_type is not None:
+        event["molt_type"] = molt_type
+    return event
+
+
+def _assembly_row(row_id: str, layer: str, object_id: str, object_name: str, object_type: str, scope: str,
+                  state: str, order_index: int, parent_id: str | None, route_id: str | None, gate_id: str | None,
+                  trace_id: str, reason_summary: str, *, hydration_status: str = "not_required") -> dict:
+    return {
+        "row_id": row_id,
+        "layer": layer,
+        "object_id": object_id,
+        "object_name": object_name,
+        "object_type": object_type,
+        "scope": scope,
+        "state": state,
+        "resolution_state": "unresolved",
+        "gate_eval_state": "pending_eval",
+        "order_index": order_index,
+        "parent_id": parent_id,
+        "route_id": None if route_id is None else route_id,
+        "gate_id": gate_id,
+        "tool_id": None,
+        "trace_id": trace_id,
+        "reason_summary": reason_summary,
+        "risk_level": "none",
+        "approval_required": False,
+        "approval_status": "not_required",
+        "hydration_status": hydration_status,
+    }
+
+
+def _build_selection_result(selection_id: str, selected_ids: list[str], candidate_ids: list[str], trace_ref: str) -> dict:
+    return {
+        "selection_id": selection_id,
+        "selection_stage": "assembly",
+        "selected_block_ids": selected_ids,
+        "candidate_block_ids": candidate_ids,
+        "suppressed_block_ids": [],
+        "selection_reasons": [],
+        "requires_hydration": False,
+        "resolved": False,
+        "trace_ref": trace_ref,
+    }
+
+
+def _build_runtime_spec_fragment(source_tool: str, candidate_sleeve_ref: str, stack_refs: list[str],
+                                 block_refs: list[str], trace_refs: list[str]) -> dict:
+    return {
+        "resolved": False,
+        "resolution_stage": "assembly",
+        "requires_resolver": True,
+        "source_tool": source_tool,
+        "candidate_sleeve_ref": candidate_sleeve_ref,
+        "candidate_route_refs": [],
+        "candidate_stack_refs": stack_refs,
+        "candidate_block_refs": block_refs,
+        "trace_refs": trace_refs,
+    }
+
+
+def _build_assembly_source() -> dict:
+    return {
+        "mode": "canonical_library_direct",
+        "future_mode": "block_card_retrieval_then_hydration",
+        "package_index_used": False,
+        "block_card_index_used": False,
+        "hydration_performed": False,
+    }
+
+
+def _find_block_by_name(name: str, allowed_types: list[str] | None = None):
+    allowed = {t.upper() for t in allowed_types} if allowed_types else None
+    for block in ALL_BLOCKS:
+        if block.get("name") != name:
+            continue
+        if allowed and block.get("type", "").upper() not in allowed:
+            continue
+        cloned = deepcopy(block)
+        cloned["molt_type"] = _normalize_molt_type(cloned.get("type"))
+        return cloned
+    return None
+
+
+def _select_first_available(names: list[str], allowed_types: list[str] | None = None):
+    for name in names:
+        block = _find_block_by_name(name, allowed_types)
+        if block:
+            return block
+    return None
+
+
+def _safe_slug(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+    return slug or "candidate"
+
+
+def _build_gate_from_signals(gate_id: str, description: str, signals: list[str], priority: int = 70) -> dict:
+    return {
+        "gate_id": gate_id,
+        "operator": "any",
+        "conditions": [{"signal": signal} for signal in signals],
+        "priority": priority,
+        "description": description,
+    }
+
+
+def _coerce_gate_signals(gate_signals: str | None, purpose: str):
+    warnings = []
+    if not gate_signals:
+        purpose_l = purpose.lower()
+        if any(word in purpose_l for word in ["debug", "bug", "trace", "root cause", "code"]):
+            return ["debugging_request"], warnings
+        if any(word in purpose_l for word in ["research", "investigate", "verify"]):
+            return ["research_request"], warnings
+        if any(word in purpose_l for word in ["govern", "policy", "review"]):
+            return ["governance_review"], warnings
+        if any(word in purpose_l for word in ["plan", "roadmap", "sequence"]):
+            return ["planning_request"], warnings
+        if any(word in purpose_l for word in ["create", "brainstorm", "novel"]):
+            return ["creative_request"], warnings
+        return [], warnings
+    try:
+        parsed = json.loads(gate_signals)
+        if isinstance(parsed, list):
+            return [str(x) for x in parsed if str(x).strip()], warnings
+    except Exception:
+        warnings.append("gate_signals_parse_failed")
+    inferred, _ = _coerce_gate_signals(None, purpose)
+    return inferred, warnings
+
+
+def _explicitly_contradicts(high_name: str, low_name: str) -> bool:
+    hi = high_name.lower()
+    lo = low_name.lower()
+    contradiction_pairs = [
+        (("honor governance",), ("bypass governance constraints", "override governance", "ignore governance")),
+        (("be transparent",), ("conceal reasoning", "hide rationale", "opaque output")),
+        (("assess accurately",), ("invent facts", "fabricate", "speculate without basis")),
+    ]
+    for high_terms, low_terms in contradiction_pairs:
+        if any(term in hi for term in high_terms) and any(term in lo for term in low_terms):
+            return True
+    return False
+
+
+def _flatten_results(results_by_query: dict) -> list:
+    flat = []
+    seen = set()
+    for matches in results_by_query.values():
+        for block in matches:
+            key = _block_dedupe_key(block)
+            if key in seen:
+                continue
+            seen.add(key)
+            flat.append(block)
+    return flat
+
+
 def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
-    """
-    Evaluate all NeoStack gate expressions and update RuntimeSpec.
-
-    Exact signature required for Phase 2a.
-
-    Output fields populated:
-    - runtime_spec["gate_evaluations"]: list[GateEvaluationResult]
-    - runtime_spec["active_neostacks"]: list[{stack_id, stack_name, gate_id, priority}]
-    - runtime_spec["suppressed_items"]: appended stack suppression records
-    - runtime_spec["route_trace"]: gate_evaluation pass entries
-    """
     signals = _active_signal_set(active_context)
     step_index = len(runtime_spec["route_trace"])
     evaluations = []
@@ -222,9 +454,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
             gate_id = gate.get("gate_id") or gate.get("id") or gate.get("name") or f"GATE_{stack_id}"
             operator = gate.get("operator", "any")
             conditions = gate.get("conditions", []) or []
-            negated_conditions = [
-                _normalize_signal_name(s) for s in gate.get("negated_conditions", []) if _normalize_signal_name(s)
-            ]
+            negated_conditions = [_normalize_signal_name(s) for s in gate.get("negated_conditions", []) if _normalize_signal_name(s)]
             matched_conditions = []
             failed_conditions = []
             score = None
@@ -253,7 +483,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
                     reason = (
                         f"Matched {len(matched_conditions)} of {len(condition_signals)} required condition(s)."
                         if matched else
-                        f"No condition matched." if not matched_conditions else
+                        "No condition matched." if not matched_conditions else
                         f"Negated condition present: {', '.join(negated_present)}."
                     )
                 elif operator == "all":
@@ -278,8 +508,7 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
                         f"Missing required conditions: {', '.join(failed_conditions)}."
                     )
                 elif operator == "threshold":
-                    score = round(sum(float(c.get("gate_weight", 1.0)) for c in conditions
-                                      if _normalize_signal_name(c.get("signal")) in signals), 6)
+                    score = round(sum(float(c.get("gate_weight", 1.0)) for c in conditions if _normalize_signal_name(c.get("signal")) in signals), 6)
                     threshold = float(threshold if threshold is not None else 1.0)
                     matched = score >= threshold and len(negated_present) == 0
                     reason = (
@@ -404,203 +633,225 @@ def evaluate_gates(runtime_spec: dict, sleeve: dict, active_context) -> dict:
     return runtime_spec
 
 
-# ── PHASE 2A: VERTICAL HIERARCHY ─────────────────────────────────────────────
 def resolve_vertical_hierarchy(runtime_spec: dict, sleeve: dict) -> dict:
-    """
-    Resolve active content by vertical authority rank after gate activation.
-
-    Exact signature required for Phase 2a.
-
-    Output fields populated:
-    - runtime_spec["active_blocks"]
-    - runtime_spec["vertical_resolution"]
-    - runtime_spec["conflicts"]
-    - runtime_spec["suppressed_items"] additions for lower-authority content
-    - runtime_spec["route_trace"] vertical_resolution pass entries
-    """
     step_index = len(runtime_spec["route_trace"])
     active_stack_ids = {s["stack_id"] for s in runtime_spec.get("active_neostacks", [])}
-    candidate_blocks = []
-    stack_lookup = {}
+    active_by_rank = {
+        "Directive": [],
+        "Instruction": [],
+        "Subject": [],
+        "Primary": [],
+        "Philosophy": [],
+        "Blueprint": [],
+        "Persona": [],
+    }
+    cross_rank_conflicts = []
+    same_rank_tensions = []
+    escalated_conflicts = []
+    off_suppressed = []
+    warnings = []
+    active_blocks = []
 
+    candidate_blocks = []
     for ns_idx, ns in enumerate(sleeve.get("neoStacks", [])):
         stack_id = _stack_id(ns, ns_idx)
         if stack_id not in active_stack_ids:
             continue
-        stack_lookup[stack_id] = ns
+        stack_priority = next((s["priority"] for s in runtime_spec["active_neostacks"] if s["stack_id"] == stack_id), 0)
         for nb_idx, nb in enumerate(ns.get("neoBlocks", [])):
             nb_id = _neoblock_id(nb, stack_id, nb_idx)
-            blocks = sorted(nb.get("blocks", []), key=lambda b: AUTHORITY_RANK.get(b.get("type", ""), 99))
-            for blk_idx, block in enumerate(blocks):
-                molt_type = block.get("type", "")
-                authority_rank = AUTHORITY_RANK.get(molt_type, 99)
+            for blk_idx, block in enumerate(nb.get("blocks", [])):
+                block_copy = deepcopy(block)
+                runtime_type = _block_runtime_type(block_copy)
+                block_copy["type"] = runtime_type.upper() if runtime_type else block_copy.get("type", "")
+                block_copy["molt_type"] = runtime_type
                 candidate_blocks.append({
-                    "block_id": _block_id(block, stack_id, nb_id, blk_idx),
-                    "block_name": block.get("name", ""),
-                    "molt_type": molt_type,
-                    "authority_rank": authority_rank,
+                    "block_id": _block_id(block_copy, stack_id, nb_id, blk_idx),
+                    "block_name": block_copy.get("name", ""),
+                    "molt_type": runtime_type,
+                    "authority_rank": _hierarchy_rank(block_copy),
                     "neoblock_id": nb_id,
                     "neostack_id": stack_id,
-                    "source": "library" if block.get("name") in NAME_IDX.get(molt_type, {}) else "candidate",
-                    "stack_priority": next((s["priority"] for s in runtime_spec["active_neostacks"] if s["stack_id"] == stack_id), 0),
+                    "source": "library" if block_copy.get("name") in NAME_IDX.get(block_copy.get("type", ""), {}) else "candidate",
+                    "stack_priority": stack_priority,
+                    "state": str(block_copy.get("state", "")).strip().lower(),
                 })
 
-    candidate_blocks.sort(key=lambda b: (b["authority_rank"], -b["stack_priority"], b["block_id"]))
-    active_blocks = []
-    suppressed = []
-    dominant_per_type = {}
+    blocked_ids = set()
 
     for block in candidate_blocks:
-        key = block["molt_type"]
-        if key not in dominant_per_type:
-            dominant_per_type[key] = block["block_id"]
-            active_blocks.append({k: block[k] for k in [
-                "block_id", "block_name", "molt_type", "authority_rank", "neoblock_id", "neostack_id", "source"
-            ]})
-            runtime_spec["route_trace"].append(_make_trace_entry(
-                "vertical_resolution",
-                step_index,
-                block["block_id"],
-                "active",
-                f"{block['molt_type']} block retained as dominant active block for this authority type.",
-                {
-                    "molt_type": block["molt_type"],
-                    "authority_rank": block["authority_rank"],
-                    "neostack_id": block["neostack_id"],
-                    "stack_priority": block["stack_priority"],
-                },
-            ))
-            step_index += 1
-        else:
-            winner_id = dominant_per_type[key]
-            suppressed_reason = "higher_vertical_authority"
-            reason = f"Suppressed by dominant {key} block {winner_id}."
-            suppressed.append({
-                "id": block["block_id"],
-                "suppression_reason": suppressed_reason,
-                "suppressed_by_id": winner_id,
-                "reason": reason,
-            })
-            runtime_spec["conflicts"].append({
-                "conflict_id": f"CONF-{winner_id}-{block['block_id']}",
-                "involved_ids": [winner_id, block["block_id"]],
-                "conflict_type": "authority_conflict",
-                "resolution_status": "suppressed_lower",
-                "winner_id": winner_id,
-                "reason": reason,
-            })
-            runtime_spec["route_trace"].append(_make_trace_entry(
-                "vertical_resolution",
-                step_index,
-                block["block_id"],
-                "suppressed",
-                reason,
-                {
-                    "molt_type": block["molt_type"],
-                    "authority_rank": block["authority_rank"],
-                    "neostack_id": block["neostack_id"],
-                    "suppressed_by_id": winner_id,
-                    "stack_priority": block["stack_priority"],
-                },
-            ))
-            step_index += 1
+        if _is_off_block(block):
+            target_name = block["block_name"]
+            for other in candidate_blocks:
+                if other["block_id"] == block["block_id"]:
+                    continue
+                if other["block_name"] == target_name:
+                    blocked_ids.add(other["block_id"])
+                    entry = {
+                        "id": other["block_id"],
+                        "suppression_reason": "off_block",
+                        "suppressed_by_id": block["block_id"],
+                        "reason": f"Suppressed by Off state for {target_name}.",
+                    }
+                    runtime_spec["suppressed_items"].append(entry)
+                    off_suppressed.append(entry)
 
-    runtime_spec["active_blocks"] = active_blocks
-    runtime_spec["suppressed_items"].extend(suppressed)
+    typed_blocks = []
+    for block in candidate_blocks:
+        if block["block_id"] in blocked_ids or _is_off_block(block):
+            continue
+        if block["authority_rank"] is None:
+            warnings.append({
+                "warning_type": "unknown_molt_type",
+                "block_ids": [block["block_id"]],
+                "reason": f"Unknown MOLT type '{block['molt_type']}' skipped for hierarchy.",
+            })
+            continue
+        typed_blocks.append(block)
+        active_by_rank[block["molt_type"]].append(block["block_name"])
+        active_blocks.append({k: block[k] for k in ["block_id", "block_name", "molt_type", "authority_rank", "neoblock_id", "neostack_id", "source"]})
+
+    rank_buckets = {}
+    for block in typed_blocks:
+        rank_buckets.setdefault(block["authority_rank"], []).append(block)
+
+    for rank, blocks in rank_buckets.items():
+        for i, left in enumerate(blocks):
+            for right in blocks[i + 1:]:
+                if left["neostack_id"] != right["neostack_id"] or left["block_name"] == right["block_name"]:
+                    continue
+                same_rank_tensions.append({
+                    "rank": rank,
+                    "blocks": [left["block_name"], right["block_name"]],
+                    "reason": "possible_tension",
+                })
+
+    for higher_rank in sorted(rank_buckets.keys()):
+        for lower_rank in sorted(r for r in rank_buckets.keys() if r > higher_rank):
+            for high in rank_buckets[higher_rank]:
+                for low in rank_buckets[lower_rank]:
+                    if low["block_id"] in blocked_ids:
+                        continue
+                    if _explicitly_contradicts(high["block_name"], low["block_name"]):
+                        blocked_ids.add(low["block_id"])
+                        reason = f"Explicit contradiction: {high['block_name']} governs {low['block_name']}."
+                        runtime_spec["suppressed_items"].append({
+                            "id": low["block_id"],
+                            "suppression_reason": "higher_vertical_authority",
+                            "suppressed_by_id": high["block_id"],
+                            "reason": reason,
+                        })
+                        cross_rank_conflicts.append({
+                            "winner_block": high["block_name"],
+                            "loser_block": low["block_name"],
+                            "winner_id": high["block_id"],
+                            "loser_id": low["block_id"],
+                            "reason": reason,
+                        })
+                    elif high["block_name"] != low["block_name"] and high["neostack_id"] != low["neostack_id"]:
+                        warnings.append({
+                            "warning_type": "possible_tension",
+                            "block_ids": [high["block_id"], low["block_id"]],
+                            "reason": f"Possible tension between {high['block_name']} and {low['block_name']}.",
+                        })
+
+    runtime_spec["active_blocks"] = [b for b in active_blocks if b["block_id"] not in blocked_ids]
+    runtime_spec["warnings"].extend(warnings)
     runtime_spec["vertical_resolution"] = {
-        "dominant_block_ids": dominant_per_type,
-        "active_block_count": len(active_blocks),
-        "suppressed_block_count": len(suppressed),
-        "resolution_mode": "rank_then_priority",
+        "active_by_rank": active_by_rank,
+        "cross_rank_conflicts": cross_rank_conflicts,
+        "same_rank_tensions": same_rank_tensions,
+        "escalated_conflicts": escalated_conflicts,
+        "off_suppressed": off_suppressed,
     }
+    runtime_spec["conflicts"].extend([
+        {
+            "conflict_id": f"CONF-{item['winner_id']}-{item['loser_id']}",
+            "involved_ids": [item["winner_id"], item["loser_id"]],
+            "conflict_type": "authority_conflict",
+            "resolution_status": "suppressed_lower",
+            "winner_id": item["winner_id"],
+            "reason": item["reason"],
+        }
+        for item in cross_rank_conflicts
+    ])
+
+    for block in runtime_spec["active_blocks"]:
+        runtime_spec["route_trace"].append(_make_trace_entry(
+            "vertical_resolution",
+            step_index,
+            block["block_id"],
+            "active",
+            f"{block['molt_type']} block active as horizontal peer or uncontested block.",
+            {
+                "molt_type": block["molt_type"],
+                "authority_rank": block["authority_rank"],
+                "neostack_id": block["neostack_id"],
+            },
+        ))
+        step_index += 1
+
+    for conflict in cross_rank_conflicts:
+        runtime_spec["route_trace"].append(_make_trace_entry(
+            "vertical_resolution",
+            step_index,
+            conflict["loser_id"],
+            "suppressed",
+            conflict["reason"],
+            {
+                "winner_id": conflict["winner_id"],
+                "loser_id": conflict["loser_id"],
+                "resolution_rule": "higher_vertical_authority",
+            },
+        ))
+        step_index += 1
+
     return runtime_spec
-
-
-# ── LEGACY HELPERS ────────────────────────────────────────────────────────────
-def _match_context(gate_name: str, active_context: list) -> bool:
-    """Check if a trigger gate matches the active context."""
-    gate_lower = gate_name.lower()
-    for ctx in active_context:
-        ctx_lower = ctx.lower()
-        if gate_lower == ctx_lower:
-            return True
-        if gate_lower in ctx_lower or ctx_lower in gate_lower:
-            return True
-        gate_words = set(gate_lower.split())
-        ctx_words = set(ctx_lower.split())
-        if len(gate_words & ctx_words) >= 2:
-            return True
-    return False
 
 
 def _generate_warnings(active_blocks: list, suppressed_blocks: list) -> list:
     warnings = []
-    active_types = {b.get("type") for b in active_blocks}
-
-    if "DIRECTIVE" not in active_types and active_blocks:
+    active_types = {b.get("type") or b.get("molt_type") for b in active_blocks}
+    if "DIRECTIVE" not in active_types and "Directive" not in active_types and active_blocks:
         warnings.append("No active DIRECTIVE block — cognitive authority anchor missing")
-    if "INSTRUCTION" not in active_types and active_blocks:
+    if "INSTRUCTION" not in active_types and "Instruction" not in active_types and active_blocks:
         warnings.append("No active INSTRUCTION block — execution method undefined")
-    if "PRIMARY" not in active_types and active_blocks:
+    if "PRIMARY" not in active_types and "Primary" not in active_types and active_blocks:
         warnings.append("No active PRIMARY block — outcome anchor missing")
     if len(active_blocks) == 0:
         warnings.append("No active blocks — all NeoStacks suppressed. Check active_context triggers.")
     if suppressed_blocks and not active_blocks:
-        warnings.append(
-            f"{len(suppressed_blocks)} block(s) suppressed with nothing active — no trigger matched any NeoStack gate"
-        )
+        warnings.append(f"{len(suppressed_blocks)} block(s) suppressed with nothing active — no trigger matched any NeoStack gate")
     return warnings
 
 
-def _build_molt_map(active_blocks: list, suppressed_blocks: list, trigger_evaluations: list) -> dict:
-    active_trigger = next(
-        (e["matched"][0] for e in trigger_evaluations if e.get("result") == "active" and e.get("matched")),
-        "no trigger matched"
-    )
-    active_neostack = next(
-        (e["neostack"] for e in trigger_evaluations if e.get("result") == "active"),
-        "none"
-    )
-
-    by_type = {}
-    for btype in ["DIRECTIVE", "INSTRUCTION", "SUBJECT", "PRIMARY", "PHILOSOPHY", "BLUEPRINT", "PERSONA"]:
-        by_type[btype] = [
-            {
-                "id": b.get("id", ""),
-                "name": b.get("name", ""),
-                "neoblock": b.get("_neoblock", ""),
-                "neostack": b.get("_neostack", ""),
-                "state": "active"
-            }
-            for b in active_blocks if b.get("type") == btype
+def _build_molt_map(active_blocks: list, suppressed_blocks: list, trigger_evaluations: list, vertical_resolution: dict | None = None) -> dict:
+    rank_map = vertical_resolution.get("active_by_rank", {}) if vertical_resolution else {}
+    authority_chain = {}
+    for btype in ["Directive", "Instruction", "Subject", "Primary", "Philosophy", "Blueprint", "Persona"]:
+        authority_chain[btype] = rank_map.get(btype, []) or [
+            b.get("block_name") or b.get("name")
+            for b in active_blocks
+            if (b.get("molt_type") or _normalize_molt_type(b.get("type"))) == btype
         ]
 
-    dominant_directive = by_type["DIRECTIVE"][0]["name"] if by_type["DIRECTIVE"] else None
-
-    suppressed_view = [
-        {
-            "id": b.get("id", ""),
-            "type": b.get("type", ""),
-            "name": b.get("name", ""),
-            "neoblock": b.get("_neoblock", ""),
-            "state": "suppressed",
-            "reason": b.get("_reason", "parent stack suppressed")
-        }
-        for b in suppressed_blocks
-    ]
-
     return {
-        "active_trigger": active_trigger,
-        "active_neostack": active_neostack,
-        "dominant_directive": dominant_directive,
-        "authority_chain": by_type,
-        "suppressed": suppressed_view,
-        "off": [],
+        "Directive": authority_chain["Directive"],
+        "Instruction": authority_chain["Instruction"],
+        "Subject": authority_chain["Subject"],
+        "Primary": authority_chain["Primary"],
+        "Philosophy": authority_chain["Philosophy"],
+        "Blueprint": authority_chain["Blueprint"],
+        "Persona": authority_chain["Persona"],
+        "Suppressed": [b.get("block_name") or b.get("name") for b in suppressed_blocks],
+        "Off": [item.get("id") for item in (vertical_resolution or {}).get("off_suppressed", [])],
+        "Conflicts": [c.get("reason") for c in (vertical_resolution or {}).get("cross_rank_conflicts", [])],
         "cognitive_summary": (
-            f"Directive: {dominant_directive or 'none'} | "
-            f"Instructions: {len(by_type['INSTRUCTION'])} active | "
-            f"Subject: {', '.join(b['name'] for b in by_type['SUBJECT']) or 'none'} | "
-            f"Primary: {', '.join(b['name'] for b in by_type['PRIMARY'][:2]) or 'none'}"
+            f"Directives: {len(authority_chain['Directive'])} active · "
+            f"Instructions: {len(authority_chain['Instruction'])} active · "
+            f"Primary: {len(authority_chain['Primary'])} active · "
+            f"Philosophy: {len(authority_chain['Philosophy'])} active · "
+            f"Persona: {len(authority_chain['Persona'])} active"
         )
     }
 
@@ -613,170 +864,49 @@ def _build_ir_graph(sleeve: dict, active_neostacks: list, suppressed_neostacks: 
 
     sleeve_id = sleeve.get("id", sleeve.get("sleeve_id", "SL-unknown"))
     sleeve_name = sleeve.get("name", sleeve.get("sleeve_name", "unnamed"))
-
-    nodes.append({
-        "id": sleeve_id,
-        "type": "sleeve",
-        "label": sleeve_name,
-        "state": "active",
-        "authority_rank": None,
-        "source_ref": sleeve_id
-    })
+    nodes.append({"id": sleeve_id, "type": "sleeve", "label": sleeve_name, "state": "active", "authority_rank": None, "source_ref": sleeve_id})
     active_route.append(sleeve_id)
 
     for ns in active_neostacks:
         ns_id = ns.get("id", f"NS-{ns['name']}")
-        nodes.append({
-            "id": ns_id,
-            "type": "neostack",
-            "label": ns["name"],
-            "state": "active",
-            "authority_rank": None,
-            "source_ref": ns_id
-        })
-        edges.append({
-            "from": sleeve_id,
-            "to": ns_id,
-            "type": "contains",
-            "state": "active",
-            "reason": "sleeve contains this NeoStack"
-        })
+        nodes.append({"id": ns_id, "type": "neostack", "label": ns["name"], "state": "active", "authority_rank": None, "source_ref": ns_id})
+        edges.append({"from": sleeve_id, "to": ns_id, "type": "contains", "state": "active", "reason": "sleeve contains this NeoStack"})
         active_route.append(ns_id)
 
         for gate in ns.get("gates", []):
-            gate_id = gate.get("id", f"TRG-{gate.get('name','').replace(' ','-')}")
-            nodes.append({
-                "id": gate_id,
-                "type": "trigger_gate",
-                "label": gate.get("name", ""),
-                "state": "active",
-                "authority_rank": 0,
-                "source_ref": gate_id
-            })
-            edges.append({
-                "from": gate_id,
-                "to": ns_id,
-                "type": "activates",
-                "state": "active",
-                "reason": "trigger gate matched - activates NeoStack"
-            })
+            gate_id = gate.get("id", gate.get("gate_id", f"TRG-{gate.get('name', '').replace(' ', '-') }"))
+            nodes.append({"id": gate_id, "type": "trigger_gate", "label": gate.get("name", gate_id), "state": "active", "authority_rank": 0, "source_ref": gate_id})
+            edges.append({"from": gate_id, "to": ns_id, "type": "activates", "state": "active", "reason": "trigger gate matched - activates NeoStack"})
 
         for nb in ns.get("_neoblocks", ns.get("neoBlocks", [])):
             nb_id = nb.get("id", f"NB-{nb['name']}")
-            nodes.append({
-                "id": nb_id,
-                "type": "neoblock",
-                "label": nb["name"],
-                "state": "active",
-                "authority_rank": None,
-                "source_ref": nb_id
-            })
-            edges.append({
-                "from": ns_id,
-                "to": nb_id,
-                "type": "routes_to",
-                "state": "active",
-                "reason": "NeoStack routes to NeoBlock"
-            })
+            nodes.append({"id": nb_id, "type": "neoblock", "label": nb["name"], "state": "active", "authority_rank": None, "source_ref": nb_id})
+            edges.append({"from": ns_id, "to": nb_id, "type": "routes_to", "state": "active", "reason": "NeoStack routes to NeoBlock"})
             active_route.append(nb_id)
-
             blocks = nb.get("_blocks_by_authority", nb.get("blocks", []))
-            blocks_sorted = sorted(blocks, key=lambda b: AUTHORITY_RANK.get(b.get("type", ""), 99))
-            for block in blocks_sorted:
-                b_id = block.get("id", f"{block.get('type','B')}-{block.get('name','').replace(' ','-')}")
+            for block in blocks:
+                b_id = block.get("id", f"{block.get('type', 'B')}-{block.get('name', '').replace(' ', '-')}")
                 nodes.append({
                     "id": b_id,
                     "type": "molt_block",
-                    "label": f"[{block.get('type','')}] {block.get('name','')}",
+                    "label": f"[{block.get('type', '')}] {block.get('name', '')}",
                     "state": "active",
-                    "authority_rank": AUTHORITY_RANK.get(block.get("type", ""), 99),
-                    "source_ref": b_id
+                    "authority_rank": AUTHORITY_RANK.get(block.get("type", ""), None),
+                    "source_ref": b_id,
                 })
-                edges.append({
-                    "from": nb_id,
-                    "to": b_id,
-                    "type": "contains",
-                    "state": "active",
-                    "reason": f"authority rank {AUTHORITY_RANK.get(block.get('type',''),99)}"
-                })
+                edges.append({"from": nb_id, "to": b_id, "type": "contains", "state": "active", "reason": "authority-ordered body block"})
                 active_route.append(b_id)
 
     for ns in suppressed_neostacks:
         ns_id = ns.get("id", f"NS-{ns['name']}")
         suppressed_path = [ns_id]
-        nodes.append({
-            "id": ns_id,
-            "type": "neostack",
-            "label": ns["name"],
-            "state": "suppressed",
-            "authority_rank": None,
-            "source_ref": ns_id
-        })
-        edges.append({
-            "from": sleeve_id,
-            "to": ns_id,
-            "type": "contains",
-            "state": "suppressed",
-            "reason": "NeoStack suppressed - trigger gate not matched"
-        })
-
+        nodes.append({"id": ns_id, "type": "neostack", "label": ns["name"], "state": "suppressed", "authority_rank": None, "source_ref": ns_id})
+        edges.append({"from": sleeve_id, "to": ns_id, "type": "contains", "state": "suppressed", "reason": "NeoStack suppressed - trigger gate not matched"})
         for gate in ns.get("gates", []):
-            gate_id = gate.get("id", f"TRG-{gate.get('name','').replace(' ','-')}")
-            nodes.append({
-                "id": gate_id,
-                "type": "trigger_gate",
-                "label": gate.get("name", ""),
-                "state": "inactive",
-                "authority_rank": 0,
-                "source_ref": gate_id
-            })
-            edges.append({
-                "from": gate_id,
-                "to": ns_id,
-                "type": "suppresses",
-                "state": "inactive",
-                "reason": "trigger gate not matched - NeoStack suppressed"
-            })
+            gate_id = gate.get("id", gate.get("gate_id", f"TRG-{gate.get('name', '').replace(' ', '-') }"))
+            nodes.append({"id": gate_id, "type": "trigger_gate", "label": gate.get("name", gate_id), "state": "inactive", "authority_rank": 0, "source_ref": gate_id})
+            edges.append({"from": gate_id, "to": ns_id, "type": "suppresses", "state": "inactive", "reason": "trigger gate not matched - NeoStack suppressed"})
             suppressed_path.append(gate_id)
-
-        for nb in ns.get("_neoblocks", ns.get("neoBlocks", [])):
-            nb_id = nb.get("id", f"NB-{nb['name']}")
-            nodes.append({
-                "id": nb_id,
-                "type": "neoblock",
-                "label": nb["name"],
-                "state": "suppressed",
-                "authority_rank": None,
-                "source_ref": nb_id
-            })
-            edges.append({
-                "from": ns_id,
-                "to": nb_id,
-                "type": "routes_to",
-                "state": "suppressed",
-                "reason": "suppressed by parent NeoStack"
-            })
-            suppressed_path.append(nb_id)
-
-            for block in nb.get("blocks", []):
-                b_id = block.get("id", f"{block.get('type','B')}-{block.get('name','').replace(' ','-')}")
-                nodes.append({
-                    "id": b_id,
-                    "type": "molt_block",
-                    "label": f"[{block.get('type','')}] {block.get('name','')}",
-                    "state": "suppressed",
-                    "authority_rank": AUTHORITY_RANK.get(block.get("type", ""), 99),
-                    "source_ref": b_id
-                })
-                edges.append({
-                    "from": nb_id,
-                    "to": b_id,
-                    "type": "contains",
-                    "state": "suppressed",
-                    "reason": "suppressed by parent chain"
-                })
-                suppressed_path.append(b_id)
-
         suppressed_routes.append(suppressed_path)
 
     return {
@@ -791,153 +921,102 @@ def _build_ir_graph(sleeve: dict, active_neostacks: list, suppressed_neostacks: 
             "active": sum(1 for n in nodes if n["state"] == "active"),
             "suppressed": sum(1 for n in nodes if n["state"] == "suppressed"),
             "inactive": sum(1 for n in nodes if n["state"] == "inactive"),
-        }
+        },
     }
 
 
 def _build_runtime_spec(sleeve: dict, active_context: list) -> dict:
     active_context_safe = active_context if active_context else []
+    runtime = _run_phase2a_preview(sleeve, active_context_safe)
 
     active_neostacks = []
     suppressed_neostacks = []
-    trigger_evaluations = []
-
-    for ns in sleeve.get("neoStacks", []):
-        gates = ns.get("gates", [])
-
-        if not gates:
-            ns_state = "active"
-            eval_entry = {
-                "neostack": ns.get("name", ""),
-                "gates": [],
-                "matched": [],
-                "result": "active",
-                "reason": "no gate - always active"
-            }
-        else:
-            matched = [g.get("name", "") for g in gates if _match_context(g.get("name", ""), active_context_safe)]
-            unmatched = [g.get("name", "") for g in gates if not _match_context(g.get("name", ""), active_context_safe)]
-
-            if matched:
-                ns_state = "active"
-                eval_entry = {
-                    "neostack": ns.get("name", ""),
-                    "gates": [g.get("name") for g in gates],
-                    "matched": matched,
-                    "unmatched": unmatched,
-                    "result": "active",
-                    "reason": f"gate matched: {', '.join(matched)}"
-                }
-            else:
-                ns_state = "suppressed"
-                eval_entry = {
-                    "neostack": ns.get("name", ""),
-                    "gates": [g.get("name") for g in gates],
-                    "matched": [],
-                    "unmatched": unmatched,
-                    "result": "suppressed",
-                    "reason": f"no gate matched (requires: {', '.join(unmatched)})"
-                }
-
-        trigger_evaluations.append(eval_entry)
-
-        resolved_neoblocks = []
-        for nb in ns.get("neoBlocks", []):
-            blocks_sorted = sorted(nb.get("blocks", []), key=lambda b: AUTHORITY_RANK.get(b.get("type", ""), 99))
-            resolved_neoblocks.append({
-                **nb,
-                "_state": ns_state,
-                "_blocks_by_authority": blocks_sorted
-            })
-
-        ns_resolved = {**ns, "_state": ns_state, "_neoblocks": resolved_neoblocks}
-
-        if ns_state == "active":
+    active_ids = {s["stack_id"] for s in runtime.get("active_neostacks", [])}
+    for idx, ns in enumerate(sleeve.get("neoStacks", [])):
+        stack_id = _stack_id(ns, idx)
+        ns_resolved = deepcopy(ns)
+        if stack_id in active_ids:
             active_neostacks.append(ns_resolved)
         else:
             suppressed_neostacks.append(ns_resolved)
 
-    active_blocks = []
-    for ns in active_neostacks:
-        for nb in ns["_neoblocks"]:
-            for b in nb["_blocks_by_authority"]:
-                active_blocks.append({
-                    **b,
-                    "_neoblock": nb.get("name", ""),
-                    "_neostack": ns.get("name", ""),
-                    "_state": "active",
-                    "_authority_rank": AUTHORITY_RANK.get(b.get("type", ""), 99)
-                })
-
+    active_blocks_full = []
     suppressed_blocks = []
-    for ns in suppressed_neostacks:
-        reason = next((e["reason"] for e in trigger_evaluations if e["neostack"] == ns.get("name", "")), "parent stack suppressed")
-        for nb in ns.get("_neoblocks", []):
-            for b in nb.get("_blocks_by_authority", nb.get("blocks", [])):
-                suppressed_blocks.append({
-                    **b,
+    active_block_ids = {b["block_id"] for b in runtime.get("active_blocks", [])}
+    for ns_idx, ns in enumerate(sleeve.get("neoStacks", [])):
+        stack_id = _stack_id(ns, ns_idx)
+        for nb_idx, nb in enumerate(ns.get("neoBlocks", [])):
+            nb_id = _neoblock_id(nb, stack_id, nb_idx)
+            for blk_idx, block in enumerate(nb.get("blocks", [])):
+                bid = _block_id(block, stack_id, nb_id, blk_idx)
+                wrapped = {
+                    **deepcopy(block),
                     "_neoblock": nb.get("name", ""),
                     "_neostack": ns.get("name", ""),
-                    "_state": "suppressed",
-                    "_reason": reason,
-                    "_authority_rank": AUTHORITY_RANK.get(b.get("type", ""), 99)
-                })
+                    "_authority_rank": AUTHORITY_RANK.get(block.get("type", ""), None),
+                    "id": bid,
+                }
+                if bid in active_block_ids:
+                    active_blocks_full.append(wrapped)
+                else:
+                    suppressed_blocks.append(wrapped)
 
-    authority_order = sorted(active_blocks, key=lambda b: b["_authority_rank"])
-    dominant_directive = next((b for b in authority_order if b.get("type") == "DIRECTIVE"), None)
+    authority_order = sorted(
+        runtime.get("active_blocks", []),
+        key=lambda b: (b.get("authority_rank") if b.get("authority_rank") is not None else 999, b.get("block_name", ""))
+    )
+    dominant_directive = next((b for b in authority_order if b.get("molt_type") == "Directive"), None)
+    warnings = _generate_warnings(active_blocks_full, suppressed_blocks)
+    for item in runtime.get("warnings", []):
+        if isinstance(item, dict):
+            warnings.append(item.get("reason", "warning"))
+        else:
+            warnings.append(str(item))
 
-    molt_map = _build_molt_map(active_blocks, suppressed_blocks, trigger_evaluations)
-    ir_graph = _build_ir_graph(sleeve, active_neostacks, suppressed_neostacks)
-    warnings = _generate_warnings(active_blocks, suppressed_blocks)
+    suppressed_details = []
+    suppress_map = {item["id"]: item for item in runtime.get("suppressed_items", [])}
+    for block in suppressed_blocks:
+        meta = suppress_map.get(block["id"], {})
+        suppressed_details.append({
+            "id": block["id"],
+            "type": block.get("type", ""),
+            "name": block.get("name", ""),
+            "neoblock": block.get("_neoblock", ""),
+            "neostack": block.get("_neostack", ""),
+            "reason": meta.get("reason", "suppressed by runtime resolution"),
+        })
 
-    return {
-        "runtime_id": f"RT-{int(time.time())}",
-        "sleeve_id": sleeve.get("id", sleeve.get("sleeve_id", "unknown")),
-        "sleeve_name": sleeve.get("name", sleeve.get("sleeve_name", "unnamed")),
-        "source_mode": sleeve.get("provenance", {}).get("sourceMode", "unknown"),
-        "route_purity": "clean_native" if not any(b.get("custom") for b in active_blocks) else "mixed",
-        "active_context": active_context_safe,
-        "trigger_evaluations": trigger_evaluations,
-        "active_neostacks": [{"id": ns.get("id", ""), "name": ns.get("name", "")} for ns in active_neostacks],
-        "suppressed_neostacks": [
-            {
-                "id": ns.get("id", ""),
-                "name": ns.get("name", ""),
-                "reason": next((e["reason"] for e in trigger_evaluations if e["neostack"] == ns.get("name", "")), "")
-            }
-            for ns in suppressed_neostacks
-        ],
-        "active_blocks_count": len(active_blocks),
-        "suppressed_blocks_count": len(suppressed_blocks),
-        "total_neostacks": len(sleeve.get("neoStacks", [])),
-        "dominant_directive": dominant_directive.get("name") if dominant_directive else None,
-        "authority_order": [
-            {
-                "id": b.get("id", ""),
-                "type": b.get("type", ""),
-                "name": b.get("name", ""),
-                "neoblock": b.get("_neoblock", ""),
-                "neostack": b.get("_neostack", ""),
-                "authority_rank": b.get("_authority_rank", 99)
-            }
-            for b in authority_order
-        ],
-        "suppressed_blocks_detail": [
-            {
-                "id": b.get("id", ""),
-                "type": b.get("type", ""),
-                "name": b.get("name", ""),
-                "neoblock": b.get("_neoblock", ""),
-                "neostack": b.get("_neostack", ""),
-                "reason": b.get("_reason", "")
-            }
-            for b in suppressed_blocks
-        ],
-        "conflicts": [],
-        "warnings": warnings,
-        "molt_map": molt_map,
-        "ir_graph": ir_graph
-    }
+    runtime["trigger_evaluations"] = runtime.pop("gate_evaluations", [])
+    runtime["molt_map"] = _build_molt_map(active_blocks_full, suppressed_blocks, runtime["trigger_evaluations"], runtime.get("vertical_resolution"))
+    runtime["ir_graph"] = _build_ir_graph(sleeve, active_neostacks, suppressed_neostacks)
+    runtime["route_purity"] = "clean_native" if not any(b.get("custom") for b in active_blocks_full) else "mixed"
+    runtime["active_blocks_count"] = len(active_blocks_full)
+    runtime["suppressed_blocks_count"] = len(suppressed_blocks)
+    runtime["total_neostacks"] = len(sleeve.get("neoStacks", []))
+    runtime["dominant_directive"] = dominant_directive.get("block_name") if dominant_directive else None
+    runtime["authority_order"] = [
+        {
+            "id": b.get("block_id", ""),
+            "type": b.get("molt_type", ""),
+            "name": b.get("block_name", ""),
+            "neoblock": b.get("neoblock_id", ""),
+            "neostack": b.get("neostack_id", ""),
+            "authority_rank": b.get("authority_rank"),
+        }
+        for b in authority_order
+    ]
+    runtime["suppressed_blocks_detail"] = suppressed_details
+    runtime["warnings"] = warnings
+    runtime["active_neostacks"] = [{"id": _stack_id(ns, idx), "name": ns.get("name", "")} for idx, ns in enumerate(active_neostacks)]
+    runtime["suppressed_neostacks"] = [
+        {
+            "id": _stack_id(ns, idx),
+            "name": ns.get("name", ""),
+            "reason": next((item["reason"] for item in runtime.get("suppressed_items", []) if item["id"] == _stack_id(ns, idx)), "suppressed"),
+        }
+        for idx, ns in enumerate(suppressed_neostacks)
+    ]
+    return runtime
 
 
 def _run_phase2a_preview(sleeve: dict, active_context) -> dict:
@@ -947,7 +1026,135 @@ def _run_phase2a_preview(sleeve: dict, active_context) -> dict:
     return runtime_spec
 
 
-# ── MCP SERVER ────────────────────────────────────────────────────────────────
+def _purpose_key(purpose: str) -> str:
+    lower = purpose.lower()
+    if any(word in lower for word in ["debug", "bug", "trace", "root cause", "code"]):
+        return "debug"
+    if any(word in lower for word in ["research", "verify", "investigate"]):
+        return "research"
+    if any(word in lower for word in ["plan", "roadmap", "sequence"]):
+        return "plan"
+    if any(word in lower for word in ["govern", "policy", "review"]):
+        return "govern"
+    if any(word in lower for word in ["create", "novel", "brainstorm"]):
+        return "create"
+    if any(word in lower for word in ["audit", "check", "validate"]):
+        return "audit"
+    return "govern"
+
+
+def _assemble_neoblock_from_map(block_map: dict, block_count: int, warnings: list[str], neoblock_name: str):
+    chosen = []
+    selected_meta = []
+
+    directive = _select_first_available(block_map.get("directives", []), ["DIRECTIVE"])
+    if not directive:
+        directive = _select_first_available(["Honor Governance", "Assess Accurately"], ["DIRECTIVE"])
+        warnings.append("directive_fallback_used")
+    if directive:
+        chosen.append(directive)
+        selected_meta.append({"name": directive["name"], "type": directive["type"], "selection_reason": "directive anchor"})
+
+    ordered_groups = [
+        ("instructions", ["INSTRUCTION"]),
+        ("subjects", ["SUBJECT"]),
+        ("primaries", ["PRIMARY"]),
+        ("philosophies", ["PHILOSOPHY"]),
+        ("personas", ["PERSONA"]),
+    ]
+    for key, allowed in ordered_groups:
+        for name in block_map.get(key, []):
+            if len(chosen) >= block_count:
+                break
+            block = _find_block_by_name(name, allowed)
+            if block and all(existing["name"] != block["name"] for existing in chosen):
+                chosen.append(block)
+                selected_meta.append({"name": block["name"], "type": block["type"], "selection_reason": f"selected from {key}"})
+        if len(chosen) >= block_count:
+            break
+
+    chosen = chosen[:max(3, min(block_count, 8))]
+    if directive and directive["name"] not in [b["name"] for b in chosen]:
+        chosen.insert(0, directive)
+        chosen = chosen[:max(3, min(block_count, 8))]
+
+    chosen_sorted = sorted(chosen, key=lambda b: AUTHORITY_RANK.get(b.get("type", ""), 999))
+    for block in chosen_sorted:
+        if _normalize_molt_type(block.get("type")) in {"Merge", "Off"}:
+            warnings.append(f"invalid_molt_type:{block.get('type')}")
+        block["molt_type"] = _normalize_molt_type(block.get("type"))
+
+    return {
+        "name": neoblock_name,
+        "blocks": [{"type": block["type"], "name": block["name"], "id": block.get("id"), "molt_type": block.get("molt_type")} for block in chosen_sorted],
+    }, selected_meta
+
+
+def _build_assembly_metadata(source_tool: str, sleeve_name: str, neostacks: list, trace_events: list):
+    stack_refs = [stack.get("id") or stack.get("name") for stack in neostacks]
+    block_refs = []
+    rows = []
+    order_index = 0
+    sleeve_id = f"sleeve.{_safe_slug(sleeve_name)}.v1"
+    route_id = None
+
+    trace_id = "trace.assembly.sleeve.001"
+    rows.append(_assembly_row("row.assembly.sleeve.001", "sleeve", sleeve_id, sleeve_name, "Sleeve", "assembly", "assembled", order_index, None, route_id, None, trace_id, "Candidate sleeve assembled from canonical library blocks."))
+    order_index += 1
+
+    for stack_i, stack in enumerate(neostacks, start=1):
+        stack_id = stack.get("id") or f"stack.{_safe_slug(stack.get('name', f'stack_{stack_i}'))}.v1"
+        stack["id"] = stack_id
+        gate = stack.get("gates", [None])[0] if stack.get("gates") else None
+        gate_id = gate.get("gate_id") if gate else None
+        trace_id = f"trace.assembly.stack.{stack_i:03d}"
+        rows.append(_assembly_row(f"row.assembly.stack.{stack_i:03d}", "stack", stack_id, stack.get("name", stack_id), "NeoStack", "assembly", "assembled", order_index, sleeve_id, route_id, gate_id, trace_id, f"Assembled as candidate stack {stack.get('name', stack_id)} from intent/purpose."))
+        trace_events.append(_build_trace_event(trace_id, "stack_assembled", f"Assembled candidate stack {stack.get('name', stack_id)}.", object_id=stack_id))
+        order_index += 1
+        if gate_id:
+            gate_trace = f"trace.gate.assign.{stack_i:03d}"
+            rows.append(_assembly_row(f"row.assembly.gate.{stack_i:03d}", "gate", gate_id, gate_id, "Gate", "assembly", "pending_eval", order_index, stack_id, route_id, gate_id, gate_trace, "Gate assigned at assembly time and pending runtime evaluation."))
+            trace_events.append(_build_trace_event(gate_trace, "gate_assigned", f"Assigned gate {gate_id} to candidate stack {stack.get('name', stack_id)}.", object_id=gate_id))
+            order_index += 1
+        for nb_i, nb in enumerate(stack.get("neoBlocks", []), start=1):
+            nb_id = nb.get("id") or f"neoblock.{_safe_slug(nb.get('name', f'neoblock_{nb_i}'))}.v1"
+            nb["id"] = nb_id
+            for blk_i, block in enumerate(nb.get("blocks", []), start=1):
+                block_id = block.get("id") or f"blk.{_safe_slug(block.get('name', f'block_{blk_i}'))}.v1"
+                block["id"] = block_id
+                block_refs.append(block_id)
+                trace_id = f"trace.assembly.block.{len(block_refs):03d}"
+                rows.append(_assembly_row(f"row.assembly.block.{len(block_refs):03d}", "block", block_id, block.get("name", block_id), block.get("type", "Block"), "assembly", "candidate", order_index, nb_id, route_id, gate_id, trace_id, f"Selected as candidate {block.get('type', 'block')} for assembled structure."))
+                trace_events.append(_build_trace_event(trace_id, "block_selected", f"Selected {block.get('name', block_id)} as candidate block.", object_id=block_id, molt_type=_normalize_molt_type(block.get("type"))))
+                order_index += 1
+
+    selection_result = _build_selection_result(
+        f"select.{source_tool}.{_safe_slug(sleeve_name)}.v1",
+        block_refs,
+        block_refs,
+        "trace.selection.001",
+    )
+    runtime_spec_fragment = _build_runtime_spec_fragment(source_tool, sleeve_id, stack_refs, block_refs, [event["trace_id"] for event in trace_events])
+    gate_summary = {
+        "gates_created": sum(len(stack.get("gates", [])) for stack in neostacks),
+        "gate_schema": "schemas/umg-gate-expr.schema.json",
+        "gate_states": [
+            {
+                "gate_id": gate.get("gate_id"),
+                "target_type": "stack",
+                "target_id": stack.get("id"),
+                "state": "pending_eval",
+                "condition_summary": gate.get("description", "Candidate gate pending runtime evaluation."),
+                "trace_ref": f"trace.gate.assign.{idx:03d}",
+            }
+            for idx, stack in enumerate(neostacks, start=1)
+            for gate in stack.get("gates", [])
+        ],
+    }
+    assembly_source = _build_assembly_source()
+    return selection_result, runtime_spec_fragment, rows, trace_events, gate_summary, assembly_source
+
+
 mcp = FastMCP(
     "UMG Block Library",
     json_response=True,
@@ -965,33 +1172,90 @@ mcp = FastMCP(
 
 
 @mcp.tool()
-def compile_sleeve(intent: str, active_context: list[str] = None) -> dict:
-    library_summary = {
-        btype: {
-            "count": len(blocks),
-            "description": TYPE_DESCRIPTIONS[btype],
-            "authority_rank": AUTHORITY_RANK.get(btype, 99),
-            "blocks": [{"id": b["id"], "name": b["name"]} for b in blocks]
-        }
-        for btype, blocks in LIBRARY.items()
+def compile_sleeve(intent: str, active_context: str = None) -> dict:
+    intent_key = _purpose_key(intent)
+    warnings = []
+    selected_meta = []
+
+    governance_core_map = {
+        "directives": ["Honor Governance"],
+        "instructions": ["Verify Tool Anchor"],
+        "subjects": ["Governance Frameworks"],
+        "primaries": ["Human Sovereignty"],
+        "philosophies": ["Stoicism", "Deontology"],
+        "personas": ["Analytical"],
+    }
+    primary_map = PURPOSE_BLOCK_MAP.get(intent_key, PURPOSE_BLOCK_MAP["govern"])
+    if intent_key == "govern" and _purpose_key(intent) != "govern":
+        warnings.append("intent_category_defaulted_to_governance")
+
+    stack1_neoblock, meta1 = _assemble_neoblock_from_map(governance_core_map, 5, warnings, "Governance Core")
+    selected_meta.extend(meta1)
+    stack2_neoblock, meta2 = _assemble_neoblock_from_map(primary_map, 6, warnings, "Primary Capability")
+    selected_meta.extend(meta2)
+
+    slug = _safe_slug(intent)
+    sleeve_name = f"{slug.upper()}.v1"
+    neostacks = [
+        {
+            "id": f"stack.{slug}.governance_core.v1",
+            "name": "Governance Core",
+            "gates": [],
+            "neoBlocks": [stack1_neoblock],
+        },
+        {
+            "id": f"stack.{slug}.primary_capability.v1",
+            "name": "Primary Capability",
+            "gates": [_build_gate_from_signals(
+                f"GATE_{slug.upper()}_PRIMARY",
+                f"Activates on the most relevant signals for intent '{intent}'.",
+                ["technical_request", "debugging_request"] if intent_key == "debug" else [f"{intent_key}_request"] if intent_key not in {"govern", "plan"} else ["governance_review"] if intent_key == "govern" else ["planning_request"],
+                priority=80,
+            )],
+            "neoBlocks": [stack2_neoblock],
+        },
+    ]
+
+    if any(word in intent.lower() for word in ["and", "plus", "with research", "with planning"]):
+        optional_key = "research" if "research" in intent.lower() else "plan"
+        optional_block, meta3 = _assemble_neoblock_from_map(PURPOSE_BLOCK_MAP[optional_key], 5, warnings, optional_key.title())
+        selected_meta.extend(meta3)
+        neostacks.append({
+            "id": f"stack.{slug}.{optional_key}.v1",
+            "name": optional_key.title(),
+            "gates": [_build_gate_from_signals(f"GATE_{slug.upper()}_{optional_key.upper()}", f"Activates optional {optional_key} mode.", [f"{optional_key}_request"], priority=60)],
+            "neoBlocks": [optional_block],
+        })
+
+    trace_events = [
+        _build_trace_event("trace.assembly.intent.001", "intent_classified", f"Intent matched {intent_key} category for assembly.", object_refs=[]),
+    ]
+    selection_result, runtime_spec_fragment, ir_matrix_rows, trace_events, gate_summary, assembly_source = _build_assembly_metadata("compile_sleeve", sleeve_name, neostacks, trace_events)
+    sleeve_json = {
+        "sleeve_name": sleeve_name,
+        "compiled_from_intent": intent,
+        "neoStacks": neostacks,
     }
 
     return {
-        "intent": intent,
-        "instruction": (
-            "Compile a governed UMG sleeve for the intent above. "
-            "Follow the compilation rules exactly. "
-            "Use ONLY canonical block names from the library provided. "
-            "Order blocks within each NeoBlock by MOLT authority rank (DIRECTIVE first). "
-            "Return a complete governed sleeve JSON."
-        ),
-        "compilation_rules": COMPILATION_RULES,
-        "molt_authority_hierarchy": AUTHORITY_RANK,
-        "canonical_library": library_summary,
-        "total_blocks": TOTAL,
-        "active_context_hint": active_context or [],
-        "sovereign": "NeoMAG",
-        "license": "Apache-2.0"
+        "sleeve_name": sleeve_name,
+        "compiled_from_intent": intent,
+        "compilation_summary": {
+            "stacks_created": len(neostacks),
+            "blocks_selected": len(selection_result["selected_block_ids"]),
+            "gates_assigned": gate_summary["gates_created"],
+            "compilation_method": "intent_driven_assembly",
+            "warnings": warnings,
+        },
+        "sleeve_json": sleeve_json,
+        "selection_result": selection_result,
+        "runtime_spec_fragment": runtime_spec_fragment,
+        "ir_matrix_rows": ir_matrix_rows,
+        "trace_events": trace_events,
+        "gate_summary": gate_summary,
+        "assembly_source": assembly_source,
+        "usage_note": "Pass sleeve_json to umg_preview_gate_eval or inspect_active_state with your active context signals.",
+        "sovereign_review_required": True,
     }
 
 
@@ -1001,7 +1265,6 @@ def inspect_active_state(sleeve_json: str, active_context: list[str] = None) -> 
         sleeve = json.loads(sleeve_json)
     except json.JSONDecodeError as e:
         return {"error": f"Invalid JSON: {str(e)}"}
-
     return _build_runtime_spec(sleeve, active_context or [])
 
 
@@ -1011,14 +1274,13 @@ def generate_molt_map(sleeve_json: str, active_context: list[str] = None) -> dic
         sleeve = json.loads(sleeve_json)
     except json.JSONDecodeError as e:
         return {"error": f"Invalid JSON: {str(e)}"}
-
     spec = _build_runtime_spec(sleeve, active_context or [])
     return {
         "sleeve_name": spec["sleeve_name"],
         "runtime_id": spec["runtime_id"],
         "active_context": spec["active_context"],
         "warnings": spec["warnings"],
-        **spec["molt_map"]
+        **spec["molt_map"],
     }
 
 
@@ -1028,7 +1290,6 @@ def generate_ir_graph(sleeve_json: str, active_context: list[str] = None) -> dic
         sleeve = json.loads(sleeve_json)
     except json.JSONDecodeError as e:
         return {"error": f"Invalid JSON: {str(e)}"}
-
     spec = _build_runtime_spec(sleeve, active_context or [])
     return {
         "sleeve_name": spec["sleeve_name"],
@@ -1036,7 +1297,7 @@ def generate_ir_graph(sleeve_json: str, active_context: list[str] = None) -> dic
         "active_context": spec["active_context"],
         "route_purity": spec["route_purity"],
         "trigger_evaluations": spec["trigger_evaluations"],
-        **spec["ir_graph"]
+        **spec["ir_graph"],
     }
 
 
@@ -1049,28 +1310,20 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
 
     spec = _build_runtime_spec(sleeve, active_context or [])
     mm = spec["molt_map"]
-
-    lines = []
-    lines.append(f"SLEEVE: {spec['sleeve_name']}")
-    lines.append(f"CONTEXT: {', '.join(spec['active_context']) or 'none provided'}")
-    lines.append("")
-
+    lines = [f"SLEEVE: {spec['sleeve_name']}", f"CONTEXT: {', '.join(spec['active_context']['signals']) or 'none provided'}", ""]
     if spec["active_neostacks"]:
         lines.append(f"ACTIVE NEOSTACKS ({len(spec['active_neostacks'])}):")
         for ns in spec["active_neostacks"]:
-            ev = next((e for e in spec["trigger_evaluations"] if e["neostack"] == ns["name"]), {})
+            ev = next((e for e in spec["trigger_evaluations"] if e["stack_name"] == ns["name"]), {})
             lines.append(f"  ✓ {ns['name']} — {ev.get('reason', 'active')}")
     else:
         lines.append("ACTIVE NEOSTACKS: none — no triggers matched")
-
     lines.append("")
-
     if spec["suppressed_neostacks"]:
         lines.append(f"SUPPRESSED NEOSTACKS ({len(spec['suppressed_neostacks'])}):")
         for ns in spec["suppressed_neostacks"]:
             lines.append(f"  ✗ {ns['name']} — {ns.get('reason', 'suppressed')}")
         lines.append("")
-
     if spec["authority_order"]:
         lines.append("ACTIVE AUTHORITY CHAIN (highest to lowest):")
         current_type = None
@@ -1081,7 +1334,6 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
                 lines.append(f"  [{rank}] {b['type']}")
             lines.append(f"       → {b['name']}  ({b['neoblock']})")
         lines.append("")
-
     if spec["suppressed_blocks_detail"]:
         lines.append(f"SUPPRESSED BLOCKS ({len(spec['suppressed_blocks_detail'])}):")
         for b in spec["suppressed_blocks_detail"][:8]:
@@ -1089,11 +1341,9 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
         if len(spec["suppressed_blocks_detail"]) > 8:
             lines.append(f"  ... and {len(spec['suppressed_blocks_detail'])-8} more")
         lines.append("")
-
     if spec["dominant_directive"]:
         lines.append(f"DOMINANT DIRECTIVE: {spec['dominant_directive']}")
     lines.append(f"COGNITIVE SUMMARY: {mm.get('cognitive_summary', '')}")
-
     if spec["warnings"]:
         lines.append("")
         lines.append("WARNINGS:")
@@ -1109,51 +1359,56 @@ def explain_route(sleeve_json: str, active_context: list[str] = None) -> dict:
         "active_blocks": spec["active_blocks_count"],
         "suppressed_blocks": spec["suppressed_blocks_count"],
         "dominant_directive": spec["dominant_directive"],
-        "warnings": spec["warnings"]
+        "warnings": spec["warnings"],
     }
 
 
 @mcp.tool()
 def umg_preview_gate_eval(sleeve_json: str, active_context: list[str] = None) -> dict:
-    """
-    Preview Phase 2a gate evaluation and vertical hierarchy resolution.
-
-    Input contract:
-    - sleeve_json: serialized sleeve JSON with v0.2 gate expressions embedded in NeoStacks.gates[]
-    - active_context: list of signal names, or omitted for fallback-only/default behavior
-
-    Output contract:
-    - runtime_id, sleeve_id, sleeve_name, source_mode, active_context
-    - gate_evaluations[] with exact threshold score/threshold fields
-    - active_neostacks[] sorted by gate priority
-    - active_blocks[] after vertical hierarchy dominance
-    - suppressed_items[] with explicit reason codes
-    - conflicts[] authority-conflict records
-    - vertical_resolution summary
-    - route_trace[] entries for gate_evaluation and vertical_resolution passes
-    """
     try:
         sleeve = json.loads(sleeve_json)
     except json.JSONDecodeError as e:
         return {"error": f"Invalid JSON: {str(e)}"}
-
-    runtime_spec = _run_phase2a_preview(sleeve, active_context or [])
-    return runtime_spec
+    return _run_phase2a_preview(sleeve, active_context or [])
 
 
 @mcp.tool()
-def search_blocks(query: str, block_type: str = None, limit: int = 20) -> dict:
+def search_blocks(query: str = None, block_type: str = None, limit: int = 20, queries: str = None, limit_per_query: int = 3) -> dict:
+    if queries is not None:
+        try:
+            parsed = json.loads(queries)
+            query_list = [str(item) for item in parsed if str(item).strip()]
+        except Exception:
+            return {"error": "Invalid queries JSON.", "mode": "batch", "results_by_query": {}, "flat_results": []}
+        per_query = max(1, min(int(limit_per_query), 5))
+        results_by_query = {}
+        trace_events = []
+        for idx, q in enumerate(query_list, start=1):
+            single = search_blocks(query=q, block_type=block_type, limit=per_query)
+            results_by_query[q] = single.get("results", [])
+            trace_events.append(_build_trace_event(f"trace.search.{idx:03d}", "query_executed", f"Executed batch search query '{q}'.", object_refs=[_block_dedupe_key(b) for b in single.get("results", [])]))
+        flat_results = _flatten_results(results_by_query)
+        return {
+            "mode": "batch",
+            "query_count": len(query_list),
+            "total_results": sum(len(v) for v in results_by_query.values()),
+            "results_by_query": results_by_query,
+            "flat_results": flat_results,
+            "candidate_cards": [],
+            "dedupe_key": "block_id",
+            "trace_events": trace_events,
+            "hydration_required": False,
+        }
+
+    if not query:
+        return {"error": "query is required in single-query mode.", "results": []}
+
     query_lower = query.lower()
     limit = min(limit, 100)
-
     if block_type:
         btype_upper = block_type.upper()
         if btype_upper not in LIBRARY:
-            return {
-                "error": f"Unknown block type '{block_type}'.",
-                "valid_types": list(LIBRARY.keys()),
-                "results": []
-            }
+            return {"error": f"Unknown block type '{block_type}'.", "valid_types": list(LIBRARY.keys()), "results": []}
         pool = LIBRARY[btype_upper]
     else:
         pool = ALL_BLOCKS
@@ -1162,23 +1417,54 @@ def search_blocks(query: str, block_type: str = None, limit: int = 20) -> dict:
     for block in pool:
         name_lower = block["name"].lower()
         if query_lower in name_lower:
-            score = 3 if name_lower.startswith(query_lower) else 2 if re.search(r'\b' + re.escape(query_lower), name_lower) else 1
+            score = 3 if name_lower.startswith(query_lower) else 2 if re.search(r"\b" + re.escape(query_lower), name_lower) else 1
             results.append({
-                **block,
+                **deepcopy(block),
                 "authority_rank": AUTHORITY_RANK.get(block["type"], 99),
                 "type_description": TYPE_DESCRIPTIONS.get(block["type"], ""),
-                "_score": score
+                "block_id": block.get("id"),
+                "_score": score,
             })
 
     results.sort(key=lambda x: (x.get("authority_rank", 99), -x["_score"], x["name"]))
     clean = [{k: v for k, v in r.items() if k != "_score"} for r in results[:limit]]
-
     return {
         "query": query,
         "block_type_filter": block_type or "ALL",
         "total_matches": len(results),
         "showing": len(clean),
-        "results": clean
+        "results": clean,
+    }
+
+
+@mcp.tool()
+def umg_build_neostack(purpose: str, always_on: bool = False, gate_signals: str = None, block_count: int = 5) -> dict:
+    key = _purpose_key(purpose)
+    block_map = PURPOSE_BLOCK_MAP.get(key, PURPOSE_BLOCK_MAP["govern"])
+    warnings = []
+    count = max(3, min(int(block_count), 8))
+    neoblock, selected_meta = _assemble_neoblock_from_map(block_map, count, warnings, f"{key.title()} Capability")
+    signals, signal_warnings = _coerce_gate_signals(gate_signals, purpose)
+    warnings.extend(signal_warnings)
+    stack_name = f"{key.title()} Capability"
+    stack_id = f"stack.{_safe_slug(purpose)}.v1"
+    gates = [] if always_on else [_build_gate_from_signals(f"GATE_{_safe_slug(purpose).upper()}", f"Activates on {', '.join(signals) if signals else 'inferred signals'}.", signals or [f"{key}_request"], priority=70)]
+    neostack_json = {"id": stack_id, "name": stack_name, "gates": gates, "neoBlocks": [neoblock]}
+    trace_events = [_build_trace_event("trace.assembly.intent.001", "purpose_classified", f"Purpose matched {key} category for assembly.", object_refs=[])]
+    selection_result, runtime_spec_fragment, ir_matrix_rows, trace_events, gate_summary, assembly_source = _build_assembly_metadata("umg_build_neostack", stack_name, [neostack_json], trace_events)
+    return {
+        "neostack_name": stack_name,
+        "built_from_purpose": purpose,
+        "neostack_json": neostack_json,
+        "blocks_selected": selected_meta,
+        "selection_result": selection_result,
+        "runtime_spec_fragment": runtime_spec_fragment,
+        "ir_matrix_rows": ir_matrix_rows,
+        "trace_events": trace_events,
+        "gate_assigned": gates[0] if gates else None,
+        "assembly_source": assembly_source,
+        "usage_note": "Drop this neostack_json into a sleeve neoStacks array.",
+        "sovereign_review_required": True,
     }
 
 
@@ -1208,33 +1494,32 @@ def audit_sleeve(sleeve_json: str) -> dict:
         for nb in ns.get("neoBlocks", []):
             nb_types = set()
             blocks = nb.get("blocks", [])
-            ranks = [AUTHORITY_RANK.get(b.get("type", ""), 99) for b in blocks]
+            ranks = [AUTHORITY_RANK.get(b.get("type", ""), 999) for b in blocks]
             if ranks != sorted(ranks):
-                issues.append(
-                    f"NeoBlock '{nb.get('name')}' blocks are not in authority order (DIRECTIVE first). Current order: "
-                    f"{' → '.join(b.get('type','?') for b in blocks)}"
-                )
+                issues.append(f"NeoBlock '{nb.get('name')}' blocks are not in authority order. Current order: {' → '.join(b.get('type','?') for b in blocks)}")
 
             for block in blocks:
                 btype = block.get("type", "")
                 bname = block.get("name", "")
-                if btype == "TRIGGER":
+                if btype.upper() == "TRIGGER":
                     issues.append(f"TRIGGER '{bname}' inside NeoBlock '{nb.get('name')}' — TRIGGERs belong in gates only")
-                elif bname in NAME_IDX.get(btype, {}):
+                elif btype.title() in {"Merge", "Off"}:
+                    issues.append(f"Invalid body MOLT type '{btype}' in '{nb.get('name')}'")
+                elif bname in NAME_IDX.get(btype.upper(), {}):
                     canonical_count += 1
                 else:
                     issues.append(f"Non-canonical [{btype}]: '{bname}' in '{nb.get('name')}'")
                     custom_count += 1
-
                 nb_types.add(btype)
                 type_counts[btype] = type_counts.get(btype, 0) + 1
 
+            if "DIRECTIVE" not in {t.upper() for t in nb_types}:
+                issues.append(f"NeoBlock '{nb.get('name')}' is missing a Directive")
             if len(nb_types) < 2:
                 issues.append(f"NeoBlock '{nb.get('name')}' has only 1 block type — mix ≥2 types for cognitive coverage")
 
     total = canonical_count + custom_count
     coverage = round(canonical_count / total, 2) if total > 0 else 0
-
     return {
         "sleeve_name": sleeve.get("name") or sleeve.get("sleeve_name", "unnamed"),
         "passed": len(issues) == 0,
@@ -1250,12 +1535,8 @@ def audit_sleeve(sleeve_json: str) -> dict:
             "sovereign_review_required": custom_count > 0 or len(issues) > 0,
             "runtime_eligible": len(issues) == 0 and coverage >= 0.9,
             "source_mode": sleeve.get("provenance", {}).get("sourceMode", "unknown"),
-            "provenance_note": (
-                "Clean native - all blocks canonical, authority order correct"
-                if len(issues) == 0 and custom_count == 0
-                else f"{custom_count} non-canonical block(s), {len(issues)} issue(s) - review required"
-            )
-        }
+            "provenance_note": "Clean native - all blocks canonical, authority order correct" if len(issues) == 0 and custom_count == 0 else f"{custom_count} non-canonical block(s), {len(issues)} issue(s) - review required",
+        },
     }
 
 
@@ -1268,25 +1549,21 @@ def get_block_types() -> dict:
         "sovereign": "NeoMAG",
         "license": "Apache-2.0",
         "authority_hierarchy_note": (
-            "DIRECTIVE (rank 1) governs all blocks below it. "
-            "PERSONA (rank 7) is a relational modifier. "
-            "TRIGGER (rank 0) is a gate - never a body block."
+            "DIRECTIVE (rank 1) governs lower-rank content only on explicit contradiction. "
+            "PERSONA (rank 8) is a relational modifier. "
+            "TRIGGER is a gate - never a body block. Merge and Off are not body MOLT types."
         ),
         "types": {
             btype: {
                 "prefix": LIBRARY[btype][0]["id"].split("-")[0],
-                "authority_rank": AUTHORITY_RANK.get(btype, 99),
+                "authority_rank": AUTHORITY_RANK.get(btype, None),
                 "count": len(LIBRARY[btype]),
-                "description": TYPE_DESCRIPTIONS[btype],
+                "description": TYPE_DESCRIPTIONS.get(btype, ""),
                 "sample_blocks": [b["name"] for b in LIBRARY[btype][:5]],
-                "role": (
-                    "Gate only - activates NeoStack, never inside NeoBlock"
-                    if btype == "TRIGGER"
-                    else f"Body block - authority rank {AUTHORITY_RANK[btype]}"
-                )
+                "role": "Gate only - activates NeoStack, never inside NeoBlock" if btype == "TRIGGER" else f"Body block - authority rank {AUTHORITY_RANK.get(btype)}",
             }
             for btype in LIBRARY
-        }
+        },
     }
 
 

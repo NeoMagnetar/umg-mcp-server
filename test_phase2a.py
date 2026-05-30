@@ -51,17 +51,17 @@ class Phase2AAcceptanceTests(unittest.TestCase):
         self.assertEqual(gate["matched"], True)
         self.assertEqual(gate["reason"], "No gate matched - fallback activated.")
 
-    def test_vertical_hierarchy_suppresses_lower_priority_same_type_block(self):
+    def test_vertical_hierarchy_same_rank_blocks_coexist_as_peers(self):
         result = main._run_phase2a_preview(REFERENCE_SLEEVE, ["technical_request", "governance_review"])
-        active_directives = [b for b in result["active_blocks"] if b["molt_type"] == "DIRECTIVE"]
-        self.assertEqual(len(active_directives), 1)
-        self.assertEqual(active_directives[0]["block_id"], "DIR-GOV")
+        active_directives = result["vertical_resolution"]["active_by_rank"]["Directive"]
+        self.assertIn("Honor Governance Constraints", active_directives)
+        self.assertIn("Deliver Practical Analysis", active_directives)
 
-        suppressed = [item for item in result["suppressed_items"] if item["id"] == "DIR-TECH"]
-        self.assertEqual(len(suppressed), 1)
-        self.assertEqual(suppressed[0]["suppression_reason"], "higher_vertical_authority")
-        self.assertEqual(suppressed[0]["suppressed_by_id"], "DIR-GOV")
-        self.assertTrue(any(c["winner_id"] == "DIR-GOV" for c in result["conflicts"]))
+        suppressed_ids = {item["id"] for item in result["suppressed_items"]}
+        self.assertNotIn("DIR-GOV", suppressed_ids)
+        self.assertNotIn("DIR-TECH", suppressed_ids)
+
+        self.assertEqual(len(result["vertical_resolution"]["cross_rank_conflicts"]), 0)
 
 
 if __name__ == '__main__':
