@@ -1,5 +1,7 @@
 # UMG Block Library MCP Server
 
+> **Status — legacy public compatibility line:** This repository preserves an earlier public MCP server and its historical catalog/tool model. It is not the modern MCP convergence authority and does not prove the ancestry of any remote deployment. Current public H4 architecture starts with [compiler-vNext](https://github.com/NeoMagnetar/umg-compiler-vnext) and the seven-lane [UMG Block Library](https://github.com/NeoMagnetar/UMG-Block-Library).
+
 Universal Modular Generation - cognitive sleeve compiler for Claude.ai
 
 **Sovereign:** NeoMAG  
@@ -10,7 +12,7 @@ Universal Modular Generation - cognitive sleeve compiler for Claude.ai
 
 ## What it does
 
-Connects Claude.ai to the canonical UMG Block Library (1,400 blocks, 8 MOLT types).
+Connects Claude.ai to the bundled legacy UMG catalog used by this server line (approximately 1,400 records across its historical 8-type model).
 Enables Claude to compile governed cognitive sleeves mid-conversation,
 search blocks semantically, and audit existing sleeves for canonical validity.
 
@@ -56,7 +58,7 @@ Then in Claude.ai or MCP Inspector: connect to `http://localhost:8080/mcp`
 
 ## Part of the UMG ecosystem
 
-- **ClawHub plugin:** `umg-envoy-agent` - full runtime execution
+- **OpenClaw plugin:** `umg-envoy-agent` - working legacy integration; not H4-qualified
 - **Claude Code plugin:** `umg-block-compiler` - terminal-based compilation
 - **This server:** Claude.ai native MCP connection
 - **Web app:** Visual block library (GitHub Pages)
